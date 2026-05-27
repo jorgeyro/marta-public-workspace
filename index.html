@@ -1,34 +1,716 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marta Public Workspace</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-align: center;
-            padding: 2rem;
-        }
-        .container { max-width: 600px; }
-        h1 { font-size: 3rem; margin-bottom: 1rem; }
-        p { font-size: 1.2rem; opacity: 0.9; line-height: 1.6; }
-        .divider { width: 60px; height: 3px; background: rgba(255,255,255,0.6); margin: 1.5rem auto; border-radius: 2px; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🌿 Cataratas Here We Come!</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --jungle: #1a5c3a;
+      --jungle-light: #2d8a4e;
+      --water: #0077be;
+      --water-light: #4fc3f7;
+      --lime: #c8e648;
+      --lime-dark: #a8c630;
+      --sand: #f5e6c8;
+      --sunset: #ff7e5f;
+      --cloud: #f0f8ff;
+      --card-bg: rgba(255,255,255,0.12);
+      --card-border: rgba(255,255,255,0.2);
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(135deg, #0d3b20 0%, #1a5c3a 30%, #0a4a2a 70%, #062b16 100%);
+      color: white;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── Floating jungle background ── */
+    .bg-leaves {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .leaf {
+      position: absolute;
+      font-size: 2rem;
+      opacity: 0.15;
+      animation: floatLeaf 20s infinite linear;
+    }
+    @keyframes floatLeaf {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.2; }
+      90% { opacity: 0.2; }
+      100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+    }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      background:
+        radial-gradient(ellipse at 20% 80%, rgba(0,119,190,0.2) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(200,230,72,0.1) 0%, transparent 50%);
+    }
+
+    .hero h1 {
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(2.8rem, 8vw, 6rem);
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, var(--lime), var(--water-light), var(--lime));
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 4s ease-in-out infinite;
+    }
+    @keyframes shimmer {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .hero .subtitle {
+      font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+      font-weight: 700;
+      color: var(--sand);
+      margin-bottom: 2rem;
+    }
+
+    .hero .tagline {
+      font-size: 1.1rem;
+      opacity: 0.8;
+      max-width: 500px;
+      margin-bottom: 2.5rem;
+      line-height: 1.6;
+    }
+
+    /* ── Countdown ── */
+    .countdown {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+    .cd-item {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 0.8rem 1.5rem;
+      min-width: 80px;
+      text-align: center;
+    }
+    .cd-num {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2.2rem;
+      color: var(--lime);
+    }
+    .cd-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      opacity: 0.7;
+      margin-top: 2px;
+    }
+
+    .scroll-hint {
+      animation: bounce 2s infinite;
+      font-size: 2rem;
+      margin-top: 1rem;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(10px); }
+    }
+
+    /* ── Sections ── */
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 4rem 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    .section-desc {
+      text-align: center;
+      opacity: 0.8;
+      margin-bottom: 2.5rem;
+      font-size: 1.05rem;
+    }
+
+    /* ── Trip Card ── */
+    .trip-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    @media (max-width: 600px) { .trip-card { grid-template-columns: 1fr; } }
+
+    .trip-info h3 {
+      font-family: 'Fredoka One', cursive;
+      color: var(--lime);
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
+    }
+    .trip-info p {
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+    }
+    .trip-info .label {
+      opacity: 0.6;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      min-width: 70px;
+    }
+
+    /* ── Explorer Map ── */
+    .explorer-map {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 2rem;
+    }
+    .explorer-map h3 {
+      font-family: 'Fredoka One', cursive;
+      color: var(--water-light);
+      margin-bottom: 1rem;
+      text-align: center;
+      font-size: 1.3rem;
+    }
+    .map-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .map-item {
+      background: rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 1.2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      cursor: default;
+    }
+    .map-item:hover {
+      background: rgba(255,255,255,0.18);
+      transform: translateY(-3px);
+    }
+    .map-item .icon { font-size: 2rem; margin-bottom: 0.5rem; }
+    .map-item h4 { font-size: 0.95rem; margin-bottom: 0.3rem; color: var(--lime); }
+    .map-item p { font-size: 0.8rem; opacity: 0.7; line-height: 1.4; }
+
+    /* ── Activities Grid ── */
+    .activities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.2rem;
+    }
+    .activity-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      cursor: default;
+    }
+    .activity-card:hover {
+      transform: translateY(-5px);
+      background: rgba(255,255,255,0.18);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+    }
+    .activity-card .icon { font-size: 2.5rem; margin-bottom: 0.8rem; }
+    .activity-card h4 { font-size: 1rem; margin-bottom: 0.5rem; color: var(--lime); }
+    .activity-card p { font-size: 0.85rem; opacity: 0.75; line-height: 1.5; }
+    .activity-card .tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      margin-top: 0.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .tag-adventure { background: var(--sunset); color: #fff; }
+    .tag-chill { background: var(--water); color: #fff; }
+    .tag-food { background: var(--lime-dark); color: #1a5c3a; }
+    .tag-culture { background: #9c27b0; color: #fff; }
+
+    /* ── Checklist Challenge ── */
+    .checklist {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 2rem;
+    }
+    .checklist h3 {
+      font-family: 'Fredoka One', cursive;
+      text-align: center;
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: var(--lime);
+    }
+    .checklist .sub {
+      text-align: center;
+      opacity: 0.7;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+    }
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+    .check-item:last-child { border-bottom: none; }
+    .check-item input[type="checkbox"] {
+      width: 20px; height: 20px;
+      accent-color: var(--lime);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .check-item label {
+      font-size: 0.95rem;
+      cursor: pointer;
+      flex: 1;
+    }
+    .check-item input:checked + label {
+      text-decoration: line-through;
+      opacity: 0.5;
+    }
+
+    /* ── Sr Duncan Section ── */
+    .duncan-section {
+      text-align: center;
+      padding: 4rem 2rem;
+      position: relative;
+    }
+    .duncan-section h2 {
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      color: var(--lime);
+    }
+    .duncan-hint {
+      font-size: 0.95rem;
+      opacity: 0.6;
+      margin-top: 0.5rem;
+      font-style: italic;
+    }
+    .duncan-grid {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    .duncan-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border: 2px dashed var(--card-border);
+      border-radius: 16px;
+      padding: 2rem;
+      width: 160px;
+      text-align: center;
+      transition: all 0.4s ease;
+      cursor: pointer;
+      position: relative;
+    }
+    .duncan-card:hover {
+      border-color: var(--lime);
+      transform: scale(1.05);
+    }
+    .duncan-card .emoji-big { font-size: 3rem; }
+    .duncan-card .name { font-size: 0.8rem; margin-top: 0.5rem; opacity: 0.5; }
+    .duncan-card.found {
+      border-color: var(--lime);
+      background: rgba(200,230,72,0.15);
+      animation: duncanFound 0.6s ease;
+    }
+    @keyframes duncanFound {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+    }
+    .duncan-card.found .name { opacity: 1; color: var(--lime); }
+
+    /* ── Footer ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 3rem 2rem;
+      opacity: 0.5;
+      font-size: 0.85rem;
+    }
+    footer span { color: var(--sunset); }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      section { padding: 2.5rem 1.2rem; }
+      .countdown { gap: 0.8rem; }
+      .cd-item { min-width: 65px; padding: 0.6rem 1rem; }
+      .cd-num { font-size: 1.6rem; }
+    }
+
+    /* ── Duncan Finder game ── */
+    .duncan-result {
+      margin-top: 1.5rem;
+      font-size: 1.1rem;
+      min-height: 2rem;
+      font-weight: 700;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Marta Public Workspace</h1>
-        <div class="divider"></div>
-        <p>Published static content — HTML, CSS, JS, and assets.</p>
+
+  <!-- Floating leaves -->
+  <div class="bg-leaves" id="bgLeaves"></div>
+
+  <!-- ═══════════ HERO ═══════════ -->
+  <section class="hero">
+    <h1>🌿 Cataratas<br>Here We Come!</h1>
+    <p class="subtitle">🇦🇷 Jorge + Cristina · 1 al 4 de Junio 🇦🇷</p>
+    <p class="tagline">
+      Dos hermanos, una selva, 275 cascadas, y una misión: encontrar al misterioso <strong>Sr Duncan</strong> entre las pasarelas.
+    </p>
+
+    <!-- Countdown -->
+    <div class="countdown" id="countdown">
+      <div class="cd-item"><div class="cd-num" id="cd-days">--</div><div class="cd-label">Días</div></div>
+      <div class="cd-item"><div class="cd-num" id="cd-hours">--</div><div class="cd-label">Horas</div></div>
+      <div class="cd-item"><div class="cd-num" id="cd-mins">--</div><div class="cd-label">Min</div></div>
+      <div class="cd-item"><div class="cd-num" id="cd-secs">--</div><div class="cd-label">Seg</div></div>
     </div>
+
+    <div class="scroll-hint">⌄</div>
+  </section>
+
+  <!-- ═══════════ TRIP DETAILS ═══════════ -->
+  <section>
+    <h2 class="section-title">📍 El Plan</h2>
+    <p class="section-desc">Los datos fríos. Después viene lo divertido.</p>
+
+    <div class="trip-card">
+      <div class="trip-info">
+        <h3>✈️ Vuelos</h3>
+        <p><span class="label">Ida</span> AR1778 · AEP → IGR<br><span style="font-size:0.85rem;opacity:0.7;">Lun 1 Jun · 11:15 → 13:10</span></p>
+        <p><span class="label">Vuelta</span> AR1789 · IGR → EZE<br><span style="font-size:0.85rem;opacity:0.7;">Mié 3 Jun · 18:00 → 20:00</span></p>
+        <p style="margin-top:0.6rem;"><span class="label">Reserva</span> EOCFYD · Premium Economy</p>
+      </div>
+      <div class="trip-info">
+        <h3>🏨 Hotel</h3>
+        <p><span class="label">Hotel</span> Gran Meliá Iguazú</p>
+        <p><span class="label">Check-in</span> Lun 1 Jun</p>
+        <p><span class="label">Check-out</span> Mié 3 Jun</p>
+        <p><span class="label">Conf.</span> 2602725345</p>
+        <p style="margin-top:0.8rem;font-size:0.85rem;opacity:0.6;">🌴 Selva, pileta, y vistas a las cataratas desde la habitación</p>
+      </div>
+    </div>
+
+    <!-- Explorer Map -->
+    <div class="explorer-map">
+      <h3>🗺️ Mapa del Viaje</h3>
+      <div class="map-grid">
+        <div class="map-item">
+          <div class="icon">🛫</div>
+          <h4>Aeroparque</h4>
+          <p>Salida 11:15 — rumbo a la selva</p>
+        </div>
+        <div class="map-item">
+          <div class="icon">🌿</div>
+          <h4>Puerto Iguazú</h4>
+          <p>14 km de la entrada al Parque Nacional</p>
+        </div>
+        <div class="map-item">
+          <div class="icon">🏨</div>
+          <h4>Gran Meliá Iguazú</h4>
+          <p>Dentro del parque. Literalmente al lado de las cataratas.</p>
+        </div>
+        <div class="map-item">
+          <div class="icon">💦</div>
+          <h4>Garganta del Diablo</h4>
+          <p>La joya de la corona. 80m de caída libre.</p>
+        </div>
+        <div class="map-item">
+          <div class="icon">🇧🇷</div>
+          <h4>Lado Brasileño</h4>
+          <p>Si se animan, la vista panorámica es imperdible</p>
+        </div>
+        <div class="map-item">
+          <div class="icon">🛬</div>
+          <h4>Vuelta a EZE</h4>
+          <p>Miércoles 18:00 — de vuelta con fotos y anécdotas</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ ACTIVITIES ═══════════ -->
+  <section>
+    <h2 class="section-title">🎯 Misiones en la Selva</h2>
+    <p class="section-desc">Actividades para elegir. Cada una suma puntos de experiencia hermana-hermano 🏆</p>
+
+    <div class="activities-grid">
+      <div class="activity-card">
+        <div class="icon">💦</div>
+        <h4>Gran Aventura</h4>
+        <p>Lancha que se mete DEBAJO de un salto. Salir empapado es parte del plan.</p>
+        <span class="tag tag-adventure">🔥 Extrema</span>
+      </div>
+      <div class="activity-card">
+        <div class="icon">🌉</div>
+        <h4>Garganta del Diablo</h4>
+        <p>Pasarelas de 1km sobre el río hasta el borde mismo de la caída. El rugido se siente en los huesos.</p>
+        <span class="tag tag-adventure">🔥 Imperdible</span>
+      </div>
+      <div class="activity-card">
+        <div class="icon">🚂</div>
+        <h4>Tren Ecológico</h4>
+        <p>Trencito selva adentro. Te deja en la boca de la Garganta y en el circuito de pasarelas.</p>
+        <span class="tag tag-chill">🌿 Relax</span>
+      </div>
+      <div class="activity-card">
+        <div class="icon">🌙</div>
+        <h4>Excursión Luna Llena</h4>
+        <p>Caminata nocturna bajo la luna llena. La selva de noche es otro mundo. Solo 5 noches al mes.</p>
+        <span class="tag tag-chill">✨ Mágica</span>
+      </div>
+      <div class="activity-card">
+        <div class="icon">🐦</div>
+        <h4>Güira Oga</h4>
+        <p>Refugio de fauna silvestre. Tucanes, monos, coatíes. Perfecto para la foto familiar.</p>
+        <span class="tag tag-culture">🐾 Fauna</span>
+      </div>
+      <div class="activity-card">
+        <div class="icon">🌮</div>
+        <h4>Chipá + Pacú</h4>
+        <p>Misión gastronómica obligatoria: chipá caliente, pacú al horno, y un buen vino mirando el atardecer.</p>
+        <span class="tag tag-food">🍷 Comilona</span>
+      </div>
+      <div class="activity-card">
+        <div class="icon">🏞️</div>
+        <h4>Circuito Superior</h4>
+        <p>Vista panorámica desde arriba de la selva. Para la foto de portada del Instagram.</p>
+        <span class="tag tag-chill">📸 Fotos</span>
+      </div>
+      <div class="activity-card">
+        <div class="icon">🔍</div>
+        <h4>Operativo Duncan</h4>
+        <p>MISIÓN ESPECIAL: Recorrer las pasarelas buscando al legendario Sr Duncan. ¿Turista? ¿Guía? ¿Leyenda?</p>
+        <span class="tag tag-adventure">🕵️ TOP SECRET</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ CHECKLIST CHALLENGE ═══════════ -->
+  <section>
+    <h2 class="section-title">✅ Cataratas Bingo</h2>
+    <p class="section-desc">Marcá las que vayan cumpliendo. Hermana que completa más, gana 🏅</p>
+
+    <div class="checklist">
+      <h3>🌿 Cataratas Bingo Challenge</h3>
+      <p class="sub">Entre los dos tienen que completar todas. ¡No vale hacer trampa!</p>
+
+      <div class="check-item">
+        <input type="checkbox" id="c1"><label for="c1">💦 Mojarse en la Gran Aventura (o en cualquier cascada)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c2"><label for="c2">🌉 Cruzar la pasarela hasta la Garganta del Diablo</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c3"><label for="c3">🚂 Subir al Tren Ecológico</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c4"><label for="c4">🍞 Comer chipá recién hecho</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c5"><label for="c5">🐦 Ver un tucán (o coqueto)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c6"><label for="c6">📸 Foto hermana/o mirror selfie con las cataratas de fondo</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c7"><label for="c7">🌙 Ver el atardecer desde el Hito de las Tres Fronteras</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c8"><label for="c8">🔍 AVISTAR AL SR DUNCAN (vale grito de emoción)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c9"><label for="c9">🏊 Meterte a la pileta del Gran Meliá</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c10"><label for="c10">🎶 Cantar alguna canción ridícula en el camino</label>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ SR DUNCAN ═══════════ -->
+  <section class="duncan-section">
+    <h2>🔍 ¿Dónde está el Sr Duncan?</h2>
+    <p class="duncan-hint">Cuenta la leyenda que el Sr Duncan recorre las pasarelas de las Cataratas. Nadie sabe exactamente quién es. ¿Un guía? ¿Un turista confundido? ¿Una criatura de la selva? Click en las cards para buscarlo...</p>
+
+    <div class="duncan-grid" id="duncanGrid">
+      <div class="duncan-card" onclick="findDuncan(this, false)">
+        <div class="emoji-big">👨‍🦯</div>
+        <div class="name">Turista alemán con poncho</div>
+      </div>
+      <div class="duncan-card" onclick="findDuncan(this, false)">
+        <div class="emoji-big">🦎</div>
+        <div class="name">Iguana sospechosa</div>
+      </div>
+      <div class="duncan-card" onclick="findDuncan(this, false)">
+        <div class="emoji-big">🧔‍♂️</div>
+        <div class="name">Guía con sombrero</div>
+      </div>
+      <div class="duncan-card" onclick="findDuncan(this, true)">
+        <div class="emoji-big">🕵️</div>
+        <div class="name">???</div>
+      </div>
+      <div class="duncan-card" onclick="findDuncan(this, false)">
+        <div class="emoji-big">🐒</div>
+        <div class="name">Mono carayá</div>
+      </div>
+      <div class="duncan-card" onclick="findDuncan(this, false)">
+        <div class="emoji-big">📸</div>
+        <div class="name">Turista japonesa</div>
+      </div>
+    </div>
+
+    <div class="duncan-result" id="duncanResult"></div>
+  </section>
+
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <footer>
+    <p>Hecho con 💚 por Marta para Jorge y Cristina</p>
+    <p style="margin-top:0.3rem;">Cataratas del Iguazú · Junio 2026</p>
+  </footer>
+
+  <script>
+    // ── Countdown ──
+    const target = new Date('2026-06-01T11:15:00-03:00');
+    function updateCountdown() {
+      const now = new Date();
+      const diff = target - now;
+      if (diff <= 0) {
+        document.getElementById('cd-days').textContent = '🎉';
+        document.getElementById('cd-hours').textContent = '🎉';
+        document.getElementById('cd-mins').textContent = '🎉';
+        document.getElementById('cd-secs').textContent = '🎉';
+        return;
+      }
+      const d = Math.floor(diff / (1000*60*60*24));
+      const h = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+      const m = Math.floor((diff % (1000*60*60)) / (1000*60));
+      const s = Math.floor((diff % (1000*60)) / 1000);
+      document.getElementById('cd-days').textContent = String(d).padStart(2,'0');
+      document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+      document.getElementById('cd-mins').textContent = String(m).padStart(2,'0');
+      document.getElementById('cd-secs').textContent = String(s).padStart(2,'0');
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // ── Floating leaves ──
+    const leaves = ['🌿', '🍃', '🌴', '☘️', '🌱'];
+    const container = document.getElementById('bgLeaves');
+    for (let i = 0; i < 15; i++) {
+      const span = document.createElement('span');
+      span.className = 'leaf';
+      span.textContent = leaves[i % leaves.length];
+      span.style.left = Math.random() * 100 + '%';
+      span.style.fontSize = (1 + Math.random() * 2.5) + 'rem';
+      span.style.animationDuration = (15 + Math.random() * 20) + 's';
+      span.style.animationDelay = (Math.random() * 20) + 's';
+      container.appendChild(span);
+    }
+
+    // ── Duncan Finder ──
+    let duncanFound = false;
+    function findDuncan(el, isDuncan) {
+      if (el.classList.contains('found')) return;
+      el.classList.add('found');
+      const result = document.getElementById('duncanResult');
+
+      if (isDuncan) {
+        if (!duncanFound) {
+          duncanFound = true;
+          result.textContent = '🎯 ¡LO ENCONTRASTE! 🎯 El Sr Duncan estaba entre las pasarelas todo este tiempo. Dicen que lleva años ahí, confundido entre los turistas. Cuenta la leyenda que cada vez que alguien lo encuentra, las Cataratas rugen un poco más fuerte. ¡Bien jugado! 🌊🔥';
+          result.style.color = 'var(--lime)';
+          // Celebrate
+          confetti();
+        }
+      } else {
+        result.textContent = '❌ No era el Sr Duncan. Seguí buscando...';
+        result.style.color = 'var(--sunset)';
+      }
+    }
+
+    // ── Simple confetti ──
+    function confetti() {
+      const colors = ['#c8e648', '#4fc3f7', '#ff7e5f', '#ffeb3b', '#e040fb', '#fff'];
+      for (let i = 0; i < 50; i++) {
+        const el = document.createElement('div');
+        el.style.cssText = `
+          position: fixed; width: 10px; height: 10px; border-radius: 50%;
+          background: ${colors[Math.floor(Math.random() * colors.length)]};
+          left: ${Math.random() * 100}vw; top: -10px;
+          pointer-events: none; z-index: 9999;
+          animation: confettiFall ${1.5 + Math.random() * 2}s ease-out forwards;
+          animation-delay: ${Math.random() * 0.5}s;
+        `;
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 4000);
+      }
+    }
+    // Inject confetti keyframes
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes confettiFall {
+        0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+        100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+
 </body>
 </html>
