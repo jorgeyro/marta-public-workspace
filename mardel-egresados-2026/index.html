@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mardel 2026 — Viaje de Egresados 🧑‍🎓</title>
+<title>Mardel 2026 — Grad Trip 🧑‍🎓</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap');
 
@@ -33,7 +33,7 @@ body {
   overflow-x: hidden;
 }
 
-/* ── Fondo animado de olas ── */
+/* ── Animated waves background ── */
 .waves-bg {
   position: fixed;
   top: 0; left: 0;
@@ -75,7 +75,7 @@ body {
   100% { transform: translateX(-50%) scaleY(1.2); }
 }
 
-/* ── Estrellas ── */
+/* ── Stars ── */
 .stars {
   position: fixed;
   top: 0; left: 0;
@@ -309,10 +309,10 @@ body {
   margin-bottom: 10px;
 }
 .tag-surf { background: rgba(107, 78, 113, 0.3); color: var(--violet-light); }
-.tag-comer { background: rgba(244, 162, 97, 0.2); color: var(--gold); }
-.tag-cultural { background: rgba(232, 129, 122, 0.2); color: var(--rose); }
-.tag-naturaleza { background: rgba(255, 140, 97, 0.2); color: var(--coral); }
-.tag-plan { background: rgba(43, 62, 107, 0.3); color: #6B8FD4; }
+.tag-eat { background: rgba(244, 162, 97, 0.2); color: var(--gold); }
+.tag-culture { background: rgba(232, 129, 122, 0.2); color: var(--rose); }
+.tag-nature { background: rgba(255, 140, 97, 0.2); color: var(--coral); }
+.tag-chill { background: rgba(43, 62, 107, 0.3); color: #6B8FD4; }
 
 /* ── BINGO ── */
 .bingo-grid {
@@ -381,33 +381,6 @@ body {
   font-size: 1.1rem;
 }
 
-/* ── Photo placeholders ── */
-.photo-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 16px;
-}
-
-.photo-placeholder {
-  aspect-ratio: 4/3;
-  border-radius: 16px;
-  background: var(--glass);
-  border: 2px dashed rgba(255,255,255,0.15);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: rgba(255,255,255,0.25);
-  font-size: 0.8rem;
-  gap: 8px;
-  transition: all 0.3s;
-}
-.photo-placeholder .icon { font-size: 1.8rem; }
-.photo-placeholder:hover {
-  border-color: rgba(255,255,255,0.3);
-  background: rgba(255,255,255,0.06);
-}
-
 /* ── Footer ── */
 .footer {
   text-align: center;
@@ -431,7 +404,7 @@ body {
   display: inline-block;
 }
 .easter-egg-trigger:hover::after {
-  content: "🧠✨ — ¡y también los más cracks!";
+  content: "🧠✨ — and the sharpest minds of the group!";
   position: absolute;
   bottom: 120%;
   left: 50%;
@@ -451,13 +424,12 @@ body {
   .countdown-item { min-width: 65px; padding: 12px 14px; }
   .countdown-item .numero { font-size: 1.6rem; }
   .bingo-grid { grid-template-columns: 1fr; }
-  .photo-grid { grid-template-columns: 1fr 1fr; }
 }
 </style>
 </head>
 <body>
 
-<!-- Fondo animado -->
+<!-- Animated background -->
 <div class="waves-bg">
   <div class="wave"></div>
   <div class="wave"></div>
@@ -471,29 +443,29 @@ body {
   <section class="hero">
     <div class="hero-emoji">🧑‍🎓</div>
     <h1>Mardel 2026</h1>
-    <p class="hero-subtitle">🎉 Viaje de Egresados 🎉</p>
-    <p class="hero-group">8 amigos · 7 días · Mar del Plata</p>
+    <p class="hero-subtitle">🎉 Grad Trip 🎉</p>
+    <p class="hero-group">8 friends · 7 days · Mar del Plata</p>
 
     <div class="countdown-container" id="countdown">
-      <div class="countdown-item"><span class="numero" id="cd-dias">--</span><span class="label">días</span></div>
-      <div class="countdown-item"><span class="numero" id="cd-horas">--</span><span class="label">horas</span></div>
+      <div class="countdown-item"><span class="numero" id="cd-dias">--</span><span class="label">days</span></div>
+      <div class="countdown-item"><span class="numero" id="cd-horas">--</span><span class="label">hours</span></div>
       <div class="countdown-item"><span class="numero" id="cd-minutos">--</span><span class="label">min</span></div>
-      <div class="countdown-item"><span class="numero" id="cd-segundos">--</span><span class="label">seg</span></div>
+      <div class="countdown-item"><span class="numero" id="cd-segundos">--</span><span class="label">sec</span></div>
     </div>
 
-    <a href="#guia" class="hero-cta">🌊 Descubrir Mardel</a>
+    <a href="#guide" class="hero-cta">🌊 Explore Mardel</a>
 
     <div class="scroll-down">
       <span>⌄</span>
     </div>
   </section>
 
-  <!-- ═══ GUÍA MARDEL EN INVIERNO ═══ -->
-  <section id="guia" class="section">
-    <h2 class="section-title">🌊 Mardel en Invierno</h2>
+  <!-- ═══ MAR DEL PLATA WINTER GUIDE ═══ -->
+  <section id="guide" class="section">
+    <h2 class="section-title">🌊 Mardel in Winter</h2>
     <p class="section-desc">
-      Mar del Plata en junio tiene otro encanto: calles tranquilas, atardeceres tempraneros
-      y el mejor clima para disfrutar entre amigos. <span class="easter-egg-trigger">🧠</span>
+      Mar del Plata in June has a different charm: quiet streets, early sunsets,
+      and the coziest vibe for hanging out with friends. <span class="easter-egg-trigger">🧠</span>
     </p>
     <div class="section-accent"></div>
 
@@ -502,142 +474,126 @@ body {
       <div class="card">
         <div class="card-icon">🏄</div>
         <span class="card-tag tag-surf">SURF</span>
-        <h3>Olas invernales</h3>
-        <p>Invierno = olas más consistentes. Con un buen neopreno, la playa <strong>Waikiki</strong> y <strong>Playa Grande</strong> tienen las mejores rompientes para surfear.</p>
+        <h3>Winter Waves</h3>
+        <p>Winter = more consistent swells. With a good wetsuit, <strong>Waikiki</strong> and <strong>Playa Grande</strong> have the best breaks for surfing. Fewer crowds too.</p>
       </div>
 
       <div class="card">
         <div class="card-icon">☕</div>
-        <span class="card-tag tag-plan">PLAN</span>
-        <h3>Café con vista al mar</h3>
-        <p><strong>La Fonte d'Oro</strong> en la Rambla, o <strong>St Bernard</strong> sobre la costa. Pedite un café con crema, mirá el mar gris y sentite en una película.</p>
+        <span class="card-tag tag-chill">CHILL</span>
+        <h3>Coffee with an ocean view</h3>
+        <p><strong>La Fonte d'Oro</strong> on the Rambla boardwalk, or <strong>St Bernard</strong> along the coast. Grab a latte, watch the grey sea, and feel like you're in a movie.</p>
       </div>
 
       <div class="card">
         <div class="card-icon">🍝</div>
-        <span class="card-tag tag-comer">COMER</span>
-        <h3>Cocinar entre todos</h3>
-        <p>Mercado del Puerto para comprar pescado fresco, o una picada monumental del super. Nada como cocinar entre 8 amigos en un AirBNB bien equipado 🍳</p>
+        <span class="card-tag tag-eat">EAT</span>
+        <h3>Cooking together</h3>
+        <p>Hit the <strong>Mercado del Puerto</strong> for fresh fish, or stock up for a legendary shared feast at the super. Nothing beats cooking for 8 in a cozy AirBNB kitchen 🍳</p>
       </div>
 
       <div class="card">
         <div class="card-icon">🥟</div>
-        <span class="card-tag tag-comer">COMER</span>
-        <h3>Clásicos marplatenses</h3>
-        <p>Churros en <strong>La Bristol</strong>, sánguche de milanesa en <strong>El Emporio</strong>, y rabas en cualquier parador de la costa. Imperdibles.</p>
+        <span class="card-tag tag-eat">EAT</span>
+        <h3>Mardel classics</h3>
+        <p><strong>Churros at La Bristol</strong>, milanesa sandwich at El Emporio, and fried seafood at any beachside spot. The holy trinity of Mar del Plata street food.</p>
       </div>
 
       <div class="card">
         <div class="card-icon">🌇</div>
-        <span class="card-tag tag-naturaleza">PAISAJE</span>
-        <h3>Atardecer en el Torreón</h3>
-        <p>El <strong>Torreón del Monje</strong> es el mejor lugar para ver el sol meterse en el mar. Llevate un termo con mate o chocolate caliente 🧉☕</p>
+        <span class="card-tag tag-nature">VIEW</span>
+        <h3>Sunset at Torreón</h3>
+        <p><strong>Torreón del Monje</strong> is THE spot to watch the sun dip into the sea. Bring a thermos of mate or hot chocolate — it's a whole vibe 🧉☕</p>
       </div>
 
       <div class="card">
         <div class="card-icon">🧣</div>
-        <span class="card-tag tag-plan">PLAN</span>
-        <h3>Casa de Té</h3>
-        <p><strong>Tea & Company</strong> o <strong>L'Albero dei Gelati</strong> (también tienen té). Perfecto para una tarde fría entre amigos, con tortas y parlantes de por medio.</p>
+        <span class="card-tag tag-chill">CHILL</span>
+        <h3>Tea House afternoon</h3>
+        <p><strong>Tea & Company</strong> or <strong>L'Albero dei Gelati</strong> (they do tea too). Perfect for a chilly afternoon: tea, cake, friends, and a speaker playing your playlist.</p>
       </div>
 
       <div class="card">
         <div class="card-icon">🐟</div>
-        <span class="card-tag tag-naturaleza">PAISAJE</span>
-        <h3>Puerto y lobos marinos</h3>
-        <p>Caminata por la escollera del puerto para ver los lobos marinos, el ir y venir de los barcos pesqueros, y de paso comer algo en la zona.</p>
+        <span class="card-tag tag-nature">NATURE</span>
+        <h3>Harbor & Sea Lions</h3>
+        <p>Walk the pier at the <strong>Puerto</strong> to see sea lions basking, fishing boats coming and going, and grab a bite at one of the dockside spots.</p>
       </div>
 
       <div class="card">
         <div class="card-icon">🎮</div>
-        <span class="card-tag tag-plan">PLAN</span>
-        <h3>Noche de juegos</h3>
-        <p>Una vez que cae el sol, el plan perfecto: juegos de mesa, cartas, o armar un torneo de algo. <strong>Competitividad vs amistad</strong> — may the best friend win 🎲</p>
+        <span class="card-tag tag-chill">CHILL</span>
+        <h3>Game Night</h3>
+        <p>Once the sun's down, it's game time. Board games, cards, or an improvised tournament. <strong>Competitiveness vs. friendship</strong> — may the best friend win 🎲</p>
       </div>
 
       <div class="card">
         <div class="card-icon">🎬</div>
-        <span class="card-tag tag-plan">PLAN</span>
-        <h3>Maratón de pelis</h3>
-        <p>Día de lluvia + frazadas + algo rico = peli entre todos. Que cada uno lleve su peli favorita y voten. O maratón de clásicos argentinos.</p>
+        <span class="card-tag tag-chill">CHILL</span>
+        <h3>Movie Marathon</h3>
+        <p>Rainy day + blankets + snacks = movie time. Everyone brings their favorite film and votes. Or go for a classic Argentine movie marathon.</p>
       </div>
 
       <div class="card">
         <div class="card-icon">🧺</div>
-        <span class="card-tag tag-naturaleza">PAISAJE</span>
-        <h3>Caminata por la costa</h3>
-        <p>De <strong>Playa Grande</strong> al <strong>Farolas</strong>, o hasta <strong>Cabo Corrientes</strong>. El sonido del mar en invierno pega distinto — y el mate lo hace mejor.</p>
+        <span class="card-tag tag-nature">NATURE</span>
+        <h3>Coastal Walk</h3>
+        <p>From <strong>Playa Grande</strong> to <strong>Farolas</strong> or all the way to <strong>Cabo Corrientes</strong>. The sound of the ocean hits different in winter — and mate makes it even better.</p>
       </div>
 
       <div class="card">
         <div class="card-icon">🥞</div>
-        <span class="card-tag tag-comer">COMER</span>
-        <h3>Desayuno gigante</h3>
-        <p>El clásico de todo viaje grupal: que alguien se levante primero y haga un desayuno monstruoso. Panqueques, huevos, café, jugo — seamos realistas, es la comida más importante del día de egresados.</p>
+        <span class="card-tag tag-eat">EAT</span>
+        <h3>Giant Breakfast</h3>
+        <p>The classic group trip move: whoever wakes up first makes a monster breakfast. Pancakes, eggs, coffee, juice — let's be real, it's the most important meal of any grad trip.</p>
       </div>
 
       <div class="card">
         <div class="card-icon">📸</div>
-        <span class="card-tag tag-cultural">CULTURAL</span>
-        <h3>Centro y feria</h3>
-        <p>La <strong>peatonal San Martín</strong> de día, la <strong>feria artesanal</strong> del centro. Ideal para boludear, sacar fotos y comprar algún souvenir random para la familia.</p>
+        <span class="card-tag tag-culture">CULTURE</span>
+        <h3>Downtown & Art Fair</h3>
+        <p><strong>Peatonal San Martín</strong> by day, the <strong>artisan fair</strong> in the center. Perfect for wandering, taking photos, and grabbing a random souvenir for the family.</p>
       </div>
 
     </div>
   </section>
 
-  <!-- ═══ BINGO DE VIAJE ═══ -->
+  <!-- ═══ TRIP BINGO ═══ -->
   <section class="section">
-    <h2 class="section-title">🎯 Bingo Mardel 2026</h2>
-    <p class="section-desc">Tocá cada cosa que hagan durante el viaje. ¿Quién completa más? 👀</p>
+    <h2 class="section-title">🎯 Mardel Bingo</h2>
+    <p class="section-desc">Tap each thing you do during the trip. Who fills the most? 👀</p>
     <div class="section-accent"></div>
 
     <div class="bingo-grid" id="bingo">
-      <div class="bingo-item"><div class="check"></div><span class="text">🌊 Meter los pies en el mar (aunque esté helado)</span></div>
-      <div class="bingo-item"><div class="check"></div><span class="text">🥟 Comer churros en la Bristol</span></div>
-      <div class="bingo-item"><div class="check"></div><span class="text">🍝 Cocinar una cena todos juntos</span></div>
-      <div class="bingo-item"><div class="check"></div><span class="text">🌅 Ver el atardecer desde el Torreón</span></div>
-      <div class="bingo-item"><div class="check"></div><span class="text">🏄 Agarrar una ola buena</span></div>
-      <div class="bingo-item"><div class="check"></div><span class="text">☕ Tomar un café viendo el mar</span></div>
-      <div class="bingo-item"><div class="check"></div><span class="text">🎲 Jugar algo de noche en el depto</span></div>
-      <div class="bingo-item"><div class="check"></div><span class="text">🐟 Ver los lobos marinos en el puerto</span></div>
-      <div class="bingo-item"><div class="check"></div><span class="text">🥞 Hacer un desayuno gigante</span></div>
-      <div class="bingo-item"><div class="check"></div><span class="text">🎬 Ver una peli todos juntos</span></div>
-      <div class="bingo-item"><div class="check"></div><span class="text">🧉 Mate en la costa con el grupo</span></div>
-      <div class="bingo-item"><div class="check"></div><span class="text">🍕 Comer una picada monumental</span></div>
-      <div class="bingo-item"><div class="check"></div><span class="text">🧣 Tomar un té con vista al mar</span></div>
-      <div class="bingo-item"><div class="check"></div><span class="text">🥇 Hacerse una foto grupal épica</span></div>
-      <div class="bingo-item"><div class="check"></div><span class="text">🧠 El día que alguien dijo algo brillante</span></div>
-      <div class="bingo-item"><div class="check"></div><span class="text">🌧️ Quedarse en depto por lluvia</span></div>
-      <div class="bingo-item"><div class="check"></div><span class="text">🚶‍♂️ Caminar sin rumbo por la costa</span></div>
-      <div class="bingo-item"><div class="check"></div><span class="text">📸 Selfie grupal con atardecer de fondo</span></div>
+      <div class="bingo-item"><div class="check"></div><span class="text">🌊 Dip your toes in the sea (even if freezing)</span></div>
+      <div class="bingo-item"><div class="check"></div><span class="text">🥟 Eat churros at La Bristol</span></div>
+      <div class="bingo-item"><div class="check"></div><span class="text">🍝 Cook dinner all together</span></div>
+      <div class="bingo-item"><div class="check"></div><span class="text">🌅 Watch the sunset from Torreón</span></div>
+      <div class="bingo-item"><div class="check"></div><span class="text">🏄 Catch a good wave</span></div>
+      <div class="bingo-item"><div class="check"></div><span class="text">☕ Have a coffee watching the ocean</span></div>
+      <div class="bingo-item"><div class="check"></div><span class="text">🎲 Play games at the AirBNB at night</span></div>
+      <div class="bingo-item"><div class="check"></div><span class="text">🐟 See the sea lions at the harbor</span></div>
+      <div class="bingo-item"><div class="check"></div><span class="text">🥞 Make a giant group breakfast</span></div>
+      <div class="bingo-item"><div class="check"></div><span class="text">🎬 Watch a movie all together</span></div>
+      <div class="bingo-item"><div class="check"></div><span class="text">🧉 Mate on the coast with the crew</span></div>
+      <div class="bingo-item"><div class="check"></div><span class="text">🍕 Eat a legendary shared feast</span></div>
+      <div class="bingo-item"><div class="check"></div><span class="text">🧣 Tea with an ocean view</span></div>
+      <div class="bingo-item"><div class="check"></div><span class="text">🥇 Take an epic group photo</span></div>
+      <div class="bingo-item"><div class="check"></div><span class="text">🧠 Someone says something brilliant</span></div>
+      <div class="bingo-item"><div class="check"></div><span class="text">🌧️ Rainy day — stay in the AirBNB all day</span></div>
+      <div class="bingo-item"><div class="check"></div><span class="text">🚶‍♂️ Walk along the coast with no destination</span></div>
+      <div class="bingo-item"><div class="check"></div><span class="text">📸 Group selfie with sunset backdrop</span></div>
     </div>
 
-    <div class="bingo-progress">Progreso del grupo: <strong id="bingo-count">0</strong> / 18</div>
-  </section>
-
-  <!-- ═══ GALERÍA ═══ -->
-  <section class="section">
-    <h2 class="section-title">📸 Galería</h2>
-    <p class="section-desc">Espacio para las fotos del viaje. ¡Que no falte la grupal con la costa de fondo!</p>
-    <div class="section-accent"></div>
-
-    <div class="photo-grid">
-      <div class="photo-placeholder"><span class="icon">📷</span> Llegada a Mardel</div>
-      <div class="photo-placeholder"><span class="icon">🏄</span> Día de surf</div>
-      <div class="photo-placeholder"><span class="icon">🍝</span> Cena grupal</div>
-      <div class="photo-placeholder"><span class="icon">🌅</span> Atardecer</div>
-      <div class="photo-placeholder"><span class="icon">🃏</span> Noche de juegos</div>
-      <div class="photo-placeholder"><span class="icon">👥</span> Foto grupal</div>
-    </div>
+    <div class="bingo-progress">Group progress: <strong id="bingo-count">0</strong> / 18</div>
   </section>
 
   <!-- ═══ FOOTER ═══ -->
   <footer class="footer">
     <span class="big-emoji">🧑‍🎓💫</span>
-    ¡Feliz viaje de egresados, cracks!<br>
-    Mar del Plata · Junio 2026<br>
-    <span style="font-size: 0.75rem; margin-top: 8px; display: inline-block;">Hecho con 💛 para Natalia y los 8</span>
+    Happy Grad Trip, legends!<br>
+    Mar del Plata · June 2026<br>
+    <span style="font-size: 0.75rem; margin-top: 8px; display: inline-block;">Made with 💛 for Natalia & the crew of 8</span>
   </footer>
 
 </div>
