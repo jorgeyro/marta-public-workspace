@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mardel 2026 — Viaje de Egresados 🧑‍🎓</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap');
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --navy: #1B2A4A;
+  --navy-light: #2C3E6B;
+  --violet: #6B4E71;
+  --violet-light: #8B5E83;
+  --rose: #E8817A;
+  --coral: #FF8C61;
+  --sunset: #FF6B35;
+  --gold: #F4A261;
+  --cream: #FFF8F0;
+  --white: #FFFDF9;
+  --glass: rgba(255, 255, 255, 0.12);
+  --glass-border: rgba(255, 255, 255, 0.18);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--navy);
+  color: var(--cream);
+  overflow-x: hidden;
+}
+
+/* ── Fondo animado de olas ── */
+.waves-bg {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.wave {
+  position: absolute;
+  bottom: 0;
+  width: 200%;
+  height: 120px;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    transparent 40px,
+    rgba(255, 140, 97, 0.04) 40px,
+    rgba(107, 78, 113, 0.04) 80px
+  );
+  animation: waveMove 8s ease-in-out infinite alternate;
+}
+.wave:nth-child(2) {
+  bottom: 30px;
+  height: 80px;
+  animation-duration: 12s;
+  animation-delay: -3s;
+  opacity: 0.5;
+}
+.wave:nth-child(3) {
+  bottom: 60px;
+  height: 50px;
+  animation-duration: 6s;
+  animation-delay: -5s;
+  opacity: 0.3;
+}
+@keyframes waveMove {
+  0% { transform: translateX(0) scaleY(1); }
+  100% { transform: translateX(-50%) scaleY(1.2); }
+}
+
+/* ── Estrellas ── */
+.stars {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+.star {
+  position: absolute;
+  width: 3px; height: 3px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0;
+  animation: twinkle 3s infinite;
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 0.6; }
+}
+
+/* ── Layout ── */
+.content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px 80px;
+}
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+  position: relative;
+}
+
+.hero-emoji {
+  font-size: 72px;
+  margin-bottom: 16px;
+  animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.hero h1 {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  background: linear-gradient(135deg, var(--sunset), var(--rose), var(--violet-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.1;
+  margin-bottom: 10px;
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 3vw, 1.4rem);
+  font-weight: 600;
+  color: var(--gold);
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+
+.hero-group {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 40px;
+}
+
+/* ── Countdown ── */
+.countdown-container {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 50px;
+}
+
+.countdown-item {
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 18px 22px;
+  min-width: 80px;
+  text-align: center;
+}
+
+.countdown-item .numero {
+  font-family: 'Fredoka One', cursive;
+  font-size: 2.2rem;
+  color: var(--sunset);
+  display: block;
+  line-height: 1;
+}
+
+.countdown-item .label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.5);
+  margin-top: 4px;
+}
+
+.hero-cta {
+  display: inline-block;
+  padding: 14px 36px;
+  border-radius: 50px;
+  background: linear-gradient(135deg, var(--sunset), var(--rose));
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 20px rgba(255, 107, 53, 0.3);
+}
+.hero-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 30px rgba(255, 107, 53, 0.5);
+}
+
+/* ── Scroll indicator ── */
+.scroll-down {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255,255,255,0.3);
+  font-size: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  animation: bounce 2s infinite;
+}
+.scroll-down span { font-size: 1.5rem; }
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ── Section titles ── */
+.section {
+  margin: 80px 0 40px;
+}
+
+.section-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.section-desc {
+  text-align: center;
+  color: rgba(255,255,255,0.55);
+  font-size: 1rem;
+  margin-bottom: 36px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.section-accent {
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--sunset), var(--violet-light));
+  border-radius: 2px;
+  margin: 0 auto 36px;
+}
+
+/* ── Cards grid ── */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 24px;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+}
+
+.card-icon {
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+.card h3 {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.2rem;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.card p {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.7);
+}
+
+.card-tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+}
+.tag-surf { background: rgba(107, 78, 113, 0.3); color: var(--violet-light); }
+.tag-comer { background: rgba(244, 162, 97, 0.2); color: var(--gold); }
+.tag-cultural { background: rgba(232, 129, 122, 0.2); color: var(--rose); }
+.tag-naturaleza { background: rgba(255, 140, 97, 0.2); color: var(--coral); }
+.tag-plan { background: rgba(43, 62, 107, 0.3); color: #6B8FD4; }
+
+/* ── BINGO ── */
+.bingo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.bingo-item {
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+  user-select: none;
+}
+
+.bingo-item:hover {
+  border-color: rgba(255, 140, 97, 0.4);
+}
+
+.bingo-item.checked {
+  background: rgba(255, 107, 53, 0.15);
+  border-color: var(--sunset);
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.bingo-item .check {
+  width: 22px; height: 22px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.3s;
+  font-size: 0.8rem;
+}
+
+.bingo-item.checked .check {
+  background: var(--sunset);
+  border-color: var(--sunset);
+}
+
+.bingo-item .text {
+  font-size: 0.85rem;
+  line-height: 1.3;
+}
+
+.bingo-progress {
+  text-align: center;
+  margin: 24px 0 12px;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.5);
+}
+
+.bingo-progress strong {
+  color: var(--sunset);
+  font-size: 1.1rem;
+}
+
+/* ── Photo placeholders ── */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.photo-placeholder {
+  aspect-ratio: 4/3;
+  border-radius: 16px;
+  background: var(--glass);
+  border: 2px dashed rgba(255,255,255,0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.25);
+  font-size: 0.8rem;
+  gap: 8px;
+  transition: all 0.3s;
+}
+.photo-placeholder .icon { font-size: 1.8rem; }
+.photo-placeholder:hover {
+  border-color: rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.06);
+}
+
+/* ── Footer ── */
+.footer {
+  text-align: center;
+  margin-top: 80px;
+  padding: 40px 0;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.25);
+  font-size: 0.85rem;
+  line-height: 1.8;
+}
+.footer .big-emoji {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 12px;
+}
+
+/* ── Easter egg ── */
+.easter-egg-trigger {
+  cursor: default;
+  position: relative;
+  display: inline-block;
+}
+.easter-egg-trigger:hover::after {
+  content: "🧠✨ — ¡y también los más cracks!";
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--navy-light);
+  color: var(--gold);
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  z-index: 10;
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .countdown-item { min-width: 65px; padding: 12px 14px; }
+  .countdown-item .numero { font-size: 1.6rem; }
+  .bingo-grid { grid-template-columns: 1fr; }
+  .photo-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- Fondo animado -->
+<div class="waves-bg">
+  <div class="wave"></div>
+  <div class="wave"></div>
+  <div class="wave"></div>
+</div>
+<div class="stars" id="stars"></div>
+
+<div class="content">
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero">
+    <div class="hero-emoji">🧑‍🎓</div>
+    <h1>Mardel 2026</h1>
+    <p class="hero-subtitle">🎉 Viaje de Egresados 🎉</p>
+    <p class="hero-group">8 amigos · 7 días · Mar del Plata</p>
+
+    <div class="countdown-container" id="countdown">
+      <div class="countdown-item"><span class="numero" id="cd-dias">--</span><span class="label">días</span></div>
+      <div class="countdown-item"><span class="numero" id="cd-horas">--</span><span class="label">horas</span></div>
+      <div class="countdown-item"><span class="numero" id="cd-minutos">--</span><span class="label">min</span></div>
+      <div class="countdown-item"><span class="numero" id="cd-segundos">--</span><span class="label">seg</span></div>
+    </div>
+
+    <a href="#guia" class="hero-cta">🌊 Descubrir Mardel</a>
+
+    <div class="scroll-down">
+      <span>⌄</span>
+    </div>
+  </section>
+
+  <!-- ═══ GUÍA MARDEL EN INVIERNO ═══ -->
+  <section id="guia" class="section">
+    <h2 class="section-title">🌊 Mardel en Invierno</h2>
+    <p class="section-desc">
+      Mar del Plata en junio tiene otro encanto: calles tranquilas, atardeceres tempraneros
+      y el mejor clima para disfrutar entre amigos. <span class="easter-egg-trigger">🧠</span>
+    </p>
+    <div class="section-accent"></div>
+
+    <div class="cards-grid">
+
+      <div class="card">
+        <div class="card-icon">🏄</div>
+        <span class="card-tag tag-surf">SURF</span>
+        <h3>Olas invernales</h3>
+        <p>Invierno = olas más consistentes. Con un buen neopreno, la playa <strong>Waikiki</strong> y <strong>Playa Grande</strong> tienen las mejores rompientes para surfear.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">☕</div>
+        <span class="card-tag tag-plan">PLAN</span>
+        <h3>Café con vista al mar</h3>
+        <p><strong>La Fonte d'Oro</strong> en la Rambla, o <strong>St Bernard</strong> sobre la costa. Pedite un café con crema, mirá el mar gris y sentite en una película.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🍝</div>
+        <span class="card-tag tag-comer">COMER</span>
+        <h3>Cocinar entre todos</h3>
+        <p>Mercado del Puerto para comprar pescado fresco, o una picada monumental del super. Nada como cocinar entre 8 amigos en un AirBNB bien equipado 🍳</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🥟</div>
+        <span class="card-tag tag-comer">COMER</span>
+        <h3>Clásicos marplatenses</h3>
+        <p>Churros en <strong>La Bristol</strong>, sánguche de milanesa en <strong>El Emporio</strong>, y rabas en cualquier parador de la costa. Imperdibles.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🌇</div>
+        <span class="card-tag tag-naturaleza">PAISAJE</span>
+        <h3>Atardecer en el Torreón</h3>
+        <p>El <strong>Torreón del Monje</strong> es el mejor lugar para ver el sol meterse en el mar. Llevate un termo con mate o chocolate caliente 🧉☕</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🧣</div>
+        <span class="card-tag tag-plan">PLAN</span>
+        <h3>Casa de Té</h3>
+        <p><strong>Tea & Company</strong> o <strong>L'Albero dei Gelati</strong> (también tienen té). Perfecto para una tarde fría entre amigos, con tortas y parlantes de por medio.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🐟</div>
+        <span class="card-tag tag-naturaleza">PAISAJE</span>
+        <h3>Puerto y lobos marinos</h3>
+        <p>Caminata por la escollera del puerto para ver los lobos marinos, el ir y venir de los barcos pesqueros, y de paso comer algo en la zona.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🎮</div>
+        <span class="card-tag tag-plan">PLAN</span>
+        <h3>Noche de juegos</h3>
+        <p>Una vez que cae el sol, el plan perfecto: juegos de mesa, cartas, o armar un torneo de algo. <strong>Competitividad vs amistad</strong> — may the best friend win 🎲</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🎬</div>
+        <span class="card-tag tag-plan">PLAN</span>
+        <h3>Maratón de pelis</h3>
+        <p>Día de lluvia + frazadas + algo rico = peli entre todos. Que cada uno lleve su peli favorita y voten. O maratón de clásicos argentinos.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🧺</div>
+        <span class="card-tag tag-naturaleza">PAISAJE</span>
+        <h3>Caminata por la costa</h3>
+        <p>De <strong>Playa Grande</strong> al <strong>Farolas</strong>, o hasta <strong>Cabo Corrientes</strong>. El sonido del mar en invierno pega distinto — y el mate lo hace mejor.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🥞</div>
+        <span class="card-tag tag-comer">COMER</span>
+        <h3>Desayuno gigante</h3>
+        <p>El clásico de todo viaje grupal: que alguien se levante primero y haga un desayuno monstruoso. Panqueques, huevos, café, jugo — seamos realistas, es la comida más importante del día de egresados.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">📸</div>
+        <span class="card-tag tag-cultural">CULTURAL</span>
+        <h3>Centro y feria</h3>
+        <p>La <strong>peatonal San Martín</strong> de día, la <strong>feria artesanal</strong> del centro. Ideal para boludear, sacar fotos y comprar algún souvenir random para la familia.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ BINGO DE VIAJE ═══ -->
+  <section class="section">
+    <h2 class="section-title">🎯 Bingo Mardel 2026</h2>
+    <p class="section-desc">Tocá cada cosa que hagan durante el viaje. ¿Quién completa más? 👀</p>
+    <div class="section-accent"></div>
+
+    <div class="bingo-grid" id="bingo">
+      <div class="bingo-item"><div class="check"></div><span class="text">🌊 Meter los pies en el mar (aunque esté helado)</span></div>
+      <div class="bingo-item"><div class="check"></div><span class="text">🥟 Comer churros en la Bristol</span></div>
+      <div class="bingo-item"><div class="check"></div><span class="text">🍝 Cocinar una cena todos juntos</span></div>
+      <div class="bingo-item"><div class="check"></div><span class="text">🌅 Ver el atardecer desde el Torreón</span></div>
+      <div class="bingo-item"><div class="check"></div><span class="text">🏄 Agarrar una ola buena</span></div>
+      <div class="bingo-item"><div class="check"></div><span class="text">☕ Tomar un café viendo el mar</span></div>
+      <div class="bingo-item"><div class="check"></div><span class="text">🎲 Jugar algo de noche en el depto</span></div>
+      <div class="bingo-item"><div class="check"></div><span class="text">🐟 Ver los lobos marinos en el puerto</span></div>
+      <div class="bingo-item"><div class="check"></div><span class="text">🥞 Hacer un desayuno gigante</span></div>
+      <div class="bingo-item"><div class="check"></div><span class="text">🎬 Ver una peli todos juntos</span></div>
+      <div class="bingo-item"><div class="check"></div><span class="text">🧉 Mate en la costa con el grupo</span></div>
+      <div class="bingo-item"><div class="check"></div><span class="text">🍕 Comer una picada monumental</span></div>
+      <div class="bingo-item"><div class="check"></div><span class="text">🧣 Tomar un té con vista al mar</span></div>
+      <div class="bingo-item"><div class="check"></div><span class="text">🥇 Hacerse una foto grupal épica</span></div>
+      <div class="bingo-item"><div class="check"></div><span class="text">🧠 El día que alguien dijo algo brillante</span></div>
+      <div class="bingo-item"><div class="check"></div><span class="text">🌧️ Quedarse en depto por lluvia</span></div>
+      <div class="bingo-item"><div class="check"></div><span class="text">🚶‍♂️ Caminar sin rumbo por la costa</span></div>
+      <div class="bingo-item"><div class="check"></div><span class="text">📸 Selfie grupal con atardecer de fondo</span></div>
+    </div>
+
+    <div class="bingo-progress">Progreso del grupo: <strong id="bingo-count">0</strong> / 18</div>
+  </section>
+
+  <!-- ═══ GALERÍA ═══ -->
+  <section class="section">
+    <h2 class="section-title">📸 Galería</h2>
+    <p class="section-desc">Espacio para las fotos del viaje. ¡Que no falte la grupal con la costa de fondo!</p>
+    <div class="section-accent"></div>
+
+    <div class="photo-grid">
+      <div class="photo-placeholder"><span class="icon">📷</span> Llegada a Mardel</div>
+      <div class="photo-placeholder"><span class="icon">🏄</span> Día de surf</div>
+      <div class="photo-placeholder"><span class="icon">🍝</span> Cena grupal</div>
+      <div class="photo-placeholder"><span class="icon">🌅</span> Atardecer</div>
+      <div class="photo-placeholder"><span class="icon">🃏</span> Noche de juegos</div>
+      <div class="photo-placeholder"><span class="icon">👥</span> Foto grupal</div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer">
+    <span class="big-emoji">🧑‍🎓💫</span>
+    ¡Feliz viaje de egresados, cracks!<br>
+    Mar del Plata · Junio 2026<br>
+    <span style="font-size: 0.75rem; margin-top: 8px; display: inline-block;">Hecho con 💛 para Natalia y los 8</span>
+  </footer>
+
+</div>
+
+<script>
+// ── Countdown ──
+const target = new Date('2026-06-01T00:00:00-03:00').getTime();
+function updateCountdown() {
+  const now = new Date().getTime();
+  const diff = Math.max(0, target - now);
+  const d = Math.floor(diff / (1000*60*60*24));
+  const h = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+  const m = Math.floor((diff % (1000*60*60)) / (1000*60));
+  const s = Math.floor((diff % (1000*60)) / 1000);
+  document.getElementById('cd-dias').textContent = String(d).padStart(2, '0');
+  document.getElementById('cd-horas').textContent = String(h).padStart(2, '0');
+  document.getElementById('cd-minutos').textContent = String(m).padStart(2, '0');
+  document.getElementById('cd-segundos').textContent = String(s).padStart(2, '0');
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// ── Bingo ──
+const items = document.querySelectorAll('.bingo-item');
+const counter = document.getElementById('bingo-count');
+items.forEach(el => {
+  el.addEventListener('click', () => {
+    el.classList.toggle('checked');
+    counter.textContent = document.querySelectorAll('.bingo-item.checked').length;
+  });
+});
+
+// ── Stars ──
+const starsContainer = document.getElementById('stars');
+for (let i = 0; i < 60; i++) {
+  const star = document.createElement('div');
+  star.className = 'star';
+  star.style.left = Math.random() * 100 + '%';
+  star.style.top = Math.random() * 100 + '%';
+  star.style.animationDelay = Math.random() * 3 + 's';
+  star.style.width = (1 + Math.random() * 2) + 'px';
+  star.style.height = star.style.width;
+  starsContainer.appendChild(star);
+}
+</script>
+
+</body>
+</html>
