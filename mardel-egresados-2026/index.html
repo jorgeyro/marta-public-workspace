@@ -227,6 +227,45 @@ body {
   50% { transform: translateX(-50%) translateY(8px); }
 }
 
+/* ── Origin story card ── */
+.origin-card {
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  padding: 40px 32px;
+  text-align: center;
+  max-width: 520px;
+  margin: 0 auto 60px;
+}
+.origin-emoji {
+  font-size: 3rem;
+  margin-bottom: 12px;
+}
+.origin-card h3 {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.6rem;
+  background: linear-gradient(135deg, var(--sunset), var(--rose), var(--violet-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 16px;
+}
+.origin-card p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.7);
+  max-width: 440px;
+  margin: 0 auto 20px;
+}
+.origin-card .origin-footer {
+  font-size: 0.85rem;
+  color: var(--gold);
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
 /* ── Section titles ── */
 .section {
   margin: 80px 0 40px;
@@ -444,7 +483,7 @@ body {
     <div class="hero-emoji">🧑‍🎓</div>
     <h1>Mardel 2026</h1>
     <p class="hero-subtitle">🎉 Grad Trip 🎉</p>
-    <p class="hero-group">8 friends · 7 days · Mar del Plata</p>
+    <p class="hero-group">🎲 The Mafia Gang · 8 friends · 7 days · Mar del Plata</p>
 
     <div class="countdown-container" id="countdown">
       <div class="countdown-item"><span class="numero" id="cd-dias">--</span><span class="label">days</span></div>
@@ -457,6 +496,21 @@ body {
 
     <div class="scroll-down">
       <span>⌄</span>
+    </div>
+  </section>
+
+  <!-- ═══ THE MAFIA GANG ═══ -->
+  <section class="section" style="margin-top: -20px;">
+    <div class="origin-card">
+      <div class="origin-emoji">🎲🃏</div>
+      <h3>The Mafia Gang</h3>
+      <p>
+        That's what they call themselves. It started with countless late-night
+        games of Mafia — the classic party game of hidden identities, bluffing,
+        and betrayal around a table. Over time, the nickname just stuck. And
+        now? It's the crew heading to Mar del Plata.
+      </p>
+      <div class="origin-footer">8 legends · 1 trip · zero regrets</div>
     </div>
   </section>
 
@@ -583,9 +637,10 @@ body {
       <div class="bingo-item"><div class="check"></div><span class="text">🌧️ Rainy day — stay in the AirBNB all day</span></div>
       <div class="bingo-item"><div class="check"></div><span class="text">🚶‍♂️ Walk along the coast with no destination</span></div>
       <div class="bingo-item"><div class="check"></div><span class="text">📸 Group selfie with sunset backdrop</span></div>
+      <div class="bingo-item"><div class="check"></div><span class="text">🎲 Play a round of Mafia with the crew</span></div>
     </div>
 
-    <div class="bingo-progress">Group progress: <strong id="bingo-count">0</strong> / 18</div>
+    <div class="bingo-progress">Group progress: <strong id="bingo-count">0</strong> / 19</div>
   </section>
 
   <!-- ═══ FOOTER ═══ -->
