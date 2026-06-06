@@ -259,14 +259,25 @@ img { max-width: 100%; display: block; }
   padding: 30px 20px 20px;
 }
 
+.faction-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.faction-header-text {
+  text-align: left;
+}
+
 .faction-image {
-  width: 90px;
-  height: 120px;
+  width: 75px;
+  height: 100px;
   border-radius: 4px;
   object-fit: cover;
   border: 2px solid var(--border-color);
-  margin-bottom: 16px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  flex-shrink: 0;
 }
 
 .faction-crest { display: none; }
