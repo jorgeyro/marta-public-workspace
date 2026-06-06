@@ -536,99 +536,112 @@
     html += `<div class="ft-root">
       <div class="ft-person ft-main" data-char="viserys">
         <div class="ft-avatar">${createAvatarHTML(viserys)}</div>
-        <div class="ft-name">Viserys I Targaryen</div>
+        <div class="ft-name-lg">Viserys I Targaryen</div>
         <div class="ft-title">Rey de los Siete Reinos</div>
       </div>
     </div>`;
 
     // Spouses row
-    html += `<div class="ft-spouses">
+    const alicent = data.characters.find(c => c.id === 'alicent');
+    html += `<div class="ft-spouses-wrap">
       <div class="ft-spouse" data-char="alicent">
-        <div class="ft-avatar-sm">${createAvatarHTML(data.characters.find(c => c.id === 'alicent'))}</div>
+        <div class="ft-avatar-sm">${createAvatarHTML(alicent)}</div>
         <div class="ft-name-sm">Alicent Hightower</div>
       </div>
+      <div class="ft-spouse-divider">⚭</div>
       <div class="ft-spouse">
-        <div class="ft-avatar-sm" style="filter:grayscale(1)">${createAvatarHTML({name:'Aemma Arryn',actor:'',image:''})}</div>
-        <div class="ft-name-sm">Aemma Arryn †</div>
+        <div class="ft-avatar-sm" style="filter:grayscale(1);opacity:0.6">${createAvatarHTML({name:'Aemma Arryn',actor:'',image:''})}</div>
+        <div class="ft-name-sm ft-dead">Aemma Arryn †</div>
       </div>
     </div>`;
 
-    // Connecting line
-    html += `<div class="ft-connector"></div>`;
-
-    // Children container (two branches side by side)
+    // Branch container
+    html += `<div class="ft-connector-v"></div>`;
     html += `<div class="ft-branches">`;
 
-    // BRANCH 1: Rhaenyra's line (Aemma's child)
+    // ── BRANCH 1: Rhaenyra + Daemon ── (TEAM BLACK)
     const rhaenyra = data.characters.find(c => c.id === 'rhaenyra');
     const daemon = data.characters.find(c => c.id === 'daemon');
-    html += `<div class="ft-branch">
-      <div class="ft-branch-header">
+    const rhaenyraKids = ['jacaerys','lucerys','baela','rhaena']; // Joffrey omitted (no card)
+
+    html += `<div class="ft-branch ft-branch-black">
+      <div class="ft-branch-label">👑 Rama de Rhaenyra</div>
+      <div class="ft-couple">
         <div class="ft-person" data-char="rhaenyra">
           <div class="ft-name">Rhaenyra Targaryen</div>
           <div class="ft-detail">Hija de Viserys y Aemma</div>
         </div>
-        <span class="ft-married">⚭</span>
+        <div class="ft-married">⚭</div>
         <div class="ft-person" data-char="daemon">
           <div class="ft-name">Daemon Targaryen</div>
           <div class="ft-detail">Tío y segundo esposo</div>
         </div>
       </div>
+      <div class="ft-kids-label">Hijos</div>
+      <div class="ft-kids">${rhaenyraKids.map(id => {
+        const ch = data.characters.find(c => c.id === id);
+        if (!ch) return '';
+        return `<div class="ft-child${!ch.alive ? ' dead' : ''}" data-char="${id}">
+          <span class="ft-child-name">${ch.name}${!ch.alive ? ' †' : ''}</span>
+          <span class="ft-child-role">${ch.actor}</span>
+        </div>`;
+      }).join('')}</div>
+    </div>`;
+
+    // ── BRANCH 2: Alicent's children ── (TEAM GREEN)
+    html += `<div class="ft-branch ft-branch-green">
+      <div class="ft-branch-label">🏹 Rama de Alicent</div>
+      <div class="ft-couple">
+        <div class="ft-person" data-char="aegon_ii">
+          <div class="ft-name">Aegon II Targaryen</div>
+          <div class="ft-detail">Primogénito de Alicent</div>
+        </div>
+        <div class="ft-married">⚭</div>
+        <div class="ft-person" data-char="helaena">
+          <div class="ft-name">Helaena Targaryen</div>
+          <div class="ft-detail">Hermana-esposa</div>
+        </div>
+      </div>
+      <div class="ft-kids-label">Hijos</div>
       <div class="ft-kids">
-        ${['jacaerys','lucerys','baela','rhaena'].map(id => {
+        <div class="ft-child dead">
+          <span class="ft-child-name">Jaehaerys Targaryen †</span>
+          <span class="ft-child-role">Asesinado por Sangre y Queso</span>
+        </div>
+      </div>
+      <div class="ft-siblings-label">Hermanos</div>
+      <div class="ft-siblings">
+        ${['aemond','daeron'].map(id => {
           const ch = data.characters.find(c => c.id === id);
           if (!ch) return '';
           return `<div class="ft-child${!ch.alive ? ' dead' : ''}" data-char="${id}">
-            <span class="ft-child-name">${ch.name}</span>
-            <span class="ft-child-actor">${ch.actor}</span>
+            <span class="ft-child-name">${ch.name}${!ch.alive ? ' †' : ''}</span>
+            <span class="ft-child-role">${ch.actor}</span>
           </div>`;
         }).join('')}
       </div>
     </div>`;
 
-    // BRANCH 2: Alicent's children
-    html += `<div class="ft-branch">
-      <div class="ft-branch-header">`;
+    html += `</div>`; // end ft-branches
 
-    ['aegon_ii','helaena','aemond','daeron'].forEach(id => {
-      const ch = data.characters.find(c => c.id === id);
-      if (!ch) return;
-      html += `<div class="ft-person${!ch.alive ? ' dead' : ''}" data-char="${id}">
-        <div class="ft-name">${ch.name}</div>
-        <div class="ft-detail">${ch.actor}</div>
-      </div>`;
-      if (id === 'aegon_ii') html += `<span class="ft-married">⚭</span>`;
-    });
-
-    html += `</div>`;
-
-    // Jaehaerys (Aegon + Helaena's kid, not in character list)
-    html += `<div class="ft-kids">
-      <div class="ft-child dead">
-        <span class="ft-child-name">Jaehaerys Targaryen †</span>
-        <span class="ft-child-actor">Hijo de Aegon II y Helaena</span>
-      </div>
-    </div>`;
-
-    html += `</div>`; // end branch 2
-
-    // Additional: Corlys Velaryon + Rhaenys
+    // ── Extended: Corlys + Rhaenys ──
     const corlys = data.characters.find(c => c.id === 'corlys');
     const rhaenys = data.characters.find(c => c.id === 'rhaenys');
-    html += `<div class="ft-connector"></div>
+    html += `<div class="ft-connector-v"></div>
     <div class="ft-extended">
-      <div class="ft-person" data-char="corlys">
-        <div class="ft-name">Corlys Velaryon</div>
-        <div class="ft-detail">La Serpiente Marina</div>
-      </div>
-      <span class="ft-married">⚭</span>
-      <div class="ft-person${!rhaenys.alive ? ' dead' : ''}" data-char="rhaenys">
-        <div class="ft-name">Rhaenys Targaryen</div>
-        <div class="ft-detail">La Reina Que Nunca Fue †</div>
+      <div class="ft-couple">
+        <div class="ft-person" data-char="corlys">
+          <div class="ft-name">Corlys Velaryon</div>
+          <div class="ft-detail">La Serpiente Marina</div>
+        </div>
+        <div class="ft-married">⚭</div>
+        <div class="ft-person${!rhaenys.alive ? ' dead' : ''}" data-char="rhaenys">
+          <div class="ft-name">Rhaenys Targaryen ${!rhaenys.alive ? '†' : ''}</div>
+          <div class="ft-detail">La Reina Que Nunca Fue</div>
+        </div>
       </div>
     </div>`;
 
-    html += `</div>`; // end ft-branches
     html += `</div>`; // end family-tree
     treeEl.innerHTML = html;
 
