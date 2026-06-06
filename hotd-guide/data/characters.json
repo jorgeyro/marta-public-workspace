@@ -48,7 +48,7 @@
       ],
       "death_cause": "Murió pacíficamente en su cama, consumido por la lepra.",
       "death_episode": "S1E8",
-      "image": ""
+      "image": "images/characters/viserys.jpg"
     },
     {
       "id": "rhaenyra",
@@ -121,7 +121,7 @@
       "siblings": [
         "Viserys I Targaryen"
       ],
-      "image": "images/characters/daemon_poster_s3.jpg"
+      "image": "images/characters/daemon_new.jpg"
     },
     {
       "id": "corlys",
@@ -206,7 +206,7 @@
       ],
       "death_cause": "Devorado por Vhagar (dragón de Aemond) en los cielos de Bastión de Tormentas.",
       "death_episode": "S1E10",
-      "image": ""
+      "image": "images/characters/lucerys.jpg"
     },
     {
       "id": "rhaenys",
@@ -235,7 +235,7 @@
       "siblings": [],
       "death_cause": "Ella y su dragón Meleys fueron abatidos por Aemond y Vhagar en la Batalla de Reposo del Cuervo.",
       "death_episode": "S2E4",
-      "image": ""
+      "image": "images/characters/rhaenys.jpg"
     },
     {
       "id": "baela",
@@ -259,7 +259,7 @@
       "siblings": [
         "Rhaena Targaryen (gemela)"
       ],
-      "image": ""
+      "image": "images/characters/baela.jpg"
     },
     {
       "id": "rhaena",
@@ -282,7 +282,7 @@
       "siblings": [
         "Baela Targaryen (gemela)"
       ],
-      "image": ""
+      "image": "images/characters/rhaena.jpg"
     },
     {
       "id": "addam",
@@ -302,7 +302,7 @@
       "spouse": [],
       "children": [],
       "siblings": [],
-      "image": ""
+      "image": "images/characters/addam.jpg"
     },
     {
       "id": "hugh",
@@ -320,7 +320,7 @@
       "spouse": [],
       "children": [],
       "siblings": [],
-      "image": ""
+      "image": "images/characters/hugh.jpg"
     },
     {
       "id": "ulf",
@@ -338,7 +338,7 @@
       "spouse": [],
       "children": [],
       "siblings": [],
-      "image": ""
+      "image": "images/characters/ulf.jpg"
     },
     {
       "id": "alicent",
@@ -489,7 +489,7 @@
         "Aemond Targaryen",
         "Helaena Targaryen"
       ],
-      "image": ""
+      "image": "images/characters/daeron.jpg"
     },
     {
       "id": "otto",
@@ -510,7 +510,7 @@
         "Alicent Hightower"
       ],
       "siblings": [],
-      "image": ""
+      "image": "images/characters/otto.jpg"
     },
     {
       "id": "criston",
@@ -553,7 +553,7 @@
       "siblings": [
         "Harwin Strong (fallecido)"
       ],
-      "image": ""
+      "image": "images/characters/larys.jpg"
     }
   ],
   "dragons": [
