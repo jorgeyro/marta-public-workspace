@@ -1008,7 +1008,6 @@ img { max-width: 100%; display: block; }
 }
 
 .house-char.dead .house-char-name {
-  text-decoration: line-through;
   opacity: 0.7;
 }
 
@@ -1256,7 +1255,6 @@ img { max-width: 100%; display: block; }
 }
 
 .ft-child.dead .ft-child-name {
-  text-decoration: line-through;
   opacity: 0.7;
 }
 
