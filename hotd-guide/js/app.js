@@ -508,7 +508,6 @@
             <div class="house-char-name">${c.name}</div>
             <div class="house-char-rel">${c.rel}</div>
           </div>
-          ${!clickable ? '<span class="house-char-note">⤵</span>' : ''}
         </div>`;
       });
       html += `</div></div>`;
