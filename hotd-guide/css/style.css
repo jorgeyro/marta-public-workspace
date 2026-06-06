@@ -260,13 +260,13 @@ img { max-width: 100%; display: block; }
 }
 
 .faction-image {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
+  width: 90px;
+  height: 120px;
+  border-radius: 4px;
   object-fit: cover;
-  border: 3px solid var(--border-color);
-  margin-bottom: 12px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  border: 2px solid var(--border-color);
+  margin-bottom: 16px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
 }
 
 .faction-crest { display: none; }
@@ -280,6 +280,15 @@ img { max-width: 100%; display: block; }
 .blacks-column .faction-name { color: var(--accent-red-light); }
 .greens-column .faction-name { color: var(--accent-green-light); }
 
+.blacks-column .faction-image {
+  border-color: rgba(139,0,0,0.5);
+  box-shadow: 0 4px 15px rgba(139,0,0,0.3);
+}
+
+.greens-column .faction-image {
+  border-color: rgba(27,94,32,0.5);
+  box-shadow: 0 4px 15px rgba(27,94,32,0.3);
+}
 .faction-tagline {
   font-size: 0.8rem;
   color: var(--text-muted);
