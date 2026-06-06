@@ -226,60 +226,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* --- FACTION STATS --- */
-.faction-stats {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  padding: 30px 20px;
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-.stat-card {
-  flex: 1;
-  text-align: center;
-  padding: 20px;
-  border-radius: var(--radius);
-  border: 1px solid var(--border-color);
-  background: var(--bg-secondary);
-}
-
-.stat-card.blacks { border-color: rgba(139,0,0,0.3); }
-.stat-card.greens { border-color: rgba(27,94,32,0.3); }
-
-.stat-icon { font-size: 1.5rem; }
-.stat-label {
-  font-family: var(--font-ui);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--text-secondary);
-  margin: 8px 0 4px;
-}
-.stat-count {
-  font-size: 2rem;
-  font-weight: 700;
-  font-family: var(--font-ui);
-}
-
-.stat-card.blacks .stat-count { color: var(--accent-red-light); }
-.stat-card.greens .stat-count { color: var(--accent-green-light); }
-
-.stat-card.divider {
-  flex: 0 0 auto;
-  border: none;
-  background: transparent;
-  padding: 10px;
-}
-
-.stat-vs {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: var(--text-muted);
-  font-family: var(--font-ui);
-  letter-spacing: 3px;
-}
+/* --- SUB-NAV --- */
 
 /* --- ORGANIGRAM --- */
 .organigram {
@@ -1426,16 +1373,6 @@ img { max-width: 100%; display: block; }
 
   .character-list {
     padding: 8px 12px;
-  }
-
-  .faction-stats {
-    flex-direction: row;
-    padding: 20px 12px;
-    gap: 8px;
-  }
-
-  .stat-card {
-    padding: 14px;
   }
 
   .hero {

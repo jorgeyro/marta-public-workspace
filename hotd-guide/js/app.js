@@ -22,8 +22,6 @@
   const detailClose = $('#detail-close');
   const navLinks = $$('.nav-links a, [data-view]');
 
-  const blacksDragonCount = $('#blacks-dragon-count');
-  const greensDragonCount = $('#greens-dragon-count');
   const blacksDragonLabel = $('#blacks-dragon-label');
   const greensDragonLabel = $('#greens-dragon-label');
 
@@ -48,10 +46,6 @@
 
   function getFactionDragonCount(faction) {
     return dragonsData.filter(d => d.faction === faction && d.alive).length;
-  }
-
-  function getFactionTotalDragons(faction) {
-    return dragonsData.filter(d => d.faction === faction).length;
   }
 
   function getInitials(name) {
@@ -182,20 +176,12 @@
     blacks.forEach(c => blackList.appendChild(renderCharCard(c)));
     greens.forEach(c => greenList.appendChild(renderCharCard(c)));
 
-    // Update dragon counts
+    // Update dragon labels in faction headers
     const blackAliveDragons = getFactionDragonCount('blacks');
     const greenAliveDragons = getFactionDragonCount('greens');
-    const blackTotalDragons = getFactionTotalDragons('blacks');
-    const greenTotalDragons = getFactionTotalDragons('greens');
 
-    blacksDragonCount.textContent = blackAliveDragons;
-    greensDragonCount.textContent = greenAliveDragons;
-
-    const blackDead = blackTotalDragons - blackAliveDragons;
-    const greenDead = greenTotalDragons - greenAliveDragons;
-
-    blacksDragonLabel.textContent = `${blackAliveDragons} vivos` + (blackDead > 0 ? ` (${blackDead} caídos)` : '');
-    greensDragonLabel.textContent = `${greenAliveDragons} vivos` + (greenDead > 0 ? ` (${greenDead} caídos)` : '');
+    blacksDragonLabel.textContent = `${blackAliveDragons} dragones`;
+    greensDragonLabel.textContent = `${greenAliveDragons} dragones`;
   }
 
   // --- Render dragon directory ---
