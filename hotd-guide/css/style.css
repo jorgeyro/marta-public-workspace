@@ -631,6 +631,19 @@ img { max-width: 100%; display: block; }
 }
 
 /* Dragon in detail */
+.dragon-detail-img {
+  width: 100%;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.dragon-detail-img-src {
+  width: 100%;
+  display: block;
+  border-radius: var(--radius-sm);
+}
+
 .detail-dragon {
   margin-top: 16px;
   padding: 16px;
@@ -685,21 +698,22 @@ img { max-width: 100%; display: block; }
 
 .dragon-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
   padding: 0 20px 40px;
-  max-width: 1000px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
 .dragon-card {
   display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 16px;
+  flex-direction: column;
+  gap: 0;
+  padding: 0;
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: var(--radius);
+  overflow: hidden;
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -712,7 +726,35 @@ img { max-width: 100%; display: block; }
 
 .dragon-card.dead { opacity: 0.6; }
 
+.dragon-card-img {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  background: var(--bg-secondary);
+}
+
+.dragon-card-img-src {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.dragon-card-img-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  background: var(--bg-secondary);
+}
+
 .dragon-rank {
+  position: absolute;
+  top: 10px;
+  left: 10px;
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -734,7 +776,14 @@ img { max-width: 100%; display: block; }
   color: #fff;
 }
 
-.dragon-info { flex: 1; min-width: 0; }
+.dragon-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  flex: 1;
+  min-width: 0;
+}
 
 .dragon-name {
   font-size: 1rem;
@@ -907,7 +956,18 @@ img { max-width: 100%; display: block; }
   .stat-count { font-size: 1.5rem; }
   .stat-card { padding: 10px; }
 
-  .dragon-card { padding: 12px; }
+  .dragon-card {
+    padding: 0;
+    gap: 0;
+  }
+
+  .dragon-card-img {
+    height: 160px;
+  }
+
+  .dragon-info {
+    padding: 12px 14px;
+  }
 
   .detail-header { gap: 12px; }
   .detail-avatar { width: 52px; height: 52px; font-size: 1.4rem; }

@@ -143,7 +143,10 @@
     const factionLabel = dragon.faction === 'blacks' ? 'Team Black' : 'Team Green';
 
     card.innerHTML = `
-      <div class="dragon-rank${isTop3 ? ' top3' : ''}">#${index + 1}</div>
+      <div class="dragon-card-img">
+        ${dragon.image ? `<img src="${dragon.image}" alt="${dragon.name}" class="dragon-card-img-src">` : `<div class="dragon-card-img-placeholder">🐉</div>`}
+        <div class="dragon-rank${isTop3 ? ' top3' : ''}">#${index + 1}</div>
+      </div>
       <div class="dragon-info">
         <div class="dragon-name">${dragon.name}</div>
         <div class="dragon-rider">${dragon.rider}</div>
@@ -332,6 +335,8 @@
           <div class="detail-actor">Jinete: ${dragon.rider}</div>
         </div>
       </div>
+
+      ${dragon.image ? `<div class="dragon-detail-img"><img src="${dragon.image}" alt="${dragon.name}" class="dragon-detail-img-src"></div>` : ''}
 
       <div class="detail-section">
         <h3>Estado</h3>

@@ -572,7 +572,7 @@
         "Baelon Targaryen",
         "Laena Velaryon"
       ],
-      "image": ""
+      "image": "images/dragons/vhagar.jpg"
     },
     {
       "id": "vermithor",
@@ -587,7 +587,7 @@
       "past_riders": [
         "Jaehaerys I Targaryen"
       ],
-      "image": ""
+      "image": "images/dragons/vermithor.jpg"
     },
     {
       "id": "silverwing",
@@ -602,7 +602,7 @@
       "past_riders": [
         "Alysanne Targaryen"
       ],
-      "image": ""
+      "image": "images/dragons/silverwing.jpg"
     },
     {
       "id": "dreamfyre",
@@ -617,7 +617,7 @@
       "past_riders": [
         "Rhaena Targaryen (hija de Aenys)"
       ],
-      "image": ""
+      "image": "images/dragons/dreamfyre.jpg"
     },
     {
       "id": "caraxes",
@@ -632,7 +632,7 @@
       "past_riders": [
         "Aemon Targaryen"
       ],
-      "image": ""
+      "image": "images/dragons/caraxes.jpg"
     },
     {
       "id": "meleys",
@@ -648,7 +648,7 @@
         "Alyssa Targaryen"
       ],
       "death_cause": "Abatida por Vhagar en la Batalla de Reposo del Cuervo (S2E4).",
-      "image": ""
+      "image": "images/dragons/meleys.jpg"
     },
     {
       "id": "syrax",
@@ -661,7 +661,7 @@
       "description": "Dragona de Rhaenyra. Llamada así por una diosa valyria. Mimada y nunca probada en batalla.",
       "bio": "Rhaenyra la reclamó a los 9 años. Es una dragona enorme pero nunca ha cazado ni peleado. Vive en la Montaña de Dragón. Rhaenyra duda en usarla en combate directo.",
       "past_riders": [],
-      "image": ""
+      "image": "images/dragons/syrax.jpg"
     },
     {
       "id": "sunfyre",
@@ -675,7 +675,7 @@
       "bio": "El dragón de Aegon II, famoso por su belleza. Murió lentamente tras caer de los cielos en Reposo del Cuervo. Aegon sobrevivió con heridas graves pero Sunfyre no. Su muerte se confirma en S2E8.",
       "past_riders": [],
       "death_cause": "Gravemente herido en la Batalla de Reposo del Cuervo (S2E4). Falleció de sus heridas.",
-      "image": ""
+      "image": "images/dragons/sunfyre.jpg"
     },
     {
       "id": "tessarion",
@@ -688,7 +688,7 @@
       "description": "La Reina Azul. Dragón de Daeron Targaryen. Un tercio del tamaño de Vhagar.",
       "bio": "Poco se sabe de Tessarion ya que Daeron aún no ha aparecido en la serie. Se menciona en S2 que 'Tessarion ha alzado el vuelo', confirmando que Daeron y su dragón están activos en la guerra.",
       "past_riders": [],
-      "image": ""
+      "image": "images/dragons/tessarion.jpg"
     },
     {
       "id": "seasmoke",
@@ -703,7 +703,7 @@
       "past_riders": [
         "Laenor Velaryon"
       ],
-      "image": ""
+      "image": "images/dragons/seasmoke.jpg"
     },
     {
       "id": "vermax",
@@ -716,7 +716,7 @@
       "description": "Dragón joven de Jacaerys Velaryon. Nació de un huevo puesto en su cuna.",
       "bio": "Dragón todavía joven y en crecimiento. Nació del huevo que Viserys puso en la cuna de Jacaerys. Jace lo montó al Muro para buscar el apoyo de los Stark.",
       "past_riders": [],
-      "image": ""
+      "image": "images/dragons/vermax.jpg"
     },
     {
       "id": "arrax",
@@ -730,7 +730,7 @@
       "bio": "Nació del huevo puesto en la cuna de Lucerys. Era pequeño y rápido. Murió despedazado por Vhagar en los cielos de Bastión de Tormentas, junto con Lucerys.",
       "past_riders": [],
       "death_cause": "Despedazado por Vhagar (S1E10).",
-      "image": ""
+      "image": "images/dragons/arrax.jpg"
     }
   ]
 }
