@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>House of the Dragon — Guía de Personajes & Dragones</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="top-nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo" data-view="home">🐉 <span class="nav-title">HOTD Guide</span></a>
+    <div class="nav-links">
+      <a href="#" data-view="home" class="active">Personajes</a>
+      <a href="#" data-view="dragons">Dragones 🐉</a>
+    </div>
+  </div>
+</nav>
+
+<!-- MAIN VIEW -->
+<div id="app">
+  <!-- HOME VIEW -->
+  <div id="view-home" class="view active">
+
+    <!-- HERO -->
+    <header class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-content">
+        <h1 class="hero-title">HOUSE OF THE <span class="targaryen">DRAGON</span></h1>
+        <p class="hero-subtitle">Guía de Personajes · Temporadas 1 – 2</p>
+        <p class="hero-desc">La Danza de los Dragones explicada para los que llegan tarde</p>
+        <div class="hero-badge">Próximamente: Temporada 3 — 21 Jun 2026</div>
+      </div>
+    </header>
+
+    <!-- FACTION STATS -->
+    <section class="faction-stats">
+      <div class="stat-card blacks">
+        <div class="stat-icon">🐉</div>
+        <div class="stat-label">Dragones Negros</div>
+        <div class="stat-count" id="blacks-dragon-count">—</div>
+      </div>
+      <div class="stat-card divider">
+        <div class="stat-vs">VS</div>
+      </div>
+      <div class="stat-card greens">
+        <div class="stat-icon">🐉</div>
+        <div class="stat-label">Dragones Verdes</div>
+        <div class="stat-count" id="greens-dragon-count">—</div>
+      </div>
+    </section>
+
+    <!-- ORGANIGRAM -->
+    <section class="organigram" id="organigram">
+      <div class="organigram-inner">
+
+        <!-- COLUMN: BLACKS -->
+        <div class="faction-column blacks-column">
+          <div class="faction-header">
+            <div class="faction-crest">👑</div>
+            <h2 class="faction-name">Team Black</h2>
+            <p class="faction-tagline">Leales a la Reina Rhaenyra Targaryen</p>
+            <div class="faction-dragon-count">
+              <span class="dragon-icon">🐉</span>
+              <span id="blacks-dragon-label">0 dragones</span>
+            </div>
+          </div>
+          <div class="faction-line"></div>
+          <div class="character-list" id="black-characters"></div>
+        </div>
+
+        <!-- DIVIDER -->
+        <div class="column-divider">
+          <div class="divider-line"></div>
+          <div class="divider-icon">🔥</div>
+          <div class="divider-line"></div>
+        </div>
+
+        <!-- COLUMN: GREENS -->
+        <div class="faction-column greens-column">
+          <div class="faction-header">
+            <div class="faction-crest">🏹</div>
+            <h2 class="faction-name">Team Green</h2>
+            <p class="faction-tagline">Leales al Rey Aegon II Targaryen</p>
+            <div class="faction-dragon-count">
+              <span class="dragon-icon">🐉</span>
+              <span id="greens-dragon-label">0 dragones</span>
+            </div>
+          </div>
+          <div class="faction-line"></div>
+          <div class="character-list" id="green-characters"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <p>Hecho para Natalia, Cristina y Jorge — que el fuego de los Targaryen los acompañe 🔥</p>
+      <p class="footer-small">Basado en la serie de HBO. Sin spoilers más allá de la temporada 2.</p>
+    </footer>
+  </div>
+
+  <!-- DRAGONS VIEW -->
+  <div id="view-dragons" class="view">
+    <div class="dragons-header">
+      <h2 class="dragons-title">🐉 Directorio de Dragones</h2>
+      <p class="dragons-subtitle">Todas las bestias de la Danza, ordenadas por tamaño</p>
+    </div>
+    <div class="dragon-list" id="dragon-list"></div>
+    <div class="back-link">
+      <a href="#" data-view="home">← Volver a Personajes</a>
+    </div>
+  </div>
+
+  <!-- CHARACTER DETAIL PANEL (slide-in) -->
+  <div id="detail-panel" class="detail-panel">
+    <div class="detail-overlay"></div>
+    <div class="detail-content">
+      <button class="detail-close" id="detail-close">✕</button>
+      <div id="detail-body"></div>
+    </div>
+  </div>
+</div>
+
+<script src="data/characters.json" id="characters-data"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
