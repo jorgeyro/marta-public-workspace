@@ -123,7 +123,6 @@
       </div>
       <div class="char-badges">
         ${hasDragon ? '<span class="char-badge badge-dragon">🐉</span>' : ''}
-        <span class="char-badge ${isDead ? 'badge-dead' : 'badge-alive'}">${isDead ? '†' : '●'}</span>
       </div>
       <span class="char-arrow">›</span>
     `;

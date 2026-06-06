@@ -426,18 +426,6 @@ img { max-width: 100%; display: block; }
   border: 1px solid rgba(201,168,76,0.3);
 }
 
-.badge-dead {
-  background: rgba(100,100,100,0.2);
-  color: var(--text-muted);
-  border: 1px solid rgba(100,100,100,0.3);
-}
-
-.badge-alive {
-  background: rgba(46,125,50,0.15);
-  color: #4caf50;
-  border: 1px solid rgba(46,125,50,0.3);
-}
-
 .char-arrow {
   color: var(--text-muted);
   font-size: 0.8rem;
