@@ -451,39 +451,39 @@
     // Extended house data with relationships
     const houses = {
       '👑 Targaryen': [
-        { id: 'viserys', name: 'Viserys I Targaryen', rel: 'Rey de los Siete Reinos' },
-        { id: 'rhaenyra', name: 'Rhaenyra Targaryen', rel: 'Hija de Viserys · Heredera al trono' },
-        { id: 'daemon', name: 'Daemon Targaryen', rel: 'Hermano de Viserys · 2° esposo de Rhaenyra' },
-        { id: 'aegon_ii', name: 'Aegon II Targaryen', rel: 'Hijo de Viserys · Rey usurpador' },
-        { id: 'aemond', name: 'Aemond Targaryen', rel: 'Hijo de Viserys · Jinete de Vhagar' },
-        { id: 'helaena', name: 'Helaena Targaryen', rel: 'Hija de Viserys · Esposa de Aegon II' },
-        { id: 'daeron', name: 'Daeron Targaryen', rel: 'Hijo de Viserys · Jinete de Tessarion' },
-        { id: 'rhaenys', name: 'Rhaenys Targaryen', rel: 'Prima de Viserys · La Reina Que Nunca Fue' },
-        { id: 'baela', name: 'Baela Targaryen', rel: 'Hija de Daemon y Laena · Prometida de Jace' },
-        { id: 'rhaena', name: 'Rhaena Targaryen', rel: 'Hija de Daemon y Laena · Gemela de Baela' },
-        { id: 'jacaerys', name: 'Jacaerys Velaryon', rel: 'Hijo de Rhaenyra · Heredero · Jinete de Vermax' },
-        { id: 'lucerys', name: 'Lucerys Velaryon', rel: 'Hijo de Rhaenyra · Jinete de Arrax · Asesinado' },
-        { id: 'aemma', name: 'Aemma Arryn', rel: '1° esposa de Viserys · Madre de Rhaenyra', hasCard: false },
-        { id: 'jaehaerys', name: 'Jaehaerys Targaryen', rel: 'Hijo de Aegon II y Helaena · Asesinado', hasCard: false },
+        { id: 'viserys', name: 'Viserys I Targaryen', rel: 'Rey de los Siete Reinos', alive: false },
+        { id: 'rhaenyra', name: 'Rhaenyra Targaryen', rel: 'Hija de Viserys · Heredera al trono', alive: true },
+        { id: 'daemon', name: 'Daemon Targaryen', rel: 'Hermano de Viserys · 2° esposo de Rhaenyra', alive: true },
+        { id: 'aegon_ii', name: 'Aegon II Targaryen', rel: 'Hijo de Viserys · Rey usurpador', alive: true },
+        { id: 'aemond', name: 'Aemond Targaryen', rel: 'Hijo de Viserys · Jinete de Vhagar', alive: true },
+        { id: 'helaena', name: 'Helaena Targaryen', rel: 'Hija de Viserys · Esposa de Aegon II', alive: true },
+        { id: 'daeron', name: 'Daeron Targaryen', rel: 'Hijo de Viserys · Jinete de Tessarion', alive: true },
+        { id: 'rhaenys', name: 'Rhaenys Targaryen', rel: 'Prima de Viserys · La Reina Que Nunca Fue', alive: false },
+        { id: 'baela', name: 'Baela Targaryen', rel: 'Hija de Daemon y Laena · Prometida de Jace', alive: true },
+        { id: 'rhaena', name: 'Rhaena Targaryen', rel: 'Hija de Daemon y Laena · Gemela de Baela', alive: true },
+        { id: 'jacaerys', name: 'Jacaerys Velaryon', rel: 'Hijo de Rhaenyra · Heredero · Jinete de Vermax', alive: true },
+        { id: 'lucerys', name: 'Lucerys Velaryon', rel: 'Hijo de Rhaenyra · Jinete de Arrax · Asesinado', alive: false },
+        { id: 'aemma', name: 'Aemma Arryn', rel: '1° esposa de Viserys · Madre de Rhaenyra', alive: false, hasCard: false },
+        { id: 'jaehaerys', name: 'Jaehaerys Targaryen', rel: 'Hijo de Aegon II y Helaena · Asesinado', alive: false, hasCard: false },
       ],
       '🌊 Velaryon': [
-        { id: 'corlys', name: 'Corlys Velaryon', rel: 'Señor de Marcaderiva · La Serpiente Marina' },
-        { id: 'laenor', name: 'Laenor Velaryon', rel: 'Hijo de Corlys · 1° esposo de Rhaenyra', hasCard: false },
-        { id: 'laena', name: 'Laena Velaryon', rel: 'Hija de Corlys · 2° esposa de Daemon', hasCard: false },
+        { id: 'corlys', name: 'Corlys Velaryon', rel: 'Señor de Marcaderiva · La Serpiente Marina', alive: true },
+        { id: 'laenor', name: 'Laenor Velaryon', rel: 'Hijo de Corlys · 1° esposo de Rhaenyra', alive: true, hasCard: false },
+        { id: 'laena', name: 'Laena Velaryon', rel: 'Hija de Corlys · 2° esposa de Daemon', alive: false, hasCard: false },
       ],
       '🏰 Hightower': [
-        { id: 'otto', name: 'Otto Hightower', rel: 'Mano del Rey · Padre de Alicent' },
-        { id: 'alicent', name: 'Alicent Hightower', rel: 'Hija de Otto · 2° esposa de Viserys' },
+        { id: 'otto', name: 'Otto Hightower', rel: 'Mano del Rey · Padre de Alicent', alive: true },
+        { id: 'alicent', name: 'Alicent Hightower', rel: 'Hija de Otto · 2° esposa de Viserys', alive: true },
       ],
       '🔨 Strong': [
-        { id: 'larys', name: 'Larys Strong', rel: 'Señor de Harrenhal · Maestro de los Susurros' },
-        { id: 'harwin', name: 'Harwin Strong', rel: 'Hijo de Lyonel · Amante de Rhaenyra · Padre de Jace, Luke', hasCard: false },
-        { id: 'lyonel', name: 'Lyonel Strong', rel: 'Mano del Rey Viserys · Padre de Harwin y Larys', hasCard: false },
+        { id: 'larys', name: 'Larys Strong', rel: 'Señor de Harrenhal · Maestro de los Susurros', alive: true },
+        { id: 'harwin', name: 'Harwin Strong', rel: 'Hijo de Lyonel · Amante de Rhaenyra · Padre de Jace, Luke', alive: false, hasCard: false },
+        { id: 'lyonel', name: 'Lyonel Strong', rel: 'Mano del Rey Viserys · Padre de Harwin y Larys', alive: false, hasCard: false },
       ],
       '🐉 Brotes de Dragón': [
-        { id: 'addam', name: 'Addam of Hull', rel: 'Hijo bastardo de Corlys · Jinete de Seasmoke' },
-        { id: 'hugh', name: 'Hugh Hammer', rel: 'Bastardo Targaryen · Herrero · Jinete de Vermithor' },
-        { id: 'ulf', name: 'Ulf White', rel: 'Bastardo Targaryen · Jinete de Silverwing' },
+        { id: 'addam', name: 'Addam of Hull', rel: 'Hijo bastardo de Corlys · Jinete de Seasmoke', alive: true },
+        { id: 'hugh', name: 'Hugh Hammer', rel: 'Bastardo Targaryen · Herrero · Jinete de Vermithor', alive: true },
+        { id: 'ulf', name: 'Ulf White', rel: 'Bastardo Targaryen · Jinete de Silverwing', alive: true },
       ],
     };
 
@@ -500,7 +500,7 @@
         <div class="house-char-list">`;
       chars.forEach(c => {
         const charData = data.characters.find(ch => ch.id === c.id);
-        const isDead = charData ? !charData.alive : false;
+        const isDead = !c.alive;
         const clickable = hasCard(c.id);
         html += `<div class="house-char${isDead ? ' dead' : ''}${clickable ? ' clickable' : ''}"${clickable ? ` data-char="${c.id}"` : ''}>
           <div class="house-char-avatar">${charData ? createAvatarHTML(charData) : c.name.split(' ').map(w => w[0]).join('').slice(0,2)}</div>
