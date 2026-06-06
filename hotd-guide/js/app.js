@@ -511,100 +511,108 @@
     container.innerHTML = '<div class="tree-container"></div>';
     const treeEl = container.querySelector('.tree-container');
 
-    // Build tree HTML with nested structure
-    let html = '<div class="tree">';
-
-    // Generation 1: Viserys I
     const viserys = data.characters.find(c => c.id === 'viserys');
-    html += `<div class="tree-gen">
-      <div class="tree-person${viserys && !viserys.alive ? ' dead' : ''}" data-char="viserys">
-        ${createAvatarHTML(viserys)}
-        <div class="tree-name">Viserys I</div>
+
+    let html = `<div class="family-tree">`;
+
+    // Root: Viserys I with image
+    html += `<div class="ft-root">
+      <div class="ft-person ft-main" data-char="viserys">
+        <div class="ft-avatar">${createAvatarHTML(viserys)}</div>
+        <div class="ft-name">Viserys I Targaryen</div>
+        <div class="ft-title">Rey de los Siete Reinos</div>
       </div>
     </div>`;
 
-    // Marriage line
-    html += `<div class="tree-marriage">
-      <div class="tree-line-h"></div>
-      <div class="tree-spouse" data-char="alicent">
-        <div class="tree-avatar-sm">${createAvatarHTML(data.characters.find(c => c.id === 'alicent'))}</div>
-        <div class="tree-name-sm">Alicent</div>
+    // Spouses row
+    html += `<div class="ft-spouses">
+      <div class="ft-spouse" data-char="alicent">
+        <div class="ft-avatar-sm">${createAvatarHTML(data.characters.find(c => c.id === 'alicent'))}</div>
+        <div class="ft-name-sm">Alicent Hightower</div>
       </div>
-      <div class="tree-spouse">
-        <div class="tree-avatar-sm" style="filter:grayscale(1)">${createAvatarHTML({name:'Aemma Arryn', actor:'',image:''})}</div>
-        <div class="tree-name-sm">Aemma †</div>
+      <div class="ft-spouse">
+        <div class="ft-avatar-sm" style="filter:grayscale(1)">${createAvatarHTML({name:'Aemma Arryn',actor:'',image:''})}</div>
+        <div class="ft-name-sm">Aemma Arryn †</div>
       </div>
     </div>`;
 
-    // Children generation
-    html += `<div class="tree-children">`;
+    // Connecting line
+    html += `<div class="ft-connector"></div>`;
 
-    // Aemma's child: Rhaenyra + Daemon + their kids
+    // Children container (two branches side by side)
+    html += `<div class="ft-branches">`;
+
+    // BRANCH 1: Rhaenyra's line (Aemma's child)
     const rhaenyra = data.characters.find(c => c.id === 'rhaenyra');
     const daemon = data.characters.find(c => c.id === 'daemon');
-    html += `<div class="tree-branch">
-      <div class="tree-person${!rhaenyra.alive ? ' dead' : ''}" data-char="rhaenyra">
-        ${createAvatarHTML(rhaenyra)}
-        <div class="tree-name">Rhaenyra</div>
+    html += `<div class="ft-branch">
+      <div class="ft-branch-header">
+        <div class="ft-person" data-char="rhaenyra">
+          <div class="ft-name">Rhaenyra Targaryen</div>
+          <div class="ft-detail">Hija de Viserys y Aemma</div>
+        </div>
+        <span class="ft-married">⚭</span>
+        <div class="ft-person" data-char="daemon">
+          <div class="ft-name">Daemon Targaryen</div>
+          <div class="ft-detail">Tío y segundo esposo</div>
+        </div>
       </div>
-      <div class="tree-married">⚭</div>
-      <div class="tree-person${!daemon.alive ? ' dead' : ''}" data-char="daemon">
-        ${createAvatarHTML(daemon)}
-        <div class="tree-name">Daemon</div>
-      </div>
-      <div class="tree-kids">
+      <div class="ft-kids">
         ${['jacaerys','lucerys','baela','rhaena'].map(id => {
           const ch = data.characters.find(c => c.id === id);
           if (!ch) return '';
-          return `<div class="tree-person-sm${!ch.alive ? ' dead' : ''}" data-char="${id}">
-            <div class="tree-avatar-xs">${createAvatarHTML(ch)}</div>
-            <div class="tree-name-xs">${ch.name.split(' ')[0]}</div>
+          return `<div class="ft-child${!ch.alive ? ' dead' : ''}" data-char="${id}">
+            <span class="ft-child-name">${ch.name}</span>
+            <span class="ft-child-actor">${ch.actor}</span>
           </div>`;
         }).join('')}
       </div>
     </div>`;
 
-    // Alicent's children
-    const aegon = data.characters.find(c => c.id === 'aegon_ii');
-    const helaena = data.characters.find(c => c.id === 'helaena');
-    html += `<div class="tree-branch">
-      <div class="tree-person${!aegon.alive ? ' dead' : ''}" data-char="aegon_ii">
-        ${createAvatarHTML(aegon)}
-        <div class="tree-name">Aegon II</div>
-      </div>
-      <div class="tree-married">⚭</div>
-      <div class="tree-person${!helaena.alive ? ' dead' : ''}" data-char="helaena">
-        ${createAvatarHTML(helaena)}
-        <div class="tree-name">Helaena</div>
-      </div>
-      <div class="tree-kids">
-        <div class="tree-person-sm dead">
-          <div class="tree-avatar-xs" style="background:var(--bg-card);font-size:0.8rem">JH</div>
-          <div class="tree-name-xs">Jaehaerys †</div>
-        </div>
+    // BRANCH 2: Alicent's children
+    html += `<div class="ft-branch">
+      <div class="ft-branch-header">`;
+
+    ['aegon_ii','helaena','aemond','daeron'].forEach(id => {
+      const ch = data.characters.find(c => c.id === id);
+      if (!ch) return;
+      html += `<div class="ft-person${!ch.alive ? ' dead' : ''}" data-char="${id}">
+        <div class="ft-name">${ch.name}</div>
+        <div class="ft-detail">${ch.actor}</div>
+      </div>`;
+      if (id === 'aegon_ii') html += `<span class="ft-married">⚭</span>`;
+    });
+
+    html += `</div>`;
+
+    // Jaehaerys (Aegon + Helaena's kid, not in character list)
+    html += `<div class="ft-kids">
+      <div class="ft-child dead">
+        <span class="ft-child-name">Jaehaerys Targaryen †</span>
+        <span class="ft-child-actor">Hijo de Aegon II y Helaena</span>
       </div>
     </div>`;
 
-    // Aemond
-    const aemond = data.characters.find(c => c.id === 'aemond');
-    html += `<div class="tree-branch">
-      <div class="tree-person${!aemond.alive ? ' dead' : ''}" data-char="aemond">
-        ${createAvatarHTML(aemond)}
-        <div class="tree-name">Aemond</div>
+    html += `</div>`; // end branch 2
+
+    // Additional: Corlys Velaryon + Rhaenys
+    const corlys = data.characters.find(c => c.id === 'corlys');
+    const rhaenys = data.characters.find(c => c.id === 'rhaenys');
+    html += `<div class="ft-connector"></div>
+    <div class="ft-extended">
+      <div class="ft-person" data-char="corlys">
+        <div class="ft-name">Corlys Velaryon</div>
+        <div class="ft-detail">La Serpiente Marina</div>
+      </div>
+      <span class="ft-married">⚭</span>
+      <div class="ft-person${!rhaenys.alive ? ' dead' : ''}" data-char="rhaenys">
+        <div class="ft-name">Rhaenys Targaryen</div>
+        <div class="ft-detail">La Reina Que Nunca Fue †</div>
       </div>
     </div>`;
 
-    // Daeron
-    const daeron = data.characters.find(c => c.id === 'daeron');
-    html += `<div class="tree-branch">
-      <div class="tree-person${!daeron.alive ? ' dead' : ''}" data-char="daeron">
-        ${createAvatarHTML(daeron)}
-        <div class="tree-name">Daeron</div>
-      </div>
-    </div>`;
-
-    html += `</div>`; // end tree-children
-    html += `</div>`; // end tree
+    html += `</div>`; // end ft-branches
+    html += `</div>`; // end family-tree
     treeEl.innerHTML = html;
 
     // Click handlers

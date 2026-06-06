@@ -1029,183 +1029,193 @@ img { max-width: 100%; display: block; }
   margin: 0 auto;
 }
 
-.tree {
+.family-tree {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 12px;
 }
 
-.tree-gen {
-  display: flex;
-  justify-content: center;
-}
-
-.tree-person {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  cursor: pointer;
-  padding: 10px;
-  border-radius: var(--radius);
-  transition: 0.2s;
-  border: 2px solid transparent;
-}
-
-.tree-person:hover {
-  background: var(--bg-hover);
-  border-color: var(--border-light);
-}
-
-.tree-person .char-avatar {
-  width: 56px;
-  height: 74px;
-  border-radius: 4px;
-}
-
-.tree-person.dead { opacity: 0.6; }
-.tree-person.dead .char-avatar { filter: grayscale(1); }
-
-.tree-name {
-  font-size: 0.85rem;
-  font-weight: 600;
-  font-family: var(--font-ui);
+.ft-root {
   text-align: center;
 }
 
-/* Marriage row */
-.tree-marriage {
+.ft-main {
+  padding: 16px;
+  border: 2px solid var(--accent-gold);
+  border-radius: var(--radius);
+  background: var(--bg-card);
+}
+
+.ft-avatar {
+  width: 56px;
+  height: 74px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 0 auto 8px;
+  background: var(--bg-secondary);
+}
+
+.ft-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.ft-avatar-sm img { width: 100%; height: 100%; object-fit: cover; }
+
+.ft-title {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-family: var(--font-ui);
+  font-style: italic;
+  margin-top: 2px;
+}
+
+/* Spouses row */
+.ft-spouses {
   display: flex;
-  align-items: center;
+  gap: 24px;
   justify-content: center;
-  gap: 16px;
-  padding: 12px 0;
-  width: 100%;
-  max-width: 400px;
 }
 
-.tree-line-h {
-  height: 1px;
-  flex: 1;
-  background: var(--border-light);
-}
-
-.tree-spouse {
+.ft-spouse {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 4px;
   cursor: pointer;
-  padding: 6px;
+  padding: 8px 12px;
   border-radius: var(--radius-sm);
   transition: 0.2s;
 }
 
-.tree-spouse:hover {
-  background: var(--bg-hover);
-}
+.ft-spouse:hover { background: var(--bg-hover); }
 
-.tree-avatar-sm {
-  width: 36px;
-  height: 48px;
+.ft-avatar-sm {
+  width: 40px;
+  height: 52px;
   border-radius: 3px;
   overflow: hidden;
   background: var(--bg-secondary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+}
+
+.ft-name-sm {
   font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--text-muted);
-}
-
-.tree-avatar-sm img { width: 100%; height: 100%; object-fit: cover; }
-
-.tree-name-sm {
-  font-size: 0.7rem;
-  font-family: var(--font-ui);
   color: var(--text-secondary);
+  font-family: var(--font-ui);
 }
 
-/* Children row */
-.tree-children {
-  display: flex;
-  gap: 20px;
-  padding: 20px 0;
-  flex-wrap: wrap;
-  justify-content: center;
-  position: relative;
-}
-
-.tree-children::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 10%;
-  right: 10%;
-  height: 1px;
+/* Connector line */
+.ft-connector {
+  width: 2px;
+  height: 24px;
   background: var(--border-light);
 }
 
-.tree-branch {
+/* Two branches side by side */
+.ft-branches {
   display: flex;
-  align-items: center;
-  gap: 8px;
-  position: relative;
-}
-
-.tree-married {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-}
-
-.tree-kids {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
+  gap: 40px;
   justify-content: center;
   width: 100%;
-  margin-top: 8px;
+  padding: 0 20px;
 }
 
-.tree-person-sm {
+.ft-branch {
+  flex: 1;
+  max-width: 400px;
+  min-width: 280px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+
+.ft-branch-header {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 2px;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 12px;
+}
+
+.ft-person {
   cursor: pointer;
-  padding: 4px;
+  padding: 6px 10px;
   border-radius: var(--radius-sm);
   transition: 0.2s;
 }
 
-.tree-person-sm:hover {
+.ft-person:hover {
   background: var(--bg-hover);
 }
 
-.tree-person-sm.dead { opacity: 0.5; }
+.ft-person.dead { opacity: 0.6; }
 
-.tree-avatar-xs {
-  width: 32px;
-  height: 42px;
-  border-radius: 3px;
-  overflow: hidden;
-  background: var(--bg-secondary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.65rem;
-  font-weight: 700;
-  color: var(--text-muted);
+.ft-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
 }
 
-.tree-avatar-xs img { width: 100%; height: 100%; object-fit: cover; }
-
-.tree-name-xs {
-  font-size: 0.6rem;
+.ft-detail {
+  font-size: 0.7rem;
+  color: var(--text-muted);
   font-family: var(--font-ui);
-  color: var(--text-secondary);
-  white-space: nowrap;
+  margin-top: 1px;
+}
+
+.ft-married {
+  font-size: 0.9rem;
+  color: var(--accent-gold);
+}
+
+/* Kids list */
+.ft-kids {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ft-child {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.ft-child:hover {
+  background: var(--bg-hover);
+}
+
+.ft-child.dead { opacity: 0.5; }
+
+.ft-child-name {
+  font-size: 0.85rem;
+  color: var(--text-primary);
+}
+
+.ft-child.dead .ft-child-name {
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+.ft-child-actor {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  font-family: var(--font-ui);
+}
+
+/* Extended family */
+.ft-extended {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 12px 20px;
 }
 
 /* --- TIMELINE VIEW --- */
