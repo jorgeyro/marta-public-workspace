@@ -580,15 +580,14 @@
       <div class="ft-kids">${rhaenyraKids.map(id => {
         const ch = data.characters.find(c => c.id === id);
         if (!ch) return '';
-        const role = ch.dragon ? `Jinete de ${getDragon(ch.dragon).name}` : (id === 'rhaena' ? 'Sin dragón' : '');
-        return `<div class="ft-child${!ch.alive ? ' dead' : ''}" data-char="${id}">
-          <span class="ft-child-name">${ch.name}${!ch.alive ? ' †' : ''}</span>
-          <span class="ft-child-role">${role}</span>
-        </div>`;
-      }).join('')}</div>
-    </div>
-
-    // ── BRANCH 2: Alicent's children ── (TEAM GREEN)
+        var role = '';
+        if (ch.dragon) { var dr = getDragon(ch.dragon); if (dr) role = 'Jinete de ' + dr.name; }
+        else if (id === 'rhaena') role = 'Sin drag\u00f3n';
+        return '<div class="ft-child' + (!ch.alive ? ' dead' : '') + '" data-char="' + id + '">' +
+          '<span class="ft-child-name">' + ch.name + (!ch.alive ? ' \u2020' : '') + '</span>' +
+          '<span class="ft-child-role">' + role + '</span></div>';
+      }).join('')}</div>\n    </div>`;
+    // BRANCH 2: Alicent's children (TEAM GREEN)
     html += `<div class="ft-branch ft-branch-green">
       <div class="ft-branch-label">🏹 Rama de Alicent</div>
       <div class="ft-couple">
@@ -614,11 +613,11 @@
         ${['aemond','daeron'].map(id => {
           const ch = data.characters.find(c => c.id === id);
           if (!ch) return '';
-          const role = ch.dragon ? `Jinete de ${getDragon(ch.dragon).name}` : '';
-          return `<div class="ft-child${!ch.alive ? ' dead' : ''}" data-char="${id}">
-            <span class="ft-child-name">${ch.name}${!ch.alive ? ' †' : ''}</span>
-            <span class="ft-child-role">${role}</span>
-          </div>`;
+          var role = '';
+          if (ch.dragon) { var dr = getDragon(ch.dragon); if (dr) role = 'Jinete de ' + dr.name; }
+          return '<div class="ft-child' + (!ch.alive ? ' dead' : '') + '" data-char="' + id + '">' +
+            '<span class="ft-child-name">' + ch.name + (!ch.alive ? ' \u2020' : '') + '</span>' +
+            '<span class="ft-child-role">' + role + '</span></div>';
         }).join('')}
       </div>
     </div>`;
