@@ -448,35 +448,49 @@
     const container = $('#sub-houses');
     container.innerHTML = '';
 
+    // Extended house data with relationships
     const houses = {
-      '👑 Targaryen': [],
-      '🌊 Velaryon': [],
-      '🏰 Hightower': [],
-      '🔨 Strong': [],
-      '🐉 Brotes de Dragón': []
+      '👑 Targaryen': [
+        { id: 'viserys', name: 'Viserys I Targaryen', rel: 'Rey de los Siete Reinos' },
+        { id: 'rhaenyra', name: 'Rhaenyra Targaryen', rel: 'Hija de Viserys · Heredera al trono' },
+        { id: 'daemon', name: 'Daemon Targaryen', rel: 'Hermano de Viserys · 2° esposo de Rhaenyra' },
+        { id: 'aegon_ii', name: 'Aegon II Targaryen', rel: 'Hijo de Viserys · Rey usurpador' },
+        { id: 'aemond', name: 'Aemond Targaryen', rel: 'Hijo de Viserys · Jinete de Vhagar' },
+        { id: 'helaena', name: 'Helaena Targaryen', rel: 'Hija de Viserys · Esposa de Aegon II' },
+        { id: 'daeron', name: 'Daeron Targaryen', rel: 'Hijo de Viserys · Jinete de Tessarion' },
+        { id: 'rhaenys', name: 'Rhaenys Targaryen', rel: 'Prima de Viserys · La Reina Que Nunca Fue' },
+        { id: 'baela', name: 'Baela Targaryen', rel: 'Hija de Daemon y Laena · Prometida de Jace' },
+        { id: 'rhaena', name: 'Rhaena Targaryen', rel: 'Hija de Daemon y Laena · Gemela de Baela' },
+        { id: 'jacaerys', name: 'Jacaerys Velaryon', rel: 'Hijo de Rhaenyra · Heredero · Jinete de Vermax' },
+        { id: 'lucerys', name: 'Lucerys Velaryon', rel: 'Hijo de Rhaenyra · Jinete de Arrax · Asesinado' },
+        { id: 'aemma', name: 'Aemma Arryn', rel: '1° esposa de Viserys · Madre de Rhaenyra', hasCard: false },
+        { id: 'jaehaerys', name: 'Jaehaerys Targaryen', rel: 'Hijo de Aegon II y Helaena · Asesinado', hasCard: false },
+      ],
+      '🌊 Velaryon': [
+        { id: 'corlys', name: 'Corlys Velaryon', rel: 'Señor de Marcaderiva · La Serpiente Marina' },
+        { id: 'laenor', name: 'Laenor Velaryon', rel: 'Hijo de Corlys · 1° esposo de Rhaenyra', hasCard: false },
+        { id: 'laena', name: 'Laena Velaryon', rel: 'Hija de Corlys · 2° esposa de Daemon', hasCard: false },
+      ],
+      '🏰 Hightower': [
+        { id: 'otto', name: 'Otto Hightower', rel: 'Mano del Rey · Padre de Alicent' },
+        { id: 'alicent', name: 'Alicent Hightower', rel: 'Hija de Otto · 2° esposa de Viserys' },
+      ],
+      '🔨 Strong': [
+        { id: 'larys', name: 'Larys Strong', rel: 'Señor de Harrenhal · Maestro de los Susurros' },
+        { id: 'harwin', name: 'Harwin Strong', rel: 'Hijo de Lyonel · Amante de Rhaenyra · Padre de Jace, Luke', hasCard: false },
+        { id: 'lyonel', name: 'Lyonel Strong', rel: 'Mano del Rey Viserys · Padre de Harwin y Larys', hasCard: false },
+      ],
+      '🐉 Brotes de Dragón': [
+        { id: 'addam', name: 'Addam of Hull', rel: 'Hijo bastardo de Corlys · Jinete de Seasmoke' },
+        { id: 'hugh', name: 'Hugh Hammer', rel: 'Bastardo Targaryen · Herrero · Jinete de Vermithor' },
+        { id: 'ulf', name: 'Ulf White', rel: 'Bastardo Targaryen · Jinete de Silverwing' },
+      ],
     };
 
-    data.characters.forEach(c => {
-      const name = c.name;
-      if (['Viserys I Targaryen','Rhaenyra Targaryen','Daemon Targaryen',
-           'Aegon II Targaryen','Aemond Targaryen','Helaena Targaryen',
-           'Daeron Targaryen','Rhaenys Targaryen','Baela Targaryen',
-           'Rhaena Targaryen','Jacaerys Velaryon','Lucerys Velaryon'].includes(name)) {
-        houses['👑 Targaryen'].push(c);
-      } else if (['Corlys Velaryon'].includes(name)) {
-        houses['🌊 Velaryon'].push(c);
-      } else if (['Otto Hightower','Alicent Hightower'].includes(name)) {
-        houses['🏰 Hightower'].push(c);
-      } else if (['Larys Strong'].includes(name)) {
-        houses['🔨 Strong'].push(c);
-      } else if (['Addam of Hull','Hugh Hammer','Ulf White'].includes(name)) {
-        houses['🐉 Brotes de Dragón'].push(c);
-      } else {
-        // fallback
-        if (!houses['Otros']) houses['Otros'] = [];
-        houses['Otros'].push(c);
-      }
-    });
+    // Check if character has a full card
+    function hasCard(id) {
+      return data.characters.some(c => c.id === id);
+    }
 
     let html = '<div class="houses-grid">';
     Object.entries(houses).forEach(([house, chars]) => {
@@ -485,13 +499,16 @@
         <h3 class="house-name">${house} <span class="house-count">${chars.length}</span></h3>
         <div class="house-char-list">`;
       chars.forEach(c => {
-        const isDead = !c.alive;
-        html += `<div class="house-char${isDead ? ' dead' : ''}" data-char="${c.id}">
-          <div class="house-char-avatar">${createAvatarHTML(c)}</div>
+        const charData = data.characters.find(ch => ch.id === c.id);
+        const isDead = charData ? !charData.alive : false;
+        const clickable = hasCard(c.id);
+        html += `<div class="house-char${isDead ? ' dead' : ''}${clickable ? ' clickable' : ''}"${clickable ? ` data-char="${c.id}"` : ''}>
+          <div class="house-char-avatar">${charData ? createAvatarHTML(charData) : c.name.split(' ').map(w => w[0]).join('').slice(0,2)}</div>
           <div class="house-char-info">
             <div class="house-char-name">${c.name}</div>
-            <div class="house-char-actor">${c.actor}</div>
+            <div class="house-char-rel">${c.rel}</div>
           </div>
+          ${!clickable ? '<span class="house-char-note">⤵</span>' : ''}
         </div>`;
       });
       html += `</div></div>`;
@@ -499,8 +516,8 @@
     html += '</div>';
     container.innerHTML = html;
 
-    // Click handlers
-    container.querySelectorAll('.house-char').forEach(el => {
+    // Click handlers (only for characters with cards)
+    container.querySelectorAll('.house-char.clickable').forEach(el => {
       el.addEventListener('click', () => openDetail(el.dataset.char));
     });
   }

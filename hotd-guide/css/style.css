@@ -1022,6 +1022,24 @@ img { max-width: 100%; display: block; }
   margin-top: 1px;
 }
 
+.house-char-rel {
+  font-size: 0.75rem;
+  color: var(--accent-gold);
+  font-family: var(--font-ui);
+  margin-top: 1px;
+  font-style: italic;
+}
+
+.house-char.clickable { cursor: pointer; }
+.house-char.clickable:hover { background: var(--bg-hover); }
+
+.house-char-note {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+
 /* --- TREE VIEW --- */
 .tree-container {
   padding: 30px 20px;
