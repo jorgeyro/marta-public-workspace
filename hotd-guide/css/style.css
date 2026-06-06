@@ -1079,7 +1079,7 @@ img { max-width: 100%; display: block; }
 }
 
 .ft-title {
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   color: var(--text-muted);
   font-family: var(--font-ui);
   font-style: italic;
@@ -1163,7 +1163,7 @@ img { max-width: 100%; display: block; }
 }
 
 .ft-branch-label {
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 1px;
   color: var(--text-muted);
@@ -1203,7 +1203,7 @@ img { max-width: 100%; display: block; }
 }
 
 .ft-detail {
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   color: var(--text-muted);
   font-family: var(--font-ui);
   margin-top: 1px;
@@ -1217,7 +1217,7 @@ img { max-width: 100%; display: block; }
 /* Kids section */
 .ft-kids-label,
 .ft-siblings-label {
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 1px;
   color: var(--text-muted);
@@ -1250,7 +1250,7 @@ img { max-width: 100%; display: block; }
 .ft-child.dead { opacity: 0.5; }
 
 .ft-child-name {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: var(--text-primary);
 }
 
@@ -1259,7 +1259,7 @@ img { max-width: 100%; display: block; }
 }
 
 .ft-child-role {
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
   font-family: var(--font-ui);
   text-align: right;
