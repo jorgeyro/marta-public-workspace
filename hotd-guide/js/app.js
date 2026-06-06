@@ -426,6 +426,244 @@
     }
   }
 
+  // --- Sub-navigation ---
+  function switchSubView(subview) {
+    // Hide all sub-views
+    $$('.sub-view').forEach(v => v.classList.remove('active'));
+    // Show target
+    const target = $(`#sub-${subview}`);
+    if (target) target.classList.add('active');
+    // Update sub-nav
+    $$('.sub-nav a').forEach(link => {
+      link.classList.toggle('active', link.dataset.subview === subview);
+    });
+    // Render on switch
+    if (subview === 'tree') renderTree();
+    else if (subview === 'houses') renderHouses();
+    else if (subview === 'timeline') renderTimeline();
+  }
+
+  // --- RENDER: Houses ---
+  function renderHouses() {
+    const container = $('#sub-houses');
+    container.innerHTML = '';
+
+    const houses = {
+      '👑 Targaryen': [],
+      '🌊 Velaryon': [],
+      '🏰 Hightower': [],
+      '🔨 Strong': [],
+      '🐉 Brotes de Dragón': []
+    };
+
+    data.characters.forEach(c => {
+      const name = c.name;
+      if (['Viserys I Targaryen','Rhaenyra Targaryen','Daemon Targaryen',
+           'Aegon II Targaryen','Aemond Targaryen','Helaena Targaryen',
+           'Daeron Targaryen','Rhaenys Targaryen','Baela Targaryen',
+           'Rhaena Targaryen','Jacaerys Velaryon','Lucerys Velaryon'].includes(name)) {
+        houses['👑 Targaryen'].push(c);
+      } else if (['Corlys Velaryon'].includes(name)) {
+        houses['🌊 Velaryon'].push(c);
+      } else if (['Otto Hightower','Alicent Hightower'].includes(name)) {
+        houses['🏰 Hightower'].push(c);
+      } else if (['Larys Strong'].includes(name)) {
+        houses['🔨 Strong'].push(c);
+      } else if (['Addam of Hull','Hugh Hammer','Ulf White'].includes(name)) {
+        houses['🐉 Brotes de Dragón'].push(c);
+      } else {
+        // fallback
+        if (!houses['Otros']) houses['Otros'] = [];
+        houses['Otros'].push(c);
+      }
+    });
+
+    let html = '<div class="houses-grid">';
+    Object.entries(houses).forEach(([house, chars]) => {
+      if (chars.length === 0) return;
+      html += `<div class="house-card">
+        <h3 class="house-name">${house} <span class="house-count">${chars.length}</span></h3>
+        <div class="house-char-list">`;
+      chars.forEach(c => {
+        const isDead = !c.alive;
+        html += `<div class="house-char${isDead ? ' dead' : ''}" data-char="${c.id}">
+          <div class="house-char-avatar">${createAvatarHTML(c)}</div>
+          <div class="house-char-info">
+            <div class="house-char-name">${c.name}</div>
+            <div class="house-char-actor">${c.actor}</div>
+          </div>
+        </div>`;
+      });
+      html += `</div></div>`;
+    });
+    html += '</div>';
+    container.innerHTML = html;
+
+    // Click handlers
+    container.querySelectorAll('.house-char').forEach(el => {
+      el.addEventListener('click', () => openDetail(el.dataset.char));
+    });
+  }
+
+  // --- RENDER: Family Tree ---
+  function renderTree() {
+    const container = $('#sub-tree');
+    container.innerHTML = '<div class="tree-container"></div>';
+    const treeEl = container.querySelector('.tree-container');
+
+    // Build tree HTML with nested structure
+    let html = '<div class="tree">';
+
+    // Generation 1: Viserys I
+    const viserys = data.characters.find(c => c.id === 'viserys');
+    html += `<div class="tree-gen">
+      <div class="tree-person${viserys && !viserys.alive ? ' dead' : ''}" data-char="viserys">
+        ${createAvatarHTML(viserys)}
+        <div class="tree-name">Viserys I</div>
+      </div>
+    </div>`;
+
+    // Marriage line
+    html += `<div class="tree-marriage">
+      <div class="tree-line-h"></div>
+      <div class="tree-spouse" data-char="alicent">
+        <div class="tree-avatar-sm">${createAvatarHTML(data.characters.find(c => c.id === 'alicent'))}</div>
+        <div class="tree-name-sm">Alicent</div>
+      </div>
+      <div class="tree-spouse">
+        <div class="tree-avatar-sm" style="filter:grayscale(1)">${createAvatarHTML({name:'Aemma Arryn', actor:'',image:''})}</div>
+        <div class="tree-name-sm">Aemma †</div>
+      </div>
+    </div>`;
+
+    // Children generation
+    html += `<div class="tree-children">`;
+
+    // Aemma's child: Rhaenyra + Daemon + their kids
+    const rhaenyra = data.characters.find(c => c.id === 'rhaenyra');
+    const daemon = data.characters.find(c => c.id === 'daemon');
+    html += `<div class="tree-branch">
+      <div class="tree-person${!rhaenyra.alive ? ' dead' : ''}" data-char="rhaenyra">
+        ${createAvatarHTML(rhaenyra)}
+        <div class="tree-name">Rhaenyra</div>
+      </div>
+      <div class="tree-married">⚭</div>
+      <div class="tree-person${!daemon.alive ? ' dead' : ''}" data-char="daemon">
+        ${createAvatarHTML(daemon)}
+        <div class="tree-name">Daemon</div>
+      </div>
+      <div class="tree-kids">
+        ${['jacaerys','lucerys','baela','rhaena'].map(id => {
+          const ch = data.characters.find(c => c.id === id);
+          if (!ch) return '';
+          return `<div class="tree-person-sm${!ch.alive ? ' dead' : ''}" data-char="${id}">
+            <div class="tree-avatar-xs">${createAvatarHTML(ch)}</div>
+            <div class="tree-name-xs">${ch.name.split(' ')[0]}</div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>`;
+
+    // Alicent's children
+    const aegon = data.characters.find(c => c.id === 'aegon_ii');
+    const helaena = data.characters.find(c => c.id === 'helaena');
+    html += `<div class="tree-branch">
+      <div class="tree-person${!aegon.alive ? ' dead' : ''}" data-char="aegon_ii">
+        ${createAvatarHTML(aegon)}
+        <div class="tree-name">Aegon II</div>
+      </div>
+      <div class="tree-married">⚭</div>
+      <div class="tree-person${!helaena.alive ? ' dead' : ''}" data-char="helaena">
+        ${createAvatarHTML(helaena)}
+        <div class="tree-name">Helaena</div>
+      </div>
+      <div class="tree-kids">
+        <div class="tree-person-sm dead">
+          <div class="tree-avatar-xs" style="background:var(--bg-card);font-size:0.8rem">JH</div>
+          <div class="tree-name-xs">Jaehaerys †</div>
+        </div>
+      </div>
+    </div>`;
+
+    // Aemond
+    const aemond = data.characters.find(c => c.id === 'aemond');
+    html += `<div class="tree-branch">
+      <div class="tree-person${!aemond.alive ? ' dead' : ''}" data-char="aemond">
+        ${createAvatarHTML(aemond)}
+        <div class="tree-name">Aemond</div>
+      </div>
+    </div>`;
+
+    // Daeron
+    const daeron = data.characters.find(c => c.id === 'daeron');
+    html += `<div class="tree-branch">
+      <div class="tree-person${!daeron.alive ? ' dead' : ''}" data-char="daeron">
+        ${createAvatarHTML(daeron)}
+        <div class="tree-name">Daeron</div>
+      </div>
+    </div>`;
+
+    html += `</div>`; // end tree-children
+    html += `</div>`; // end tree
+    treeEl.innerHTML = html;
+
+    // Click handlers
+    treeEl.querySelectorAll('[data-char]').forEach(el => {
+      el.addEventListener('click', () => openDetail(el.dataset.char));
+    });
+  }
+
+  // --- RENDER: Timeline ---
+  function renderTimeline() {
+    const container = $('#sub-timeline');
+
+    const events = [
+      { season: 'Antes', episode: '', date: '101 CA', title: 'Gran Consejo de Harrenhal',
+        desc: 'Viserys I es elegido rey sobre Rhaenys Targaryen, la Reina Que Nunca Fue.', icon: '👑' },
+      { season: 'Antes', episode: '', date: '~112 CA', title: 'Rhaenyra nombrada heredera',
+        desc: 'Viserys I nombra a Rhaenyra como su heredera tras la muerte de Aemma.', icon: '📜' },
+      { season: 'S1', episode: 'E1', date: '', title: 'Muerte de Aemma Arryn',
+        desc: 'La reina Aemma muere en un parto forzado. Viserys nombra a Rhaenyra heredera.', icon: '💔' },
+      { season: 'S1', episode: 'E5', date: '', title: 'Rhaenyra se casa con Laenor',
+        desc: 'Matrimonio político entre Rhaenyra y Laenor Velaryon.', icon: '💍' },
+      { season: 'S1', episode: 'E7', date: '', title: 'Aemond reclama a Vhagar',
+        desc: 'Aemond monta a Vhagar por primera vez. Pelea con los hijos de Rhaenyra; Lucerys le corta un ojo.', icon: '🐉' },
+      { season: 'S1', episode: 'E8', date: '', title: 'Muerte de Viserys I',
+        desc: 'El rey Viserys muere en paz, pero Alicent malinterpreta sus últimas palabras.', icon: '🕊️' },
+      { season: 'S1', episode: 'E9', date: '', title: 'Coronación de Aegon II',
+        desc: 'Aegon II es coronado rey por los Verdes. Comienza la usurpación.', icon: '👑' },
+      { season: 'S1', episode: 'E10', date: '', title: 'Muerte de Lucerys Velaryon',
+        desc: 'Aemond y Vhagar matan a Lucerys y su dragón Arrax en Bastión de Tormentas. La Danza de los Dragones comienza oficialmente.', icon: '💀' },
+      { season: 'S2', episode: 'E1', date: '', title: 'Sangre y Queso',
+        desc: 'Daemon envía asesinos a Desembarco del Rey. El hijo de Helaena, Jaehaerys, es asesinado.', icon: '🗡️' },
+      { season: 'S2', episode: 'E4', date: '', title: 'Batalla de Reposo del Cuervo',
+        desc: 'Aemond y Vhagar tienden una emboscada. Rhaenys y su dragón Meleys mueren. Aegon II y Sunfyre caen gravemente heridos.', icon: '⚔️' },
+      { season: 'S2', episode: 'E7', date: '', title: 'La Siembra Roja',
+        desc: 'Rhaenyra recluta jinetes de dragón. Hugh Hammer doma a Vermithor. Ulf White doma a Silverwing. Addam reclama a Seasmoke.', icon: '🔥' },
+      { season: 'S2', episode: 'E8', date: '', title: 'Caída de Sunfyre',
+        desc: 'Sunfyre muere por sus heridas. Aegon II huye de Desembarco del Rey. Aemond asume como Regente.', icon: '🐉' },
+    ];
+
+    let html = '<div class="timeline"><div class="timeline-line"></div>';
+    events.forEach((ev, i) => {
+      const side = i % 2 === 0 ? 'left' : 'right';
+      html += `<div class="timeline-item ${side}">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <span class="timeline-icon">${ev.icon}</span>
+            <span class="timeline-season">${ev.season}${ev.episode ? ' ' + ev.episode : ''}</span>
+            ${ev.date ? `<span class="timeline-date">${ev.date}</span>` : ''}
+          </div>
+          <h3 class="timeline-title">${ev.title}</h3>
+          <p class="timeline-desc">${ev.desc}</p>
+        </div>
+      </div>`;
+    });
+    html += '</div>';
+    container.innerHTML = html;
+  }
+
   // --- Init ---
   async function init() {
     const ok = await loadData();
@@ -447,6 +685,15 @@
         e.preventDefault();
         const view = link.dataset.view;
         if (view) switchView(view);
+      });
+    });
+
+    // Sub-nav click handlers
+    $$('.sub-nav a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const subview = link.dataset.subview;
+        if (subview) switchSubView(subview);
       });
     });
 

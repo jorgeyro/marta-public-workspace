@@ -52,7 +52,16 @@
       </div>
     </section>
 
-    <!-- ORGANIGRAM -->
+    <!-- SUB-NAV -->
+    <nav class="sub-nav">
+      <a href="#" data-subview="faction" class="active">⚔️ Facción</a>
+      <a href="#" data-subview="tree">🌳 Árbol</a>
+      <a href="#" data-subview="houses">🏠 Casas</a>
+      <a href="#" data-subview="timeline">📅 Timeline</a>
+    </nav>
+
+    <!-- SUB-VIEW: FACTION -->
+    <div class="sub-view active" id="sub-faction">
     <section class="organigram" id="organigram">
       <div class="organigram-inner">
 
@@ -103,6 +112,18 @@
 
       </div>
     </section>
+    </div><!-- end sub-faction -->
+
+    <!-- SUB-VIEWS: TREE, HOUSES, TIMELINE -->
+    <div class="sub-view" id="sub-tree">
+      <div class="sub-view-placeholder">🌳 Cargando árbol familiar...</div>
+    </div>
+    <div class="sub-view" id="sub-houses">
+      <div class="sub-view-placeholder">🏠 Cargando casas...</div>
+    </div>
+    <div class="sub-view" id="sub-timeline">
+      <div class="sub-view-placeholder">📅 Cargando línea de tiempo...</div>
+    </div>
 
     <!-- FOOTER -->
     <footer class="footer">
