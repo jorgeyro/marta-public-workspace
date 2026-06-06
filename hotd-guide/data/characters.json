@@ -51,6 +51,27 @@
       "image": "images/characters/viserys.jpg"
     },
     {
+      "id": "aemma",
+      "name": "Aemma Arryn",
+      "faction": null,
+      "alive": false,
+      "titles": [
+        "Reina consorte de los Siete Reinos"
+      ],
+      "actor": "Sian Brooke",
+      "status": "Fallecida en S1E1 — parto forzado",
+      "description": "Primera esposa del rey Viserys I Targaryen y madre de la princesa Rhaenyra. Murió trágicamente durante un parto inducido por su esposo.",
+      "bio": "Aemma Arryn, de la Casa Arryn del Valle, fue la primera esposa de Viserys I. Era conocida por su bondad y su cercanía con su hija Rhaenyra. Su muerte en la cama de parto, ordenada por Viserys en un desesperado intento por salvar a su hijo varón, marcó profundamente a su hija y fue el primer evento trágico que desencadenó la crisis de sucesión.",
+      "dragon": null,
+      "parents": [],
+      "spouse": ["Viserys I Targaryen"],
+      "children": ["Rhaenyra Targaryen", "Baelon Targaryen (muerto al nacer)"],
+      "siblings": [],
+      "death_cause": "Muerta durante un parto forzado por cesárea, ordenado por Viserys.",
+      "death_episode": "S1E1",
+      "image": null
+    },
+    {
       "id": "rhaenyra",
       "name": "Rhaenyra Targaryen",
       "faction": "blacks",

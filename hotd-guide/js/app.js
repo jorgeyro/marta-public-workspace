@@ -543,14 +543,14 @@
     // Spouses row
     const alicent = data.characters.find(c => c.id === 'alicent');
     html += `<div class="ft-spouses-wrap">
-      <div class="ft-spouse">
-        <div class="ft-avatar-sm" style="filter:grayscale(1);opacity:0.6">${createAvatarHTML({name:'Aemma Arryn',actor:'',image:''})}</div>
-        <div class="ft-name-sm ft-dead">Aemma Arryn †</div>
+      <div class="ft-spouse" data-char="aemma">
+        <div class="ft-name ft-dead">Aemma Arryn †</div>
+        <div class="ft-detail">Primera esposa de Viserys · Madre de Rhaenyra</div>
       </div>
       <div class="ft-spouse-divider">⚭</div>
       <div class="ft-spouse" data-char="alicent">
-        <div class="ft-avatar-sm">${createAvatarHTML({name:'Alicent Hightower',actor:'',image:''})}</div>
-        <div class="ft-name-sm">Alicent Hightower</div>
+        <div class="ft-name">Alicent Hightower</div>
+        <div class="ft-detail">Segunda esposa de Viserys · Madre de Aegon II</div>
       </div>
     </div>`;
 
