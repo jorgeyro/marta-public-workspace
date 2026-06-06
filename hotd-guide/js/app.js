@@ -580,12 +580,13 @@
       <div class="ft-kids">${rhaenyraKids.map(id => {
         const ch = data.characters.find(c => c.id === id);
         if (!ch) return '';
+        const role = ch.dragon ? `Jinete de ${getDragon(ch.dragon).name}` : (id === 'rhaena' ? 'Sin dragón' : '');
         return `<div class="ft-child${!ch.alive ? ' dead' : ''}" data-char="${id}">
           <span class="ft-child-name">${ch.name}${!ch.alive ? ' †' : ''}</span>
-          <span class="ft-child-role">${ch.actor}</span>
+          <span class="ft-child-role">${role}</span>
         </div>`;
       }).join('')}</div>
-    </div>`;
+    </div>
 
     // ── BRANCH 2: Alicent's children ── (TEAM GREEN)
     html += `<div class="ft-branch ft-branch-green">
@@ -613,34 +614,16 @@
         ${['aemond','daeron'].map(id => {
           const ch = data.characters.find(c => c.id === id);
           if (!ch) return '';
+          const role = ch.dragon ? `Jinete de ${getDragon(ch.dragon).name}` : '';
           return `<div class="ft-child${!ch.alive ? ' dead' : ''}" data-char="${id}">
             <span class="ft-child-name">${ch.name}${!ch.alive ? ' †' : ''}</span>
-            <span class="ft-child-role">${ch.actor}</span>
+            <span class="ft-child-role">${role}</span>
           </div>`;
         }).join('')}
       </div>
     </div>`;
 
     html += `</div>`; // end ft-branches
-
-    // ── Extended: Corlys + Rhaenys ──
-    const corlys = data.characters.find(c => c.id === 'corlys');
-    const rhaenys = data.characters.find(c => c.id === 'rhaenys');
-    html += `<div class="ft-connector-v"></div>
-    <div class="ft-extended">
-      <div class="ft-couple">
-        <div class="ft-person" data-char="corlys">
-          <div class="ft-name">Corlys Velaryon</div>
-          <div class="ft-detail">La Serpiente Marina</div>
-        </div>
-        <div class="ft-married">⚭</div>
-        <div class="ft-person${!rhaenys.alive ? ' dead' : ''}" data-char="rhaenys">
-          <div class="ft-name">Rhaenys Targaryen ${!rhaenys.alive ? '†' : ''}</div>
-          <div class="ft-detail">La Reina Que Nunca Fue</div>
-        </div>
-      </div>
-    </div>`;
-
     html += `</div>`; // end family-tree
     treeEl.innerHTML = html;
 
