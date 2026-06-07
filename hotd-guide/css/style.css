@@ -804,6 +804,10 @@ img { max-width: 100%; display: block; }
   opacity: 0.7;
 }
 
+.dragon-card.dead .dragon-card-img-src {
+  filter: grayscale(1);
+}
+
 .dragon-rider {
   font-size: 0.8rem;
   color: var(--text-muted);
