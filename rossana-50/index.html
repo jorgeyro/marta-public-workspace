@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Felices 50, Rossana ❤️</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --rojo: #C0392B;
+    --rojo-claro: #E74C3C;
+    --rojo-oscuro: #922B21;
+    --oro: #D4A853;
+    --oro-claro: #F0D78C;
+    --fondo: #1A1412;
+    --fondo-sec: #231B18;
+    --texto: #F5EDE8;
+    --texto-sec: #C4B5A8;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--fondo);
+    color: var(--texto);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #1A1412 0%, #2C1810 40%, #3D1F14 70%, #1A1412 100%);
+  }
+
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(192,57,43,0.15) 0%, transparent 70%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 2rem;
+  }
+
+  .hero-label {
+    font-size: 0.9rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--oro);
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 700;
+    line-height: 1.1;
+    background: linear-gradient(135deg, var(--oro-claro), var(--oro), var(--rojo-claro));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+  }
+
+  .hero-sub {
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    color: var(--texto-sec);
+    font-weight: 300;
+    font-style: italic;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+  }
+
+  .hero-arrow {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bounce 2s infinite;
+    color: var(--oro);
+    font-size: 2rem;
+    opacity: 0.6;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(10px); }
+  }
+
+  /* ===== SECTIONS ===== */
+  section {
+    padding: 5rem 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    text-align: center;
+    margin-bottom: 0.5rem;
+    color: var(--oro);
+  }
+
+  .section-subtitle {
+    text-align: center;
+    color: var(--texto-sec);
+    font-weight: 300;
+    margin-bottom: 3rem;
+    font-size: 1.1rem;
+  }
+
+  /* ===== PHOTO STRIP ===== */
+  .photo-strip {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .photo-strip.single {
+    grid-template-columns: 1fr;
+  }
+
+  .photo-strip img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: transform 0.3s;
+  }
+
+  .photo-strip img:hover {
+    transform: scale(1.02);
+  }
+
+  @media (max-width: 768px) {
+    .photo-strip { grid-template-columns: 1fr; }
+    .photo-strip img { height: 250px; }
+  }
+
+  /* ===== TIMELINE ===== */
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+    margin: 3rem 0;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--rojo), var(--oro), var(--rojo));
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 2.5rem;
+    padding-left: 2rem;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -6px;
+    top: 6px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--rojo-claro);
+    border: 2px solid var(--oro);
+  }
+
+  .timeline-year {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--oro);
+    font-weight: 700;
+  }
+
+  .timeline-place {
+    font-size: 0.9rem;
+    color: var(--rojo-claro);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0.3rem;
+  }
+
+  .timeline-desc {
+    color: var(--texto-sec);
+    font-weight: 300;
+  }
+
+  /* ===== FAMILY & LOVE ===== */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    margin: 3rem 0;
+  }
+
+  .two-col img {
+    width: 100%;
+    border-radius: 12px;
+    height: 400px;
+    object-fit: cover;
+  }
+
+  @media (max-width: 768px) {
+    .two-col { grid-template-columns: 1fr; }
+    .two-col img { height: 300px; }
+  }
+
+  .two-col h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--oro);
+    margin-bottom: 1rem;
+  }
+
+  .two-col p {
+    color: var(--texto-sec);
+    font-weight: 300;
+    margin-bottom: 1rem;
+  }
+
+  /* ===== PASSIONS ===== */
+  .passions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .passion-card {
+    background: var(--fondo-sec);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(192,57,43,0.2);
+    transition: border-color 0.3s;
+  }
+
+  .passion-card:hover {
+    border-color: var(--rojo);
+  }
+
+  .passion-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+  }
+
+  .passion-body {
+    padding: 1.5rem;
+  }
+
+  .passion-body h4 {
+    color: var(--oro);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .passion-body p {
+    color: var(--texto-sec);
+    font-weight: 300;
+    font-size: 0.95rem;
+  }
+
+  /* ===== SONG PLAYER ===== */
+  .song-section {
+    text-align: center;
+    background: linear-gradient(135deg, var(--fondo-sec), rgba(192,57,43,0.1));
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    border: 1px solid rgba(212,168,83,0.2);
+    margin: 3rem 0;
+  }
+
+  .song-section h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--oro);
+    margin-bottom: 0.5rem;
+  }
+
+  .song-section .tag {
+    color: var(--texto-sec);
+    font-style: italic;
+    margin-bottom: 2rem;
+  }
+
+  .song-section audio {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto 1.5rem;
+  }
+
+  audio::-webkit-media-controls-panel {
+    background: var(--fondo-sec);
+  }
+
+  audio::-webkit-media-controls-current-time-display,
+  audio::-webkit-media-controls-time-remaining-display {
+    color: var(--texto);
+  }
+
+  .lyrics-preview {
+    color: var(--texto-sec);
+    font-style: italic;
+    line-height: 2;
+    font-size: 0.95rem;
+  }
+
+  .lyrics-preview strong {
+    color: var(--oro);
+  }
+
+  /* ===== POEM ===== */
+  .poem-box {
+    background: var(--fondo-sec);
+    border-radius: 20px;
+    padding: 3rem;
+    text-align: center;
+    border-left: 4px solid var(--rojo);
+    border-right: 4px solid var(--rojo);
+    margin: 2rem 0;
+  }
+
+  .poem-box p {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--texto-sec);
+    line-height: 2.2;
+    font-size: 1.1rem;
+  }
+
+  .poem-placeholder {
+    color: rgba(196,181,168,0.4);
+    font-style: italic;
+  }
+
+  /* ===== CLOSING ===== */
+  .closing {
+    text-align: center;
+    padding: 5rem 1.5rem;
+    background: linear-gradient(135deg, transparent, rgba(192,57,43,0.08), transparent);
+  }
+
+  .closing h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 4rem);
+    background: linear-gradient(135deg, var(--oro-claro), var(--oro), var(--rojo-claro));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+  }
+
+  .closing p {
+    color: var(--texto-sec);
+    font-weight: 300;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    color: rgba(196,181,168,0.3);
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+  }
+
+  /* ===== ANIMATIONS ===== */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .separator {
+    text-align: center;
+    color: var(--rojo);
+    font-size: 2rem;
+    opacity: 0.3;
+    margin: 2rem 0;
+    letter-spacing: 1rem;
+  }
+
+  .highlight {
+    color: var(--rojo-claro);
+    font-weight: 500;
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-label">✨ 23 de junio de 2026</div>
+    <h1>Felices 50,<br>Rossana</h1>
+    <p class="hero-sub">Rojo corazón &mdash; 50 primaveras</p>
+  </div>
+  <div class="hero-arrow">↓</div>
+</div>
+
+<!-- ===== INTRO ===== -->
+<section class="fade-in">
+  <div class="photo-strip single">
+    <img src="../images/01_rossana_con_ipo.jpg" alt="Rossana con Ipo" loading="lazy">
+  </div>
+  <p style="text-align:center; color:var(--texto-sec); font-weight:300; font-size:1.1rem; max-width:700px; margin:0 auto;">
+    <span class="highlight">Rossana Fabbrizio</span> &mdash; artista, joyera, cocinera, voluntaria, mamá de tres, compañera de vida.
+    El <span class="highlight">23 de junio</span> celebra sus <span class="highlight">50 primaveras</span>.
+    Esta página es un homenaje a ella y a todo lo que ha construido.
+  </p>
+</section>
+
+<div class="separator">✦ ✦ ✦</div>
+
+<!-- ===== SU HISTORIA ===== -->
+<section class="fade-in">
+  <h2 class="section-title">Su historia</h2>
+  <p class="section-subtitle">Un recorrido por el mundo, siempre juntos</p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-year">1999</div>
+      <div class="timeline-place">🇬🇹 Guatemala</div>
+      <div class="timeline-desc">Se casaron en noviembre. El comienzo de todo.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">1999 &ndash; 2003</div>
+      <div class="timeline-place">🇧🇴 La Paz, Bolivia</div>
+      <div class="timeline-desc">Cuatro años solos los dos. Su primer hogar juntos, en la altura de los Andes.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2003 &ndash; 2006</div>
+      <div class="timeline-place">🇨🇴 Colombia</div>
+      <div class="timeline-desc">Nacieron Rita y Alejo. Risas, pañales, y los primeros pasos.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2006 &ndash; 2010</div>
+      <div class="timeline-place">🇵🇪 Lima, Perú</div>
+      <div class="timeline-desc">Nació Natalia. También los momentos más difíciles, que los hicieron más fuertes.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2010 &ndash; 2014</div>
+      <div class="timeline-place">🇬🇹 Guatemala</div>
+      <div class="timeline-desc">De regreso a casa, cuatro años de reencuentro con raíces y familia.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2014 &ndash; 2025</div>
+      <div class="timeline-place">🇦🇷 Buenos Aires, Argentina</div>
+      <div class="timeline-desc">Once años construyendo hogar. Los chicos crecieron, Ipo llegó, y el amor se hizo más profundo.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2026</div>
+      <div class="timeline-place">🌍 Europa — Nueva aventura</div>
+      <div class="timeline-desc">Maletas otra vez. Los hijos en Eindhoven, Florencia y Madrid. Ellos van a Croacia, porque lo importante es estar cerca.</div>
+    </div>
+  </div>
+</section>
+
+<div class="separator">✦ ✦ ✦</div>
+
+<!-- ===== AMOR ===== -->
+<section class="fade-in">
+  <h2 class="section-title">Amor en movimiento</h2>
+  <p class="section-subtitle">27 años, 6 países, y siempre tomados de la mano</p>
+
+  <div class="two-col">
+    <img src="../images/02_jorge_y_rossana_glaciar.jpg" alt="Jorge y Rossana en el glaciar" loading="lazy">
+    <div>
+      <h3>Juntos en cualquier paisaje</h3>
+      <p>Desde La Paz hasta un glaciar en Patagonia. Desde una boda en Guatemala hasta una nueva vida en Europa. Donde sea que estén, están juntos.</p>
+      <p>Noviembre de 1999 fue solo el primer capítulo. Hoy, 27 años después, siguen escribiendo la historia.</p>
+    </div>
+  </div>
+</section>
+
+<div class="separator">✦ ✦ ✦</div>
+
+<!-- ===== FAMILIA ===== -->
+<section class="fade-in">
+  <h2 class="section-title">Familia</h2>
+  <p class="section-subtitle">El mayor tesoro de Rossana</p>
+
+  <div class="photo-strip">
+    <img src="../images/03_familia_molino.jpg" alt="La familia frente al molino" loading="lazy">
+  </div>
+
+  <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:1.5rem; text-align:center; margin-top:2rem;">
+    <div style="background:var(--fondo-sec); padding:1.5rem; border-radius:12px; border:1px solid rgba(192,57,43,0.15);">
+      <div style="font-size:2rem; margin-bottom:0.5rem;">👦</div>
+      <div style="color:var(--oro); font-weight:600;">Alejo</div>
+      <div style="color:var(--texto-sec); font-size:0.9rem;">Eindhoven, Países Bajos</div>
+    </div>
+    <div style="background:var(--fondo-sec); padding:1.5rem; border-radius:12px; border:1px solid rgba(192,57,43,0.15);">
+      <div style="font-size:2rem; margin-bottom:0.5rem;">👧</div>
+      <div style="color:var(--oro); font-weight:600;">Rita</div>
+      <div style="color:var(--texto-sec); font-size:0.9rem;">La fuerza de la familia</div>
+    </div>
+    <div style="background:var(--fondo-sec); padding:1.5rem; border-radius:12px; border:1px solid rgba(192,57,43,0.15);">
+      <div style="font-size:2rem; margin-bottom:0.5rem;">👧</div>
+      <div style="color:var(--oro); font-weight:600;">Natalia</div>
+      <div style="color:var(--texto-sec); font-size:0.9rem;">Florencia, Italia</div>
+    </div>
+    <div style="background:var(--fondo-sec); padding:1.5rem; border-radius:12px; border:1px solid rgba(192,57,43,0.15);">
+      <div style="font-size:2rem; margin-bottom:0.5rem;">🐶</div>
+      <div style="color:var(--oro); font-weight:600;">Ipo</div>
+      <div style="color:var(--texto-sec); font-size:0.9rem;">11 años de amor fiel</div>
+    </div>
+  </div>
+</section>
+
+<div class="separator">✦ ✦ ✦</div>
+
+<!-- ===== PASIONES ===== -->
+<section class="fade-in">
+  <h2 class="section-title">Sus pasiones</h2>
+  <p class="section-subtitle">Todo lo que hace con sus manos y su corazón</p>
+
+  <div class="passions-grid">
+    <div class="passion-card">
+      <img src="../images/04_rossana_pizza_guatemala.jpg" alt="Rossana cocinando en Guatemala" loading="lazy">
+      <div class="passion-body">
+        <h4>🍕 Cocina & tradición</h4>
+        <p>Amasando pizza en el horno de leña de la casa familiar en Guatemala. La cocina es su lenguaje de amor.</p>
+      </div>
+    </div>
+    <div class="passion-card">
+      <img src="../images/05_rossana_arte_pintura.jpg" alt="Rossana haciendo arte" loading="lazy">
+      <div class="passion-body">
+        <h4>🎨 Arte & creación</h4>
+        <p>Pintura, cerámica, joyería, tejido. Todo lo que puede crear con sus manos, lo crea con belleza.</p>
+      </div>
+    </div>
+    <div class="passion-card">
+      <div style="height:250px; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg, var(--rojo-oscuro), var(--rojo-claro));">
+        <span style="font-size:3rem;">🌿</span>
+      </div>
+      <div class="passion-body">
+        <h4>🌱 Voluntariado</h4>
+        <p>Trabaja en una huerta con jóvenes con necesidades especiales. Su generosidad no tiene límites.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="separator">✦ ✦ ✦</div>
+
+<!-- ===== CANCIÓN ===== -->
+<section class="fade-in">
+  <div class="song-section">
+    <h3>🎵 Rojo Corazón</h3>
+    <p class="tag">Canción original &mdash; al estilo Maná / Juanes</p>
+
+    <audio controls>
+      <source src="../song/rojo-corazon-suno.mp3" type="audio/mpeg">
+      Tu navegador no soporta el reproductor de audio.
+    </audio>
+
+    <div class="lyrics-preview">
+      <p><strong>Rojo corazón, 50 primaveras</strong><br>
+      Artista de la vida, tejedora de sueños<br>
+      Rojo corazón, cocinas con amor<br>
+      La huerta, el barro, el pincel &mdash; todo lo haces mejor</p>
+      <p style="margin-top:1rem; font-size:0.85rem; opacity:0.6;">Letra por Jorge &amp; Marta · Generada con IA</p>
+    </div>
+  </div>
+</section>
+
+<div class="separator">✦ ✦ ✦</div>
+
+<!-- ===== POEMA ===== -->
+<section class="fade-in">
+  <h2 class="section-title">Para Rossana</h2>
+  <p class="section-subtitle">Un poema en sus 50</p>
+
+  <div class="poem-box">
+    <p class="poem-placeholder">
+      ✨ Aquí irá el poema ✨<br><br>
+      (Pendiente de escribir)
+    </p>
+  </div>
+</section>
+
+<div class="separator">✦ ✦ ✦</div>
+
+<!-- ===== CLOSING ===== -->
+<section class="closing fade-in">
+  <h2>Rojo Corazón</h2>
+  <p>Gracias por 50 años de luz, de arte, de amor.<br>Esto recién empieza, vamos por más 50.</p>
+  <p style="margin-top:1.5rem; color:var(--rojo-claro); font-size:1.2rem;">❤️</p>
+</section>
+
+<footer>Rossana · 23 de junio de 2026 · Con amor, de Jorge</footer>
+
+<script>
+  // Intersection Observer for fade-in animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
