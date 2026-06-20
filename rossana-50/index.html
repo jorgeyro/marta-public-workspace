@@ -172,62 +172,86 @@
     .photo-frame img { border-radius: 10px; }
   }
 
-  /* ===== TIMELINE ===== */
-  .timeline {
-    position: relative;
-    padding-left: 1.5rem;
-    margin: 2.5rem 0;
+  /* ===== CAROUSEL ===== */
+  .carousel {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    margin: 2rem -1.5rem;
+    padding: 0 1.5rem;
+    padding-bottom: 0.5rem;
+    cursor: grab;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: linear-gradient(to bottom, var(--rojo), var(--oro), var(--rojo));
+  .carousel::-webkit-scrollbar { display: none; }
+
+  .carousel-track {
+    display: flex;
+    gap: 1rem;
+    padding: 0.5rem 0;
   }
 
-  .timeline-item {
-    position: relative;
-    margin-bottom: 2rem;
-    padding-left: 1.5rem;
+  .carousel-card {
+    flex: 0 0 260px;
+    scroll-snap-align: start;
+    background: linear-gradient(145deg, var(--fondo-sec), rgba(192,57,43,0.08));
+    border-radius: 16px;
+    padding: 1.5rem;
+    border: 1px solid rgba(212,168,83,0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    min-height: 200px;
+    transition: border-color 0.3s;
   }
 
-  .timeline-item:last-child { margin-bottom: 0; }
+  .carousel-card:active { cursor: grabbing; }
 
-  .timeline-item::before {
-    content: '';
-    position: absolute;
-    left: -7px;
-    top: 6px;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: var(--rojo-claro);
-    border: 2px solid var(--oro);
-  }
-
-  .timeline-year {
+  .card-year {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(1.2rem, 4vw, 1.5rem);
+    font-size: clamp(1.3rem, 4vw, 1.6rem);
     color: var(--oro);
     font-weight: 700;
+    line-height: 1.2;
   }
 
-  .timeline-place {
-    font-size: 0.8rem;
+  .card-flag { font-size: 1.8rem; }
+
+  .card-place {
+    font-size: 0.85rem;
     color: var(--rojo-claro);
     text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 0.2rem;
+    letter-spacing: 1.5px;
+    font-weight: 500;
   }
 
-  .timeline-desc {
+  .card-desc {
     color: var(--texto-sec);
     font-weight: 300;
-    font-size: clamp(0.9rem, 2.5vw, 1rem);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-top: auto;
+  }
+
+  .carousel-hint {
+    text-align: center;
+    color: rgba(196,181,168,0.3);
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    letter-spacing: 2px;
+    user-select: none;
+  }
+
+  @media (min-width: 768px) {
+    .carousel-card { flex: 0 0 280px; }
+    .carousel { margin: 2rem -3rem; padding: 0 3rem; }
+  }
+
+  @media (max-width: 480px) {
+    .carousel-card { flex: 0 0 220px; padding: 1.25rem; min-height: 180px; }
   }
 
   /* ===== TWO COL ===== */
@@ -554,47 +578,58 @@
   <h2 class="section-title">Su historia</h2>
   <p class="section-subtitle">Un recorrido por el mundo, siempre juntos</p>
 
-  <div class="timeline">
-    <div class="timeline-item">
-      <div class="timeline-year">1976</div>
-      <div class="timeline-place">🇬🇹 Guatemala</div>
-      <div class="timeline-desc">Nació Rossana. La menor de tres hermanas. Creció en Guatemala, hija, hermana, semilla de todo lo que vendría.</div>
+  <div class="carousel">
+    <div class="carousel-track">
+      <div class="carousel-card">
+        <div class="card-year">1976</div>
+        <div class="card-flag">🇬🇹</div>
+        <div class="card-place">Guatemala</div>
+        <div class="card-desc">Nació Rossana. La menor de tres hermanas.</div>
+      </div>
+      <div class="carousel-card">
+        <div class="card-year">1999</div>
+        <div class="card-flag">🇬🇹</div>
+        <div class="card-place">Guatemala</div>
+        <div class="card-desc">Boda. El comienzo de todo.</div>
+      </div>
+      <div class="carousel-card">
+        <div class="card-year">1999 – 2004</div>
+        <div class="card-flag">🇧🇴</div>
+        <div class="card-place">La Paz, Bolivia</div>
+        <div class="card-desc">Llegaron recién casados. Cuatro años y medio solos los dos.</div>
+      </div>
+      <div class="carousel-card">
+        <div class="card-year">2004 – 2007</div>
+        <div class="card-flag">🇨🇴</div>
+        <div class="card-place">Colombia</div>
+        <div class="card-desc">Nacieron Rita y Alejo.</div>
+      </div>
+      <div class="carousel-card">
+        <div class="card-year">2007 – 2011</div>
+        <div class="card-flag">🇵🇪</div>
+        <div class="card-place">Lima, Perú</div>
+        <div class="card-desc">Nació Natalia. Momentos difíciles que los hicieron más fuertes.</div>
+      </div>
+      <div class="carousel-card">
+        <div class="card-year">2011 – 2015</div>
+        <div class="card-flag">🇬🇹</div>
+        <div class="card-place">Guatemala</div>
+        <div class="card-desc">De regreso a casa, cuatro años con raíces y familia.</div>
+      </div>
+      <div class="carousel-card">
+        <div class="card-year">2015 – 2026</div>
+        <div class="card-flag">🇦🇷</div>
+        <div class="card-place">Buenos Aires, Argentina</div>
+        <div class="card-desc">Once años. Los chicos crecieron, Ipo llegó, el amor se hizo más profundo.</div>
+      </div>
+      <div class="carousel-card">
+        <div class="card-year">2026</div>
+        <div class="card-flag">🌍</div>
+        <div class="card-place">Europa</div>
+        <div class="card-desc">Nueva aventura. Croacia por conocer, siempre juntos.</div>
+      </div>
     </div>
-    <div class="timeline-item">
-      <div class="timeline-year">1999</div>
-      <div class="timeline-place">🇬🇹 Guatemala</div>
-      <div class="timeline-desc">Se casaron en noviembre. El comienzo de todo.</div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-year">1999 &ndash; 2004</div>
-      <div class="timeline-place">🇧🇴 La Paz, Bolivia</div>
-      <div class="timeline-desc">Llegaron en diciembre de 1999 recién casados. Cuatro años y medio solos los dos en la altura de los Andes.</div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-year">2004 &ndash; 2007</div>
-      <div class="timeline-place">🇨🇴 Colombia</div>
-      <div class="timeline-desc">Nacieron Rita y Alejo. Risas, pañales, y los primeros pasos.</div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-year">2007 &ndash; 2011</div>
-      <div class="timeline-place">🇵🇪 Lima, Perú</div>
-      <div class="timeline-desc">Nació Natalia. También los momentos más difíciles, que los hicieron más fuertes.</div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-year">2011 &ndash; 2015</div>
-      <div class="timeline-place">🇬🇹 Guatemala</div>
-      <div class="timeline-desc">De regreso a casa, cuatro años de reencuentro con raíces y familia.</div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-year">2015 &ndash; 2026</div>
-      <div class="timeline-place">🇦🇷 Buenos Aires, Argentina</div>
-      <div class="timeline-desc">Once años construyendo hogar. Los chicos crecieron, Ipo llegó, y el amor se hizo más profundo.</div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-year">2026</div>
-      <div class="timeline-place">🌍 Europa — Nueva aventura</div>
-      <div class="timeline-desc">Maletas otra vez. Los hijos en Eindhoven, Florencia y Madrid. Ellos van a Croacia, porque lo importante es estar cerca.</div>
-    </div>
+    <div class="carousel-hint">← Deslizá →</div>
   </div>
 </section>
 
