@@ -2,12 +2,15 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Felices 50, Rossana ❤️</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  * { -webkit-tap-highlight-color: rgba(192,57,43,0.3); }
 
   :root {
     --rojo: #C0392B;
@@ -19,9 +22,13 @@
     --fondo-sec: #231B18;
     --texto: #F5EDE8;
     --texto-sec: #C4B5A8;
+    --sa-top: env(safe-area-inset-top, 0px);
+    --sa-bottom: env(safe-area-inset-bottom, 0px);
+    --sa-left: env(safe-area-inset-left, 0px);
+    --sa-right: env(safe-area-inset-right, 0px);
   }
 
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
 
   body {
     font-family: 'Inter', sans-serif;
@@ -29,18 +36,25 @@
     color: var(--texto);
     line-height: 1.7;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
   }
 
   /* ===== HERO ===== */
   .hero {
     position: relative;
-    height: 100vh;
-    min-height: 600px;
+    height: 100dvh;
+    min-height: 500px;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     overflow: hidden;
+    padding-top: var(--sa-top);
   }
 
   .hero-bg {
@@ -53,17 +67,18 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at center, rgba(192,57,43,0.15) 0%, transparent 70%);
+    background: radial-gradient(ellipse at center, rgba(192,57,43,0.2) 0%, transparent 70%);
   }
 
   .hero-content {
     position: relative;
     z-index: 2;
-    padding: 2rem;
+    padding: 2rem 1.5rem;
+    padding-bottom: calc(2rem + var(--sa-bottom));
   }
 
   .hero-label {
-    font-size: 0.9rem;
+    font-size: clamp(0.75rem, 2.5vw, 0.9rem);
     letter-spacing: 4px;
     text-transform: uppercase;
     color: var(--oro);
@@ -73,7 +88,7 @@
 
   .hero h1 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(3rem, 8vw, 6rem);
+    font-size: clamp(2.8rem, 12vw, 6rem);
     font-weight: 700;
     line-height: 1.1;
     background: linear-gradient(135deg, var(--oro-claro), var(--oro), var(--rojo-claro));
@@ -84,7 +99,7 @@
   }
 
   .hero-sub {
-    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    font-size: clamp(1.1rem, 4vw, 1.8rem);
     color: var(--texto-sec);
     font-weight: 300;
     font-style: italic;
@@ -94,12 +109,12 @@
 
   .hero-arrow {
     position: absolute;
-    bottom: 2rem;
+    bottom: calc(1.5rem + var(--sa-bottom));
     left: 50%;
     transform: translateX(-50%);
     animation: bounce 2s infinite;
     color: var(--oro);
-    font-size: 2rem;
+    font-size: 1.8rem;
     opacity: 0.6;
   }
 
@@ -110,14 +125,18 @@
 
   /* ===== SECTIONS ===== */
   section {
-    padding: 5rem 1.5rem;
+    padding: 4rem 1.5rem;
     max-width: 1100px;
     margin: 0 auto;
   }
 
+  @media (max-width: 480px) {
+    section { padding: 3rem 1.25rem; }
+  }
+
   .section-title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(1.8rem, 6vw, 3rem);
     text-align: center;
     margin-bottom: 0.5rem;
     color: var(--oro);
@@ -127,44 +146,37 @@
     text-align: center;
     color: var(--texto-sec);
     font-weight: 300;
-    margin-bottom: 3rem;
-    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+    font-size: clamp(0.95rem, 3vw, 1.1rem);
+    padding: 0 0.5rem;
   }
 
-  /* ===== PHOTO STRIP ===== */
-  .photo-strip {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    margin-bottom: 3rem;
+  /* ===== PHOTO ===== */
+  .photo-frame {
+    margin-bottom: 2rem;
   }
 
-  .photo-strip.single {
-    grid-template-columns: 1fr;
-  }
-
-  .photo-strip img {
+  .photo-frame img {
     width: 100%;
-    height: 350px;
-    object-fit: cover;
     border-radius: 12px;
-    transition: transform 0.3s;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    display: block;
   }
 
-  .photo-strip img:hover {
-    transform: scale(1.02);
+  .photo-frame.wide img {
+    aspect-ratio: 16/9;
   }
 
-  @media (max-width: 768px) {
-    .photo-strip { grid-template-columns: 1fr; }
-    .photo-strip img { height: 250px; }
+  @media (max-width: 480px) {
+    .photo-frame img { border-radius: 10px; }
   }
 
   /* ===== TIMELINE ===== */
   .timeline {
     position: relative;
-    padding-left: 2rem;
-    margin: 3rem 0;
+    padding-left: 1.5rem;
+    margin: 2.5rem 0;
   }
 
   .timeline::before {
@@ -179,17 +191,19 @@
 
   .timeline-item {
     position: relative;
-    margin-bottom: 2.5rem;
-    padding-left: 2rem;
+    margin-bottom: 2rem;
+    padding-left: 1.5rem;
   }
+
+  .timeline-item:last-child { margin-bottom: 0; }
 
   .timeline-item::before {
     content: '';
     position: absolute;
-    left: -6px;
+    left: -7px;
     top: 6px;
-    width: 14px;
-    height: 14px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
     background: var(--rojo-claro);
     border: 2px solid var(--oro);
@@ -197,48 +211,57 @@
 
   .timeline-year {
     font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
     color: var(--oro);
     font-weight: 700;
   }
 
   .timeline-place {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: var(--rojo-claro);
     text-transform: uppercase;
     letter-spacing: 2px;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.2rem;
   }
 
   .timeline-desc {
     color: var(--texto-sec);
     font-weight: 300;
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
   }
 
-  /* ===== FAMILY & LOVE ===== */
+  /* ===== TWO COL ===== */
   .two-col {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 3rem;
+    gap: 2.5rem;
     align-items: center;
-    margin: 3rem 0;
+    margin: 2.5rem 0;
   }
 
   .two-col img {
     width: 100%;
     border-radius: 12px;
-    height: 400px;
+    aspect-ratio: 4/3;
     object-fit: cover;
+    display: block;
   }
 
   @media (max-width: 768px) {
-    .two-col { grid-template-columns: 1fr; }
-    .two-col img { height: 300px; }
+    .two-col {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    .two-col img { aspect-ratio: 16/9; }
+  }
+
+  @media (max-width: 480px) {
+    .two-col img { border-radius: 10px; }
   }
 
   .two-col h3 {
     font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
+    font-size: clamp(1.4rem, 5vw, 1.8rem);
     color: var(--oro);
     margin-bottom: 1rem;
   }
@@ -247,14 +270,59 @@
     color: var(--texto-sec);
     font-weight: 300;
     margin-bottom: 1rem;
+    font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+  }
+
+  /* ===== FAMILY CARDS ===== */
+  .family-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 600px) {
+    .family-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+  }
+
+  .family-card {
+    background: var(--fondo-sec);
+    padding: 1.25rem 0.75rem;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid rgba(192,57,43,0.15);
+  }
+
+  .family-card .emoji {
+    font-size: 1.8rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .family-card .name {
+    color: var(--oro);
+    font-weight: 600;
+    font-size: clamp(0.9rem, 3vw, 1rem);
+  }
+
+  .family-card .detail {
+    color: var(--texto-sec);
+    font-size: clamp(0.75rem, 2.5vw, 0.85rem);
+    margin-top: 0.2rem;
   }
 
   /* ===== PASSIONS ===== */
   .passions-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
     margin: 2rem 0;
+  }
+
+  @media (max-width: 768px) {
+    .passions-grid { grid-template-columns: 1fr; }
   }
 
   .passion-card {
@@ -262,93 +330,103 @@
     border-radius: 12px;
     overflow: hidden;
     border: 1px solid rgba(192,57,43,0.2);
-    transition: border-color 0.3s;
-  }
-
-  .passion-card:hover {
-    border-color: var(--rojo);
+    -webkit-tap-highlight-color: transparent;
   }
 
   .passion-card img {
     width: 100%;
-    height: 250px;
+    aspect-ratio: 4/3;
     object-fit: cover;
+    display: block;
+  }
+
+  .passion-card .fallback-img {
+    aspect-ratio: 4/3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--rojo-oscuro), var(--rojo-claro));
+    font-size: 3rem;
   }
 
   .passion-body {
-    padding: 1.5rem;
+    padding: 1.25rem;
   }
 
   .passion-body h4 {
     color: var(--oro);
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    margin-bottom: 0.4rem;
   }
 
   .passion-body p {
     color: var(--texto-sec);
     font-weight: 300;
-    font-size: 0.95rem;
+    font-size: clamp(0.85rem, 2.5vw, 0.95rem);
   }
 
   /* ===== SONG PLAYER ===== */
   .song-section {
     text-align: center;
     background: linear-gradient(135deg, var(--fondo-sec), rgba(192,57,43,0.1));
-    border-radius: 20px;
-    padding: 3rem 2rem;
+    border-radius: 16px;
+    padding: 2.5rem 1.5rem;
     border: 1px solid rgba(212,168,83,0.2);
-    margin: 3rem 0;
+    margin: 2rem 0;
+  }
+
+  @media (max-width: 480px) {
+    .song-section { padding: 2rem 1rem; border-radius: 12px; }
   }
 
   .song-section h3 {
     font-family: 'Playfair Display', serif;
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 6vw, 2rem);
     color: var(--oro);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.3rem;
   }
 
   .song-section .tag {
     color: var(--texto-sec);
     font-style: italic;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
+    font-size: clamp(0.85rem, 2.5vw, 0.95rem);
   }
 
   .song-section audio {
     width: 100%;
-    max-width: 500px;
+    max-width: 400px;
     margin: 0 auto 1.5rem;
+    display: block;
   }
 
-  audio::-webkit-media-controls-panel {
-    background: var(--fondo-sec);
-  }
-
+  /* iOS audio fix */
+  audio::-webkit-media-controls-panel { background: var(--fondo-sec); }
   audio::-webkit-media-controls-current-time-display,
-  audio::-webkit-media-controls-time-remaining-display {
-    color: var(--texto);
-  }
+  audio::-webkit-media-controls-time-remaining-display { color: var(--texto); }
 
   .lyrics-preview {
     color: var(--texto-sec);
     font-style: italic;
     line-height: 2;
-    font-size: 0.95rem;
+    font-size: clamp(0.85rem, 2.5vw, 0.95rem);
   }
 
-  .lyrics-preview strong {
-    color: var(--oro);
-  }
+  .lyrics-preview strong { color: var(--oro); }
 
   /* ===== POEM ===== */
   .poem-box {
     background: var(--fondo-sec);
-    border-radius: 20px;
-    padding: 3rem;
+    border-radius: 16px;
+    padding: 2.5rem 1.5rem;
     text-align: center;
     border-left: 4px solid var(--rojo);
     border-right: 4px solid var(--rojo);
     margin: 2rem 0;
+  }
+
+  @media (max-width: 480px) {
+    .poem-box { padding: 2rem 1rem; border-radius: 12px; }
   }
 
   .poem-box p {
@@ -356,7 +434,7 @@
     font-style: italic;
     color: var(--texto-sec);
     line-height: 2.2;
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 3.5vw, 1.1rem);
   }
 
   .poem-placeholder {
@@ -367,13 +445,18 @@
   /* ===== CLOSING ===== */
   .closing {
     text-align: center;
-    padding: 5rem 1.5rem;
+    padding: 4rem 1.5rem;
+    padding-bottom: calc(4rem + var(--sa-bottom));
     background: linear-gradient(135deg, transparent, rgba(192,57,43,0.08), transparent);
+  }
+
+  @media (max-width: 480px) {
+    .closing { padding: 3rem 1.25rem; }
   }
 
   .closing h2 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 5vw, 4rem);
+    font-size: clamp(2rem, 8vw, 4rem);
     background: linear-gradient(135deg, var(--oro-claro), var(--oro), var(--rojo-claro));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -386,22 +469,24 @@
     font-weight: 300;
     max-width: 500px;
     margin: 0 auto;
+    font-size: clamp(0.95rem, 3vw, 1.1rem);
   }
 
   /* ===== FOOTER ===== */
   footer {
     text-align: center;
     padding: 2rem;
+    padding-bottom: calc(2rem + var(--sa-bottom));
     color: rgba(196,181,168,0.3);
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     letter-spacing: 1px;
   }
 
   /* ===== ANIMATIONS ===== */
   .fade-in {
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
   }
 
   .fade-in.visible {
@@ -409,18 +494,31 @@
     transform: translateY(0);
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    .fade-in { opacity: 1; transform: none; }
+    .hero-arrow { animation: none; }
+  }
+
   .separator {
     text-align: center;
     color: var(--rojo);
-    font-size: 2rem;
-    opacity: 0.3;
-    margin: 2rem 0;
-    letter-spacing: 1rem;
+    font-size: 1.5rem;
+    opacity: 0.25;
+    margin: 1.5rem 0;
+    letter-spacing: 0.8rem;
+    user-select: none;
   }
 
-  .highlight {
-    color: var(--rojo-claro);
-    font-weight: 500;
+  .highlight { color: var(--rojo-claro); font-weight: 500; }
+
+  .intro-text {
+    text-align: center;
+    color: var(--texto-sec);
+    font-weight: 300;
+    font-size: clamp(0.95rem, 3vw, 1.1rem);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.8;
   }
 </style>
 </head>
@@ -439,10 +537,10 @@
 
 <!-- ===== INTRO ===== -->
 <section class="fade-in">
-  <div class="photo-strip single">
+  <div class="photo-frame wide">
     <img src="../images/01_rossana_con_ipo.jpg" alt="Rossana con Ipo" loading="lazy">
   </div>
-  <p style="text-align:center; color:var(--texto-sec); font-weight:300; font-size:1.1rem; max-width:700px; margin:0 auto;">
+  <p class="intro-text">
     <span class="highlight">Rossana Fabbrizio</span> &mdash; artista, joyera, cocinera, voluntaria, mamá de tres, compañera de vida.
     El <span class="highlight">23 de junio</span> celebra sus <span class="highlight">50 primaveras</span>.
     Esta página es un homenaje a ella y a todo lo que ha construido.
@@ -519,30 +617,30 @@
   <h2 class="section-title">Familia</h2>
   <p class="section-subtitle">El mayor tesoro de Rossana</p>
 
-  <div class="photo-strip">
+  <div class="photo-frame wide">
     <img src="../images/03_familia_molino.jpg" alt="La familia frente al molino" loading="lazy">
   </div>
 
-  <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:1.5rem; text-align:center; margin-top:2rem;">
-    <div style="background:var(--fondo-sec); padding:1.5rem; border-radius:12px; border:1px solid rgba(192,57,43,0.15);">
-      <div style="font-size:2rem; margin-bottom:0.5rem;">👦</div>
-      <div style="color:var(--oro); font-weight:600;">Alejo</div>
-      <div style="color:var(--texto-sec); font-size:0.9rem;">Eindhoven, Países Bajos</div>
+  <div class="family-grid">
+    <div class="family-card">
+      <div class="emoji">👦</div>
+      <div class="name">Alejo</div>
+      <div class="detail">Eindhoven, Países Bajos</div>
     </div>
-    <div style="background:var(--fondo-sec); padding:1.5rem; border-radius:12px; border:1px solid rgba(192,57,43,0.15);">
-      <div style="font-size:2rem; margin-bottom:0.5rem;">👧</div>
-      <div style="color:var(--oro); font-weight:600;">Rita</div>
-      <div style="color:var(--texto-sec); font-size:0.9rem;">La fuerza de la familia</div>
+    <div class="family-card">
+      <div class="emoji">👧</div>
+      <div class="name">Rita</div>
+      <div class="detail">La fuerza de la familia</div>
     </div>
-    <div style="background:var(--fondo-sec); padding:1.5rem; border-radius:12px; border:1px solid rgba(192,57,43,0.15);">
-      <div style="font-size:2rem; margin-bottom:0.5rem;">👧</div>
-      <div style="color:var(--oro); font-weight:600;">Natalia</div>
-      <div style="color:var(--texto-sec); font-size:0.9rem;">Florencia, Italia</div>
+    <div class="family-card">
+      <div class="emoji">👧</div>
+      <div class="name">Natalia</div>
+      <div class="detail">Florencia, Italia</div>
     </div>
-    <div style="background:var(--fondo-sec); padding:1.5rem; border-radius:12px; border:1px solid rgba(192,57,43,0.15);">
-      <div style="font-size:2rem; margin-bottom:0.5rem;">🐶</div>
-      <div style="color:var(--oro); font-weight:600;">Ipo</div>
-      <div style="color:var(--texto-sec); font-size:0.9rem;">11 años de amor fiel</div>
+    <div class="family-card">
+      <div class="emoji">🐶</div>
+      <div class="name">Ipo</div>
+      <div class="detail">11 años de amor fiel</div>
     </div>
   </div>
 </section>
@@ -558,21 +656,19 @@
     <div class="passion-card">
       <img src="../images/04_rossana_pizza_guatemala.jpg" alt="Rossana cocinando en Guatemala" loading="lazy">
       <div class="passion-body">
-        <h4>🍕 Cocina & tradición</h4>
+        <h4>🍕 Cocina &amp; tradición</h4>
         <p>Amasando pizza en el horno de leña de la casa familiar en Guatemala. La cocina es su lenguaje de amor.</p>
       </div>
     </div>
     <div class="passion-card">
       <img src="../images/05_rossana_arte_pintura.jpg" alt="Rossana haciendo arte" loading="lazy">
       <div class="passion-body">
-        <h4>🎨 Arte & creación</h4>
+        <h4>🎨 Arte &amp; creación</h4>
         <p>Pintura, cerámica, joyería, tejido. Todo lo que puede crear con sus manos, lo crea con belleza.</p>
       </div>
     </div>
     <div class="passion-card">
-      <div style="height:250px; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg, var(--rojo-oscuro), var(--rojo-claro));">
-        <span style="font-size:3rem;">🌿</span>
-      </div>
+      <div class="fallback-img">🌿</div>
       <div class="passion-body">
         <h4>🌱 Voluntariado</h4>
         <p>Trabaja en una huerta con jóvenes con necesidades especiales. Su generosidad no tiene límites.</p>
@@ -589,7 +685,7 @@
     <h3>🎵 Rojo Corazón</h3>
     <p class="tag">Canción original &mdash; al estilo Maná / Juanes</p>
 
-    <audio controls>
+    <audio controls playsinline>
       <source src="../song/rojo-corazon-suno.mp3" type="audio/mpeg">
       Tu navegador no soporta el reproductor de audio.
     </audio>
@@ -625,7 +721,7 @@
 <section class="closing fade-in">
   <h2>Rojo Corazón</h2>
   <p>Gracias por 50 años de luz, de arte, de amor.<br>Esto recién empieza, vamos por más 50.</p>
-  <p style="margin-top:1.5rem; color:var(--rojo-claro); font-size:1.2rem;">❤️</p>
+  <p style="margin-top:1.5rem; color:var(--rojo-claro); font-size:clamp(1.5rem, 6vw, 2.5rem);">❤️</p>
 </section>
 
 <footer>Rossana · 23 de junio de 2026 · Con amor, de Jorge</footer>
@@ -638,7 +734,7 @@
         entry.target.classList.add('visible');
       }
     });
-  }, { threshold: 0.15 });
+  }, { threshold: 0.12 });
 
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 </script>
