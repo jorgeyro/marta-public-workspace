@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#1A1412">
+<meta name="description" content="Una página hecha con amor para celebrar los 50 años de Rossana: su historia, su familia, una canción y un poema.">
+<meta property="og:title" content="Felices 50, Rossana ❤️">
+<meta property="og:description" content="Una página hecha con amor para celebrar sus 50 primaveras.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jorgeyro.github.io/marta-public-workspace/rossana-50-v2/">
+<meta property="og:image" content="https://jorgeyro.github.io/marta-public-workspace/rossana-50/images/01_rossana_con_ipo.jpg">
+<meta property="og:image:alt" content="Rossana con Ipo">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Felices 50, Rossana ❤️">
+<meta name="twitter:description" content="Una página hecha con amor para celebrar sus 50 primaveras.">
+<meta name="twitter:image" content="https://jorgeyro.github.io/marta-public-workspace/rossana-50/images/01_rossana_con_ipo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>Felices 50, Rossana ❤️</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  * { -webkit-tap-highlight-color: rgba(192,57,43,0.28); }
+  :root {
+    --rojo: #C0392B; --rojo-claro: #E74C3C; --rojo-oscuro: #922B21;
+    --oro: #D4A853; --oro-claro: #F0D78C; --fondo: #1A1412; --fondo-sec: #231B18;
+    --texto: #F5EDE8; --texto-sec: #C4B5A8; --muted: rgba(196,181,168,.58);
+    --sa-top: env(safe-area-inset-top, 0px); --sa-bottom: env(safe-area-inset-bottom, 0px);
+    --sa-left: env(safe-area-inset-left, 0px); --sa-right: env(safe-area-inset-right, 0px);
+  }
+  html { scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
+  body { font-family: 'Inter', sans-serif; background: var(--fondo); color: var(--texto); line-height: 1.7; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+  img { max-width: 100%; height: auto; }
+  a { color: inherit; }
+
+  .hero { position: relative; min-height: 100dvh; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden; padding: calc(2rem + var(--sa-top)) 1.5rem calc(5rem + var(--sa-bottom)); }
+  .hero::before { content: ''; position: absolute; inset: 0; background: url('../rossana-50/images/01_rossana_con_ipo.jpg') center center / contain no-repeat, #120e0d; transform: scale(1.01); }
+  .hero::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(26,20,18,.28) 0%, rgba(26,20,18,.52) 42%, rgba(26,20,18,.92) 100%), linear-gradient(180deg, rgba(26,20,18,.25) 0%, rgba(26,20,18,.78) 72%, var(--fondo) 100%); }
+  .hero-content { position: relative; z-index: 2; max-width: 780px; padding: 2rem 1rem; }
+  .eyebrow { display: inline-flex; gap: .5rem; align-items: center; justify-content: center; color: var(--oro-claro); border: 1px solid rgba(240,215,140,.28); background: rgba(26,20,18,.48); backdrop-filter: blur(8px); padding: .45rem .85rem; border-radius: 999px; font-size: clamp(.72rem, 2.3vw, .86rem); letter-spacing: 2.8px; text-transform: uppercase; margin-bottom: 1.2rem; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(3.2rem, 13vw, 7.2rem); line-height: .98; font-weight: 700; background: linear-gradient(135deg, #fff6d9, var(--oro), var(--rojo-claro)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-shadow: 0 18px 60px rgba(0,0,0,.45); margin-bottom: 1rem; }
+  .hero-sub { max-width: 620px; margin: 0 auto 1.7rem; color: var(--texto); font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(1.12rem, 4vw, 1.8rem); text-shadow: 0 4px 20px rgba(0,0,0,.65); }
+  .hero-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: .8rem; margin-top: 1.4rem; }
+  .btn { text-decoration: none; border-radius: 999px; padding: .86rem 1.15rem; font-weight: 600; font-size: .92rem; letter-spacing: .2px; transition: transform .2s ease, border-color .2s ease, background .2s ease; }
+  .btn:active { transform: scale(.98); }
+  .btn-primary { color: #2b1410; background: linear-gradient(135deg, var(--oro-claro), var(--oro)); box-shadow: 0 12px 38px rgba(212,168,83,.22); }
+  .btn-secondary { color: var(--texto); border: 1px solid rgba(240,215,140,.34); background: rgba(26,20,18,.46); backdrop-filter: blur(8px); }
+  .hero-arrow { position: absolute; z-index: 2; bottom: calc(1.3rem + var(--sa-bottom)); left: 50%; transform: translateX(-50%); color: var(--oro); opacity: .65; font-size: 1.6rem; animation: bounce 2s infinite; }
+  @keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(10px); } }
+
+  section { padding: 4.25rem 1.5rem; max-width: 1100px; margin: 0 auto; }
+  @media (max-width: 480px) { section { padding: 3.2rem 1.15rem; } .hero { padding-left: 1rem; padding-right: 1rem; } }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.9rem, 6vw, 3.2rem); text-align: center; margin-bottom: .5rem; color: var(--oro); }
+  .section-subtitle { text-align: center; color: var(--texto-sec); font-weight: 300; margin: 0 auto 2.5rem; font-size: clamp(.95rem, 3vw, 1.1rem); max-width: 760px; }
+  .separator { text-align: center; color: var(--rojo); font-size: 1.5rem; opacity: .25; margin: 1.1rem 0; letter-spacing: .8rem; user-select: none; }
+  .highlight { color: var(--rojo-claro); font-weight: 500; }
+  .intro-card { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 2rem; align-items: center; background: linear-gradient(145deg, rgba(35,27,24,.78), rgba(192,57,43,.06)); border: 1px solid rgba(212,168,83,.16); border-radius: 22px; padding: clamp(1rem, 3vw, 1.5rem); }
+  .intro-card img { width: 100%; border-radius: 16px; aspect-ratio: 4/3; object-fit: contain; background: #120e0d; display: block; }
+  .intro-text { color: var(--texto-sec); font-weight: 300; font-size: clamp(1rem, 3vw, 1.13rem); line-height: 1.85; }
+  .intro-text strong { font-family: 'Playfair Display', serif; color: var(--oro); font-size: 1.35em; font-weight: 600; }
+  @media (max-width: 800px) { .intro-card { grid-template-columns: 1fr; } }
+
+  .carousel { overflow-x: auto; -webkit-overflow-scrolling: touch; scroll-snap-type: x mandatory; scroll-behavior: smooth; margin: 2rem 0; padding: .1rem .75rem .6rem; cursor: grab; -ms-overflow-style: none; scrollbar-width: none; }
+  .carousel::-webkit-scrollbar { display: none; }
+  .carousel-track { display: flex; gap: 1rem; padding: .6rem 0; }
+  .carousel-card { flex: 0 0 260px; scroll-snap-align: start; background: linear-gradient(145deg, var(--fondo-sec), rgba(192,57,43,.08)); border-radius: 18px; padding: 1.45rem; border: 1px solid rgba(212,168,83,.15); display: flex; flex-direction: column; align-items: center; gap: .45rem; min-height: 212px; text-align: center; justify-content: flex-start; }
+  .carousel-card.featured { border-color: rgba(240,215,140,.75); box-shadow: 0 0 0 1px rgba(240,215,140,.14), 0 22px 70px rgba(212,168,83,.12); background: radial-gradient(circle at top, rgba(240,215,140,.14), transparent 42%), linear-gradient(145deg, #2a1b17, rgba(192,57,43,.13)); }
+  .card-kicker { color: var(--oro-claro); font-size: .72rem; text-transform: uppercase; letter-spacing: 1.7px; font-weight: 700; margin-bottom: .05rem; }
+  .card-year { font-family: 'Playfair Display', serif; font-size: clamp(1.28rem, 4vw, 1.6rem); color: var(--oro); font-weight: 700; line-height: 1.16; }
+  .card-flag { font-size: 1.75rem; }
+  .card-place { font-size: .82rem; color: var(--rojo-claro); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; }
+  .card-desc { color: var(--texto-sec); font-weight: 300; font-size: .88rem; line-height: 1.5; }
+  .carousel-hint { text-align: center; color: rgba(196,181,168,.34); font-size: .8rem; margin-top: .5rem; letter-spacing: 2px; user-select: none; }
+  @media (max-width: 480px) { .carousel-card { flex-basis: 232px; min-height: 210px; padding: 1.25rem; } }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center; margin: 2.5rem 0; }
+  .two-col img { width: 100%; border-radius: 16px; aspect-ratio: 4/3; object-fit: cover; display: block; }
+  .two-col h3 { font-family: 'Playfair Display', serif; font-size: clamp(1.45rem, 5vw, 1.9rem); color: var(--oro); margin-bottom: 1rem; }
+  .two-col p { color: var(--texto-sec); font-weight: 300; margin-bottom: 1rem; font-size: clamp(.95rem, 2.5vw, 1.05rem); }
+  @media (max-width: 768px) { .two-col { grid-template-columns: 1fr; gap: 1.4rem; } .two-col img { aspect-ratio: 16/9; } }
+
+  .photo-frame { margin-bottom: 2rem; }
+  .photo-frame img { width: 100%; border-radius: 16px; aspect-ratio: 16/9; object-fit: cover; display: block; }
+  .family-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 2rem; }
+  .family-card { background: linear-gradient(145deg, var(--fondo-sec), rgba(212,168,83,.04)); padding: 1.2rem .75rem; border-radius: 14px; text-align: center; border: 1px solid rgba(192,57,43,.16); }
+  .family-card .initial { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto .55rem; color: #2b1410; background: linear-gradient(135deg, var(--oro-claro), var(--oro)); font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.25rem; }
+  .family-card .name { color: var(--oro); font-weight: 600; font-size: clamp(.9rem, 3vw, 1rem); }
+  .family-card .detail { color: var(--texto-sec); font-size: clamp(.75rem, 2.5vw, .85rem); margin-top: .2rem; }
+  @media (max-width: 600px) { .family-grid { grid-template-columns: repeat(2, 1fr); gap: .75rem; } }
+
+  .passions-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin: 2rem 0; }
+  .passion-card { background: var(--fondo-sec); border-radius: 16px; overflow: hidden; border: 1px solid rgba(192,57,43,.2); }
+  .passion-card img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; filter: saturate(.95) sepia(.08) contrast(1.03); }
+  .passion-body { padding: 1.25rem; }
+  .passion-body h4 { color: var(--oro); font-size: clamp(1rem, 3vw, 1.2rem); margin-bottom: .4rem; }
+  .passion-body p { color: var(--texto-sec); font-weight: 300; font-size: clamp(.85rem, 2.5vw, .95rem); }
+  @media (max-width: 768px) { .passions-grid { grid-template-columns: 1fr; } }
+
+  .song-section { text-align: center; background: radial-gradient(circle at top, rgba(192,57,43,.18), transparent 42%), linear-gradient(135deg, var(--fondo-sec), rgba(192,57,43,.08)); border-radius: 22px; padding: 2.6rem 1.4rem; border: 1px solid rgba(212,168,83,.24); margin: 2rem 0; }
+  .song-section h3 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 7vw, 2.5rem); color: var(--oro); margin-bottom: .25rem; }
+  .song-section .tag { color: var(--texto-sec); font-style: italic; margin-bottom: 1.5rem; font-size: clamp(.9rem, 2.5vw, 1rem); }
+  .song-section audio { width: 100%; max-width: 430px; margin: 0 auto 1.5rem; display: block; }
+  audio::-webkit-media-controls-panel { background: var(--fondo-sec); }
+  audio::-webkit-media-controls-current-time-display, audio::-webkit-media-controls-time-remaining-display { color: var(--texto); }
+  .lyrics-preview { color: var(--texto-sec); font-style: italic; line-height: 2; font-size: clamp(.9rem, 2.5vw, 1rem); }
+  .lyrics-preview strong { color: var(--oro); }
+
+  .poem-box { background: linear-gradient(145deg, var(--fondo-sec), rgba(192,57,43,.055)); border-radius: 22px; padding: clamp(1.4rem, 5vw, 3rem); border: 1px solid rgba(212,168,83,.2); border-left: 4px solid var(--rojo); margin: 2rem auto; max-width: 820px; }
+  .poem-box p { font-family: 'Playfair Display', serif; font-style: italic; color: var(--texto-sec); line-height: 2.05; font-size: clamp(1rem, 3.4vw, 1.12rem); white-space: pre-line; text-align: left; }
+  .poem-box .poem-title { display: block; text-align: center; color: var(--oro); font-size: 1.28em; font-weight: 700; font-style: normal; margin-bottom: 1.2rem; }
+  .signature { display: block; text-align: right; font-size: .9rem; color: var(--muted); margin-top: 1.2rem; }
+
+  .closing { text-align: center; padding: 4rem 1.5rem; padding-bottom: calc(4rem + var(--sa-bottom)); background: linear-gradient(135deg, transparent, rgba(192,57,43,.08), transparent); }
+  .closing h2 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 8vw, 4.4rem); background: linear-gradient(135deg, var(--oro-claro), var(--oro), var(--rojo-claro)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 1rem; }
+  .closing p { color: var(--texto-sec); font-weight: 300; max-width: 540px; margin: 0 auto; font-size: clamp(.98rem, 3vw, 1.12rem); }
+  footer { text-align: center; padding: 2rem; padding-bottom: calc(2rem + var(--sa-bottom)); color: rgba(196,181,168,.35); font-size: .75rem; letter-spacing: 1px; }
+  .tech-note { display:block; margin-top:.45rem; opacity:.7; }
+
+  .fade-in { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .fade-in { opacity: 1; transform: none; } .hero-arrow { animation: none; } }
+</style>
+</head>
+<body>
+<header class="hero" id="inicio">
+  <div class="hero-content">
+    <div class="eyebrow">✨ 23 de junio de 2026</div>
+    <h1>Felices 50,<br>Rossana</h1>
+    <p class="hero-sub">Rojo corazón — una vida de arte, familia y camino compartido.</p>
+    <nav class="hero-actions" aria-label="Accesos principales">
+      <a class="btn btn-primary" href="#cancion">Escuchar la canción</a>
+      <a class="btn btn-secondary" href="#poema">Leer el poema</a>
+    </nav>
+  </div>
+  <a class="hero-arrow" href="#intro" aria-label="Bajar">↓</a>
+</header>
+
+<section class="fade-in" id="intro">
+  <div class="intro-card">
+    <img src="../rossana-50/images/01_rossana_con_ipo.jpg" alt="Rossana con Ipo" loading="eager">
+    <p class="intro-text"><strong>Rossana Fabbrizio</strong><br><br>Artista, joyera, cocinera, voluntaria, mamá de tres, compañera de vida. El <span class="highlight">23 de junio</span> celebra sus <span class="highlight">50 primaveras</span>. Esta página es un homenaje a ella: a sus manos, a su fuerza, a su forma de transformar cada lugar en casa.</p>
+  </div>
+</section>
+
+<div class="separator">✦ ✦ ✦</div>
+<section class="fade-in" id="historia">
+  <h2 class="section-title">Su historia</h2>
+  <p class="section-subtitle">Un recorrido por el mundo, siempre con raíces, arte y familia.</p>
+  <div class="carousel">
+    <div class="carousel-track">
+      <div class="carousel-card"><div class="card-year">1976</div><div class="card-flag">🇬🇹</div><div class="card-place">Guatemala</div><div class="card-desc">Nació Rossana. La menor de tres hermanas.</div></div>
+      <div class="carousel-card featured"><div class="card-kicker">El círculo de Florencia</div><div class="card-year">Enero 1995</div><div class="card-flag">🇮🇹</div><div class="card-place">Florencia, Italia</div><div class="card-desc">Se fue a los 18 años a estudiar joyería. Treinta años después, Natalia —su hija menor— seguiría sus pasos a la misma edad, en la misma ciudad.</div></div>
+      <div class="carousel-card"><div class="card-year">1996</div><div class="card-flag">🇬🇹</div><div class="card-place">Guatemala</div><div class="card-desc">Regresó y formó su taller de joyería. El mismo que hoy continúa su hermana en la casa familiar.</div></div>
+      <div class="carousel-card"><div class="card-year">1999</div><div class="card-flag">🇬🇹</div><div class="card-place">Guatemala</div><div class="card-desc">Boda en noviembre. El comienzo de todo.</div></div>
+      <div class="carousel-card"><div class="card-year">1999 – 2004</div><div class="card-flag">🇧🇴</div><div class="card-place">La Paz, Bolivia</div><div class="card-desc">Llegaron recién casados. Cuatro años y medio solos los dos.</div></div>
+      <div class="carousel-card"><div class="card-year">2004 – 2007</div><div class="card-flag">🇨🇴</div><div class="card-place">Colombia</div><div class="card-desc">Nacieron Rita y Alejo.</div></div>
+      <div class="carousel-card"><div class="card-year">2007 – 2011</div><div class="card-flag">🇵🇪</div><div class="card-place">Lima, Perú</div><div class="card-desc">Nació Natalia. Momentos difíciles que los hicieron más fuertes.</div></div>
+      <div class="carousel-card"><div class="card-year">2011 – 2015</div><div class="card-flag">🇬🇹</div><div class="card-place">Guatemala</div><div class="card-desc">De regreso a casa, cuatro años con raíces y familia.</div></div>
+      <div class="carousel-card"><div class="card-year">2015 – 2026</div><div class="card-flag">🇦🇷</div><div class="card-place">Buenos Aires, Argentina</div><div class="card-desc">Once años. Los chicos crecieron, Ipo llegó, el amor se hizo más profundo.</div></div>
+      <div class="carousel-card"><div class="card-year">2026</div><div class="card-flag">🌍</div><div class="card-place">Europa</div><div class="card-desc">Nueva aventura. Croacia por conocer, siempre juntos.</div></div>
+    </div>
+    <div class="carousel-hint">← Deslizá →</div>
+  </div>
+</section>
+
+<div class="separator">✦ ✦ ✦</div>
+<section class="fade-in" id="amor">
+  <h2 class="section-title">Amor en movimiento</h2>
+  <p class="section-subtitle">Desde 1999, seis países, y siempre tomados de la mano.</p>
+  <div class="two-col">
+    <img src="../rossana-50/images/02_jorge_y_rossana_glaciar.jpg" alt="Jorge y Rossana en el glaciar" loading="lazy" style="object-position: 35% center;">
+    <div><h3>Juntos en cualquier paisaje</h3><p>Desde La Paz hasta un glaciar en Patagonia. Desde una boda en Guatemala hasta una nueva vida en Europa. Donde sea que estén, están juntos.</p><p>Noviembre de 1999 fue solo el primer capítulo. Más de 26 años después, siguen escribiendo la historia.</p></div>
+  </div>
+</section>
+
+<div class="separator">✦ ✦ ✦</div>
+<section class="fade-in" id="familia">
+  <h2 class="section-title">Familia</h2>
+  <p class="section-subtitle">El mayor tesoro de Rossana.</p>
+  <div class="photo-frame"><img src="../rossana-50/images/03_familia_molino.jpg" alt="La familia frente al molino" loading="lazy" style="object-position: center 30%;"></div>
+  <div class="family-grid">
+    <div class="family-card"><div class="initial">A</div><div class="name">Alejo</div><div class="detail">Eindhoven, Países Bajos</div></div>
+    <div class="family-card"><div class="initial">R</div><div class="name">Rita</div><div class="detail">La fuerza de la familia</div></div>
+    <div class="family-card"><div class="initial">N</div><div class="name">Natalia</div><div class="detail">Florencia, Italia</div></div>
+    <div class="family-card"><div class="initial">I</div><div class="name">Ipo</div><div class="detail">11 años de amor fiel</div></div>
+  </div>
+</section>
+
+<div class="separator">✦ ✦ ✦</div>
+<section class="fade-in" id="pasiones">
+  <h2 class="section-title">Sus pasiones</h2>
+  <p class="section-subtitle">Todo lo que hace con sus manos y su corazón.</p>
+  <div class="passions-grid">
+    <div class="passion-card"><img src="../rossana-50/images/04_rossana_pizza_guatemala.jpg" alt="Rossana cocinando en Guatemala" loading="lazy"><div class="passion-body"><h4>Cocina &amp; tradición</h4><p>Amasando pizza en el horno de leña de la casa familiar en Guatemala. La cocina es su lenguaje de amor.</p></div></div>
+    <div class="passion-card"><img src="../rossana-50/images/05_rossana_arte_pintura.jpg" alt="Rossana haciendo arte" loading="lazy"><div class="passion-body"><h4>Arte &amp; creación</h4><p>Pintura, cerámica, joyería, tejido. Todo lo que puede crear con sus manos, lo crea con belleza.</p></div></div>
+    <div class="passion-card"><img src="../rossana-50/images/06_huerta.jpg" alt="Rossana en la huerta" loading="lazy"><div class="passion-body"><h4>Voluntariado</h4><p>Trabaja en una huerta con jóvenes con necesidades especiales. Su generosidad se nota en lo que hace.</p></div></div>
+  </div>
+</section>
+
+<div class="separator">✦ ✦ ✦</div>
+<section class="fade-in" id="cancion">
+  <div class="song-section">
+    <h3>Rojo Corazón</h3>
+    <p class="tag">Una canción para tus 50</p>
+    <audio controls playsinline preload="metadata"><source src="../rossana-50/song/rojo-corazon-suno.mp3" type="audio/mpeg">Tu navegador no soporta el reproductor de audio.</audio>
+    <div class="lyrics-preview"><p><strong>Rojo corazón, 50 primaveras</strong><br>Artista de la vida, tejedora de sueños<br>Rojo corazón, cocinas con amor<br>La huerta, el barro, el pincel — todo lo haces mejor</p><p style="margin-top:1rem; font-size:.85rem; opacity:.62;">Letra de Jorge, con amor</p></div>
+  </div>
+</section>
+
+<div class="separator">✦ ✦ ✦</div>
+<section class="fade-in" id="poema">
+  <h2 class="section-title">Para Rossana</h2>
+  <p class="section-subtitle">Un poema en sus 50.</p>
+  <div class="poem-box"><p><span class="poem-title">Rossana</span>
+
+Hija, esposa, madre, emprendedora,
+generosa, perseverante, valiente y verdadera.
+Genuina. Aventurera.
+
+De un país a otro,
+de una ciudad a la siguiente,
+fue haciendo del viaje su forma de vida.
+Hoy, a los cincuenta,
+lleva un continente en la memoria
+y otro entero por andar.
+
+Hermana menor de tres,
+aprendió temprano que la vida se comparte
+y que el amor se honra en el gesto y en el arte.
+
+Emprendedora con las manos y con el alma:
+joyera, ceramista, pintora,
+todo lo que toca lo transforma y lo mejora.
+
+Generosa sin anunciarse,
+creando espacios donde otros pueden crecer,
+una huerta, una palabra, un lugar para creer.
+
+Perseverante cuando la vida exigió de más,
+valiente cuando era fácil detenerse,
+cuando muchos habrían elegido no moverse.
+
+Cariñosa en lo esencial,
+genuina siempre, sin disfraces ni poses,
+con la verdad sencilla de las almas nobles.
+
+Madre de tres:
+Alejo, Rita, Natalia,
+su centro, su alegría, su familia.
+
+Compañera de camino,
+construyendo juntos una vida,
+en lo cotidiano y lo extraordinario,
+en todo lo que la vida les pone enfrente.
+
+Hija de quienes ya no están,
+pero siguen cerca, presentes,
+en su taller en Guatemala,
+en la memoria y en la mente.
+
+Cincuenta años siendo fiel a sí misma,
+sin pedir permiso, sin bajar la mirada,
+sin renunciar a lo que ama, a lo que la llama.
+
+Eso es Rossana.<span class="signature">— Jorge, 23 de junio de 2026</span></p></div>
+</section>
+
+<div class="separator">✦ ✦ ✦</div>
+<section class="closing fade-in">
+  <h2>Rojo Corazón</h2>
+  <p>Gracias por 50 años de luz, de arte, de amor.<br>Esto recién empieza: vamos por más 50.</p>
+  <p style="margin-top:1.5rem; color:var(--rojo-claro); font-size:clamp(1.5rem, 6vw, 2.5rem);">❤️</p>
+</section>
+<footer>Rossana · 23 de junio de 2026 · Con amor, de Jorge <span class="tech-note">Canción generada con apoyo de IA.</span></footer>
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
